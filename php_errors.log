@@ -1,0 +1,288 @@
+[10-Jul-2018 09:15:17 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:15:17 UTC] PHP Stack trace:
+[10-Jul-2018 09:15:17 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:15:17 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:15:17 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:15:17 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 09:15:17 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:15:17 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:15:32 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:15:32 UTC] PHP Stack trace:
+[10-Jul-2018 09:15:32 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:15:32 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:15:32 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:15:32 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 09:15:32 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:15:32 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:15:33 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:15:33 UTC] PHP Stack trace:
+[10-Jul-2018 09:15:33 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:15:33 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:15:33 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:15:33 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 09:15:33 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:15:33 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:15:35 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:15:35 UTC] PHP Stack trace:
+[10-Jul-2018 09:15:35 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:15:35 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:15:35 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:15:35 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 09:15:35 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:15:35 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:15:35 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:15:35 UTC] PHP Stack trace:
+[10-Jul-2018 09:15:35 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:15:35 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:15:35 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:15:35 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 09:15:35 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:15:35 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:18:15 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:18:15 UTC] PHP Stack trace:
+[10-Jul-2018 09:18:15 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:18:15 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:18:15 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:18:15 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 09:18:15 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:18:15 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:19:31 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:19:31 UTC] PHP Stack trace:
+[10-Jul-2018 09:19:31 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:19:31 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:19:31 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:19:31 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:24
+[10-Jul-2018 09:19:31 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:19:31 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:34:00 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:34:00 UTC] PHP Stack trace:
+[10-Jul-2018 09:34:00 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:34:00 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:34:00 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:34:00 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:24
+[10-Jul-2018 09:34:00 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:34:00 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:34:04 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:34:04 UTC] PHP Stack trace:
+[10-Jul-2018 09:34:04 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:34:04 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:34:04 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:34:04 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:24
+[10-Jul-2018 09:34:04 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:34:04 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:34:05 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:34:05 UTC] PHP Stack trace:
+[10-Jul-2018 09:34:05 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:34:05 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:34:05 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:34:05 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:24
+[10-Jul-2018 09:34:05 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:34:05 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:34:06 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:34:06 UTC] PHP Stack trace:
+[10-Jul-2018 09:34:06 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:34:06 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:34:06 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:34:06 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:24
+[10-Jul-2018 09:34:06 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:34:06 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:34:33 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\login.html on line 12
+[10-Jul-2018 09:34:33 UTC] PHP Stack trace:
+[10-Jul-2018 09:34:33 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:34:33 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:34:33 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:34:33 UTC] PHP   4. CI_Loader->view($view = 'login.html', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:24
+[10-Jul-2018 09:34:33 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'login.html', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:34:33 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 09:45:52 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\welcome_message.php on line 84
+[10-Jul-2018 09:45:52 UTC] PHP Stack trace:
+[10-Jul-2018 09:45:52 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 09:45:52 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 09:45:52 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 09:45:52 UTC] PHP   4. CI_Loader->view($view = 'welcome_message', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 09:45:52 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'welcome_message', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 09:45:52 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 11:03:31 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\welcome_message.php on line 84
+[10-Jul-2018 11:03:31 UTC] PHP Stack trace:
+[10-Jul-2018 11:03:31 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 11:03:31 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 11:03:31 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 11:03:31 UTC] PHP   4. CI_Loader->view($view = 'welcome_message', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 11:03:31 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'welcome_message', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 11:03:31 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 11:03:32 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\welcome_message.php on line 84
+[10-Jul-2018 11:03:32 UTC] PHP Stack trace:
+[10-Jul-2018 11:03:32 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 11:03:32 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 11:03:32 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 11:03:32 UTC] PHP   4. CI_Loader->view($view = 'welcome_message', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 11:03:32 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'welcome_message', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 11:03:32 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 11:03:36 UTC] PHP Error:  Call to undefined function base_url() in E:\phpStudy\WWW\zsPC\application\views\welcome_message.php on line 84
+[10-Jul-2018 11:03:36 UTC] PHP Stack trace:
+[10-Jul-2018 11:03:36 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 11:03:36 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 11:03:36 UTC] PHP   3. Welcome->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[10-Jul-2018 11:03:36 UTC] PHP   4. CI_Loader->view($view = 'welcome_message', $vars = *uninitialized*, $return = *uninitialized*) E:\phpStudy\WWW\zsPC\application\controllers\Welcome.php:23
+[10-Jul-2018 11:03:36 UTC] PHP   5. CI_Loader->_ci_load($_ci_data = array ('_ci_view' => 'welcome_message', '_ci_vars' => array (), '_ci_return' => FALSE)) E:\phpStudy\WWW\zsPC\system\core\Loader.php:489
+[10-Jul-2018 11:03:36 UTC] PHP   6. include() E:\phpStudy\WWW\zsPC\system\core\Loader.php:962
+[10-Jul-2018 12:58:48 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[10-Jul-2018 12:58:48 UTC] PHP Stack trace:
+[10-Jul-2018 12:58:48 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[10-Jul-2018 12:58:48 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[10-Jul-2018 12:58:48 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 07:20:24 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 07:20:24 UTC] PHP Stack trace:
+[11-Jul-2018 07:20:24 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 07:20:24 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 07:20:24 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518
+[11-Jul-2018 07:20:28 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 07:20:28 UTC] PHP Stack trace:
+[11-Jul-2018 07:20:28 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 07:20:28 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 07:20:28 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518
+[11-Jul-2018 11:30:32 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 11:30:32 UTC] PHP Stack trace:
+[11-Jul-2018 11:30:32 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:30:32 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:30:32 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518
+[11-Jul-2018 11:47:26 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 11:47:26 UTC] PHP Stack trace:
+[11-Jul-2018 11:47:26 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:47:26 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:47:26 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518
+[11-Jul-2018 11:50:17 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 11:50:17 UTC] PHP Stack trace:
+[11-Jul-2018 11:50:17 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:50:17 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:50:17 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518
+[11-Jul-2018 11:50:34 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 11:50:34 UTC] PHP Stack trace:
+[11-Jul-2018 11:50:34 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:50:34 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:50:34 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518
+[11-Jul-2018 11:50:41 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 11:50:41 UTC] PHP Stack trace:
+[11-Jul-2018 11:50:41 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:50:41 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:50:41 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518
+[11-Jul-2018 11:50:42 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 11:50:42 UTC] PHP Stack trace:
+[11-Jul-2018 11:50:42 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:50:42 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:50:42 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518
+[11-Jul-2018 11:50:51 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:50:51 UTC] PHP Stack trace:
+[11-Jul-2018 11:50:51 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:50:51 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:50:51 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:50:52 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:50:52 UTC] PHP Stack trace:
+[11-Jul-2018 11:50:52 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:50:52 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:50:52 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:51:31 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:51:31 UTC] PHP Stack trace:
+[11-Jul-2018 11:51:31 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:51:31 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:51:31 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:51:33 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:51:33 UTC] PHP Stack trace:
+[11-Jul-2018 11:51:33 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:51:33 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:51:33 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:51:33 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:51:33 UTC] PHP Stack trace:
+[11-Jul-2018 11:51:33 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:51:33 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:51:33 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:51:34 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:51:34 UTC] PHP Stack trace:
+[11-Jul-2018 11:51:34 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:51:34 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:51:34 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:51:57 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:51:57 UTC] PHP Stack trace:
+[11-Jul-2018 11:51:57 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:51:57 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:51:57 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:01 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:01 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:01 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:01 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:01 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:01 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:01 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:01 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:01 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:01 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:02 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:02 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:02 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:02 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:02 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:02 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:02 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:02 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:02 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:02 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:02 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:02 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:02 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:02 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:02 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:02 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:02 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:02 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:02 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:02 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:02 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:02 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:02 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:02 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:02 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:02 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:02 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:02 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:02 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:02 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:03 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:03 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:03 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:03 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:03 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:03 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:03 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:03 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:03 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:03 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:03 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:03 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:03 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:03 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:03 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:03 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:03 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:03 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:03 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:03 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:03 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:03 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:03 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:03 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:03 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:03 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:03 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:03 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:03 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:03 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:52:03 UTC] PHP Error:  Call to a member function view() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 8
+[11-Jul-2018 11:52:03 UTC] PHP Stack trace:
+[11-Jul-2018 11:52:03 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:52:03 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:52:03 UTC] PHP   3. Login->index() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:532
+[11-Jul-2018 11:56:56 UTC] PHP Error:  Call to a member function get() on null in E:\phpStudy\WWW\zsPC\application\controllers\Login.php on line 13
+[11-Jul-2018 11:56:56 UTC] PHP Stack trace:
+[11-Jul-2018 11:56:56 UTC] PHP   1. {main}() E:\phpStudy\WWW\zsPC\index.php:0
+[11-Jul-2018 11:56:56 UTC] PHP   2. require_once() E:\phpStudy\WWW\zsPC\index.php:315
+[11-Jul-2018 11:56:56 UTC] PHP   3. Login->login() E:\phpStudy\WWW\zsPC\system\core\CodeIgniter.php:518

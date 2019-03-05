@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>归档文件 - 中山建设监理建筑工程文档协同管理系统</title>
+
+		<meta name="description" content="overview &amp; stats" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/font-awesome/4.5.0/css/font-awesome.min.css"?>" />
+
+        <!-- page specific plugin styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-duallistbox.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-multiselect.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/select2.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/jquery-ui.min.css"?>" />
+        
+        <!-- text fonts -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/fonts.googleapis.com.css"?>" />
+
+        <!-- ace styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace.min.css"?>" class="ace-main-stylesheet" id="main-ace-style" />
+        
+        <!--self css-->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/self/self.css"?>" />
+
+        <!--[if lte IE 9]>
+            <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-part2.min.css"?>" class="ace-main-stylesheet" />
+        <![endif]-->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-skins.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-rtl.min.css"?>" />
+
+        <!--[if lte IE 9]>
+          <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-ie.min.css"?>" />
+        <![endif]-->
+
+        <!-- inline styles related to this page -->
+
+        <!-- ace settings handler -->
+        <script src="<?php echo base_url()."assets/js/ace-extra.min.js"?>"</script>></script>
+
+        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+        <!--[if lte IE 8]>
+        <script src="<?php echo base_url()."assets/js/html5shiv.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/respond.min.js"?>"></script>
+        <![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!--Top Begin-->
+        <?php $this->load->view("pageTop.html"); ?>
+        <!--Top End-->
+
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try {
+					ace.settings.loadState('main-container')
+				} catch(e) {}
+			</script>
+
+			<!--LeftTree Begin-->
+            <?php $this->load->view("pageLeft.html"); ?>
+            <!--LeftTree End-->
+
+			<div class="main-content">
+			    <div class="widget-body">
+                    <div class="widget-main padding-24">
+        				<!--affair list begin-->
+                        <span style="font-size: 22px;" id="proName">【未选中工程】</span>
+                        <div class="hr hr8 hr-double hr-dotted"></div>
+                        <!--title end-->
+                        <div class="col-xs-5">
+                            <div class="widget-box widget-color-blue" id="widget-box-2">
+                                <div class="widget-header">
+                                    <h5 class="widget-title bigger lighter">
+                                        <i class="ace-icon fa fa-table"></i>
+                                        <span>事务列表</span>
+                                    </h5>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <div>
+                                            <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>名称</th>
+                                                        <th>类型</th>
+                                                        <th>type</th>
+                                                        <th>截止时间</th>
+                                                        <th>表单类别</th>
+                                                        <th>归档时间</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--affair list end-->
+                        <!--affair attr begin-->
+                        <div class="col-xs-7">
+                            <div class="widget-box widget-color-blue">
+                                <div class="widget-header widget-header-flat">
+                                    <h4 class="widget-title smaller">文件属性</h4>
+                                </div>
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home1">常规</a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#home2">工作流</a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#home3">变更记录</a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#home4">提醒设置</a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#home5">操作日志</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="home1" class="tab-pane in active">
+                                            <div class="profile-user-info profile-user-info-striped">
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 创建时间 </div>
+                                                    <div class="profile-info-value">
+                                                        <span class="editable" id=""> 2018-7-15 </span>
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 创建人 </div>
+                                                    <div class="profile-info-value">
+                                                        <span class="editable" id=""> 同欣科技 </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="home2" class="tab-pane">
+                                            <div>
+                                                <button class="btn btn-success" id="id-btn-dialog">修改工作流</button>
+                                                <br /><br />
+                                                <ul class="steps">
+                                                    <li data-step="1" class="active" href="#modal-table" role="button" data-toggle="modal">
+                                                        <span class="step">1</span>
+                                                        <span class="title">工作流</span>
+                                                    </li>
+                                                    <li data-step="2">
+                                                        <span class="step">2</span>
+                                                        <span class="title">工作流</span>
+                                                    </li>
+                                                    <li data-step="3">
+                                                        <span class="step">3</span>
+                                                        <span class="title">工作流</span>
+                                                    </li>
+                                                    <li data-step="4">
+                                                        <span class="step">4</span>
+                                                        <span class="title">工作流</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="home3" class="tab-pane">
+                                            <div class="modal-footer no-margin-top">
+                                                <span class="pull-left">
+                                                    <span>显示</span>
+                                                    <select>
+                                                        <option>10</option>
+                                                        <option>50</option>
+                                                        <option>100</option>
+                                                        <option>All</option>
+                                                    </select>
+                                                    <span>条数据</span>
+                                                </span>
+                                                <ul class="pagination pull-right no-margin">
+                                                    <li class="prev disabled">
+                                                        <a href="#">
+                                                            <i class="ace-icon fa fa-angle-double-left"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="active">
+                                                        <a href="#">1</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">3</a>
+                                                    </li>
+                                                    <li class="next">
+                                                        <a href="#">
+                                                            <i class="ace-icon fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead class="thin-border-bottom">
+                                                    <tr>
+                                                        <th class="hidden-480">用户</th>
+                                                        <th class="hidden-480">修改时间</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr href="#table" role="button" data-toggle="modal">
+                                                        <td class="">A</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="">B</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="">甲</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="home4" class="tab-pane">
+                                            <div class="modal-footer no-margin-top">
+                                                <span class="pull-left">
+                                                    <span>显示</span>
+                                                    <select>
+                                                        <option>10</option>
+                                                        <option>50</option>
+                                                        <option>100</option>
+                                                        <option>All</option>
+                                                    </select>
+                                                    <span>条数据</span>
+                                                </span>
+                                                <ul class="pagination pull-right no-margin">
+                                                    <li class="prev disabled">
+                                                        <a href="#">
+                                                            <i class="ace-icon fa fa-angle-double-left"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="active">
+                                                        <a href="#">1</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">3</a>
+                                                    </li>
+                                                    <li class="next">
+                                                        <a href="#">
+                                                            <i class="ace-icon fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead class="thin-border-bottom">
+                                                    <tr>
+                                                        <th class="hidden-480">事件名称</th>
+                                                        <th class="hidden-480">提醒用户</th>
+                                                        <th class="hidden-480">修改时间</th>
+                                                        <th class="hidden-480">备注</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr href="#table" role="button" data-toggle="modal">
+                                                        <td class="">提醒签名</td>
+                                                        <td class="">丙</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                        <td class="">签名</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="">提醒跟进</td>
+                                                        <td class="">甲，丁</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                        <td class="">待验证</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="home5" class="tab-pane">
+                                            <div class="modal-footer no-margin-top">
+                                                <span class="pull-left">
+                                                    <span>显示</span>
+                                                    <select>
+                                                        <option>10</option>
+                                                        <option>50</option>
+                                                        <option>100</option>
+                                                        <option>All</option>
+                                                    </select>
+                                                    <span>条数据</span>
+                                                </span>
+                                                <ul class="pagination pull-right no-margin">
+                                                    <li class="prev disabled">
+                                                        <a href="#">
+                                                            <i class="ace-icon fa fa-angle-double-left"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="active">
+                                                        <a href="#">1</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">3</a>
+                                                    </li>
+                                                    <li class="next">
+                                                        <a href="#">
+                                                            <i class="ace-icon fa fa-angle-double-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead class="thin-border-bottom">
+                                                    <tr>
+                                                        <th class="hidden-480">操作名称</th>
+                                                        <th class="hidden-480">用户</th>
+                                                        <th class="hidden-480">修改时间</th>
+                                                        <th class="hidden-480">其他</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr href="#table" role="button" data-toggle="modal">
+                                                        <td class="">创建表单</td>
+                                                        <td class="">甲</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                        <td class=""></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="">修改表单</td>
+                                                        <td class="">丁</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                        <td class=""></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="">创建提醒</td>
+                                                        <td class="">戊</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                        <td class="">签名</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="">创建提醒</td>
+                                                        <td class="">戊</td>
+                                                        <td class="">2018-04-04 15:24</td>
+                                                        <td class="">待验证</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-6"></div>
+                        </div>
+                        <!--affair attr end-->
+                        <!--circle model begin-->
+                        <?php $this->load->view('model_circle.html'); ?>
+                        <!--circle model end-->
+                    </div>
+                </div>
+			</div>
+			<!-- main-content -->
+
+			<!--Foor Begin-->
+            <?php $this->load->view("pageFoot.html"); ?>
+            <!--Foot End-->
+
+		</div>
+        <!-- /.main-container -->
+
+        <!-- basic scripts -->
+
+        <!--[if !IE]> -->
+        <script src="<?php echo base_url()."assets/js/jquery-2.1.4.min.js"?>"></script>
+
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+        <script src="<?php echo base_url()."assets/js/jquery-1.11.3.min.js"?>"></script>
+        <![endif]-->
+        <script src="<?php echo base_url()."assets/js/bootstrap.min.js"?>"></script>
+
+        <!-- page specific plugin scripts -->
+
+        <!--[if lte IE 8]>
+          <script src="assets/js/excanvas.min.js"></script>
+        <![endif]-->
+        <script src="<?php echo base_url()."assets/js/jquery-ui.custom.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.ui.touch-punch.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery-ui.min.js"?>"></script>
+        
+        <!--dataTable-->
+        <script src="<?php echo base_url()."assets/js/jquery.dataTables.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.dataTables.bootstrap.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/dataTables.buttons.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.flash.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.html5.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.print.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.colVis.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/dataTables.select.min.js"?>"></script>
+        
+        <!-- ace scripts -->
+        <script src="<?php echo base_url()."assets/js/ace-elements.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/ace.min.js"?>"></script>
+
+        <!-- inline scripts related to this page -->
+        <script src="<?php echo base_url()."assets/js/self/Show_LeftTreeA.js"?>"></script>
+        <script type="text/javascript">
+            var MesIdAcc = '';
+            var fileSel = '';
+            jQuery(function($) {
+                /*
+                 * tableINI
+                 */
+                //table_1
+                var showMes = "<?php echo site_url('Affair/affair_MesShow'); ?>"+'/3';
+                console.log(showMes);
+                var table1 = $('#dynamic-table').DataTable({
+                    ajax:showMes,
+                    columns:[
+                        {"data":'id','visible':false},
+                        {"data":'name'},
+                        {"data":'typeC'},
+                        {"data":'type','visible':false},
+                        {"data":'id','visible':false},
+                        {"data":'id','visible':false},
+                        {"data":'id','visible':false},
+                    ],
+                    oLanguage: {
+                        sLengthMenu: "显示 _MENU_ 条数据",
+                    },
+                    "processing": true,
+                    "aaSorting": [],
+                    "aoColumnDefs": [{
+                        'bSortable': false,
+//                      'aTargets': [0,1]
+                    }],
+                });
+                $('#dynamic-table tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                    }
+                    else {
+                        table1.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                    try{
+                        sessionStorage.setItem('projectId',table1.row('.selected').data().id);
+                        fileSel = "<?php echo site_url('Affair/MesSel'); ?>"+'/'+table1.row('.selected').data().id+'/'+table1.row('.selected').data().type;
+                        console.log(fileSel);
+                        $.ajax({
+                            url:fileSel,
+                            async:true,
+                            type:'post',
+//                          dataType:'json',
+                            success:function(data){
+                                console.log(data);
+                            },
+                            error:function(s,e,t){
+                                console.log(s,e,t);
+                            }
+                        })
+                    }catch(e){ }
+                })
+                /*
+                 * model
+                 */
+                //override dialog's title function to allow for HTML titles
+                $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+                    _title: function(title) {
+                        var $title = this.options.title || '&nbsp;'
+                        if( ("title_html" in this.options) && this.options.title_html == true )
+                            title.html($title);
+                        else title.text($title);
+                    }
+                }));
+                
+                $( "#id-btn-dialog" ).on('click', function(e) {
+                    e.preventDefault();
+
+                    var dialog = $( "#dialog-message" ).removeClass('hide').dialog({
+                        modal: true,
+                        title: "<div class='widget-header widget-header-small'><h4 class='smaller'><i class='ace-icon fa fa-check'></i>工作流设置</h4></div>",
+                        title_html: true,
+                        buttons: [ 
+                            {
+                                text: "取消",
+                                "class" : "btn btn-minier",
+                                click: function() {
+                                    $( this ).dialog( "close" ); 
+                                } 
+                            },
+                            {
+                                text: "确定",
+                                "class" : "btn btn-primary btn-minier",
+                                click: function() {
+                                    $( this ).dialog( "close" ); 
+                                } 
+                            }
+                        ],
+                        width: "900px"
+                    });
+                });
+            })
+        </script>
+	</body>
+
+</html>

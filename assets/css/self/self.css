@@ -1,0 +1,58 @@
+/*
+ * 使菜单栏无法点击
+ */
+.NoAction {
+    cursor: pointer;
+    pointer-events: none;
+    /*color: #A0A0A0!important;*/
+}
+
+.NoAction>a {
+    background-color: #A0A0A0!important;
+}
+
+/*
+ * 增加按钮的位置
+ */
+.btn-AddMes {
+    margin-right: 5px;
+    margin-top:2px;
+    float: right;
+}
+/*
+ * 新增文档的输入框样式
+ */
+.NewDocMes {
+    width: 180%;
+}
+/*
+ * 日期选择
+ */
+.input-group .datepicker {
+    z-index: 100000 !important;
+}
+
+/*
+ * 模板节点设置
+ */
+.noidSet {
+    /*width: 1000px;*/
+    height:600px;
+    border:1px solid #ccc; 
+    overflow:auto;
+    clear:both;
+}
+
+.Select2Height {
+    height: 350px;
+}
+
+/*
+ * 表单草稿
+ */
+/*未进行属性修改前*/
+.NoSelTabType {
+    pointer-events: none; /* 元素永远不会成为鼠标事件的target */
+    background-color: #A0A0A0!important;
+    border-color: #A0A0A0
+}

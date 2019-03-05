@@ -1,0 +1,167 @@
+<!--model text begin-->
+    
+    <!--circle reset -->
+    <div class="col-lx-12">
+        <div id="dialog-message" class="hide">
+            <div class="alert alert-info bigger-110">
+                <input id="uriOwn-change" style="width: 300px;" type="text" value="<?php $uri = $this->uri->segment(2);echo site_url('MesContro/CirSave_New').'/'.$uri; ?>" hidden="hidden"/>
+                <input id="TypeId-change" type="text" value=""/>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="thin-border-bottom">
+                        <tr>
+                            <th class="">审批步骤数量</th>
+                            <th class="">
+                                <select id="TurnNum-change">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </th>
+                            <th class=""><a class="btn btn-info" id="SetTurnNum">确认</a></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="bigger-110 bolder center">
+                <table class="table table-striped table-bordered table-hover" id="CirMes">
+                    <thead class="thin-border-bottom">
+                        <tr>
+                            <th class="" style="width: 30%;">流程节点</th>
+                            <th class="" style="width: 30%;">部门</th>
+                            <th class="">用户</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php for($i=1;$i<5;$i++){ ?>
+                            <tr class="">
+                                <td class=""><?php echo $i; ?></td>
+                                <td class="">
+                                    <select>
+                                        <option></option>
+                                        <?php foreach($departMes as $v){ ?>
+                                        <option><?=$v['RolNam'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <select class="multiselect" multiple="">
+                                            <option value="cheese">Cheese</option>
+                                            <option value="tomatoes">Tomatoes</option>
+                                            <option value="mozarella">Mozzarella</option>
+                                            <option value="mushrooms">Mushrooms</option>
+                                            <option value="pepperoni">Pepperoni</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        <?php for($y=5;$y<11;$y++){ ?>
+                            <tr class="hide">
+                                <td class=""><?php echo $y; ?></td>
+                                <td class="">
+                                    <select>
+                                        <option></option>
+                                        <?php foreach($departMes as $v){ ?>
+                                        <option><?=$v['RolNam'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                                <td class="">
+                                    <div class="form-group">
+                                        <select class="multiselect" multiple="">
+                                            <option value="cheese">Cheese</option>
+                                            <option value="tomatoes">Tomatoes</option>
+                                            <option value="mozarella">Mozzarella</option>
+                                            <option value="mushrooms">Mushrooms</option>
+                                            <option value="pepperoni">Pepperoni</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--circle reset -->
+    
+    <!--circle_NEW set begin-->
+    <div class="col-lx-12">
+        <div id="dialog-message-new" class="hide">
+            <div class="alert alert-info bigger-110">
+                <input id="uriOwn-new" type="text" value="<?php $uri = $this->uri->segment(2);echo site_url('MesContro/CirSave_New').'/'.$uri; ?>" hidden="hidden"/>
+                <input id="TypeId-new" type="text" value="" hidden="hidden"/>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="thin-border-bottom">
+                        <tr>
+                            <th class="">审批步骤数量</th>
+                            <th class="">
+                                <select id="TurnNum-new">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option selected="selected">4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="bigger-110 bolder center">
+                <table class="table table-striped table-bordered table-hover" id="CirMes-new">
+                    <thead class="thin-border-bottom">
+                        <tr>
+                            <th class="">流程节点</th>
+                            <th class="">部门</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php for($i=1;$i<5;$i++){ ?>
+                            <tr class="">
+                                <td class=""><?php echo $i; ?></td>
+                                <td class="">
+                                    <select>
+                                        <option></option>
+                                        <?php foreach($departMes as $v){ ?>
+                                        <option><?php $v['RolNam']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        <?php for($y=5;$y<11;$y++){ ?>
+                            <tr class="hide">
+                                <td class=""><?php echo $y; ?></td>
+                                <td class="">
+                                    <select>
+                                        <option></option>
+                                        <?php foreach($departMes as $v){ ?>
+                                        <option><?php $v['RolNam']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--circle_NEW set end-->
+    
+<!--model text end-->

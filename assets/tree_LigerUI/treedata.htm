@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <link href="css/ligerui-tree.css" rel="stylesheet" type="text/css" />
+    <script src="js/base.js" type="text/javascript"></script>
+    <script src="js/ligerTree.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    		var data = [];
+            var jsondata = [{
+					nodeId: "9839bff1-d004-4bd3-b27b-bee994fe4da3",
+					nodeName: "1",
+					parentId: "c91af48b-8447-4338-a15c-c19540dc0aba",
+					formId: "9839bff1-d004-4bd3-b27b-bee994fe4da3",
+					id: 305
+				},
+				{
+					nodeId: "c91af48b-8447-4338-a15c-c19540dc0aba",
+					nodeName: "（GD-C1-311）项目经理任命及授权通知书",
+					parentId: "fd0cc9e2-f135-430c-b08b-ff0c078a5e84",
+					formId: "9839bff1-d004-4bd3-b27b-bee994fe4da3",
+					id: 306
+				},
+				{
+					nodeId: "fd0cc9e2-f135-430c-b08b-ff0c078a5e84",
+					nodeName: "第一节 施工项目管理文件资料通用表",
+					parentId: "9fbe7497-ec22-4139-8b5e-6279626c037f",
+					formId: "9839bff1-d004-4bd3-b27b-bee994fe4da3",
+					id: 307
+				},
+				{
+					nodeId: "9fbe7497-ec22-4139-8b5e-6279626c037f",
+					nodeName: "第三章 施工管理和技术文件资料用表（C1 类表）",
+					parentId: "0b5c5b47-0927-48ec-a336-9b925881ec54",
+					formId: "9839bff1-d004-4bd3-b27b-bee994fe4da3",
+					id: 308
+				},
+				{
+					nodeId: "0b5c5b47-0927-48ec-a336-9b925881ec54",
+					nodeName: "陈村同乐楼",
+					parentId: "",
+					formId: "9839bff1-d004-4bd3-b27b-bee994fe4da3",
+					id: 309
+				}];
+			for(var i=0;i<jsondata.length;i++){
+				if(jsondata[i].parentId==''){
+					jsondata[i].parentId = 0;
+				}
+//				console.log(jsondata[i].nodeId);
+				data.push({ id: jsondata[i].nodeId, pid: jsondata[i].parentId, text: jsondata[i].nodeName });
+			}
+        
+        $(function ()
+        {
+            console.log(data)
+            var tree = $("#tree1").ligerTree({
+                data:data,
+                idFieldName :'id',
+                checkbox:false,
+                slide : false,
+                parentIDFieldName :'pid',
+                onSelect: onSelect
+            });
+             treeManager = $("#tree1").ligerGetTreeManager();
+             // 设置不展开
+             treeManager.collapseAll();
+             function onSelect(note) {
+				if(!note.data.children){
+					alert('该节点为叶节点')
+				}
+            }
+            
+        });
+    </script>
+</head>
+<body style="padding:10px">   
+    <div style="width:400px; height:300px; margin:10px; float:left; border:1px solid #ccc; overflow:auto;  ">
+    <ul id="tree1"></ul>
+    </div>
+        <div style="display:none">
+    </div>
+</body>
+</html>

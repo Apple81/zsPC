@@ -1,0 +1,306 @@
+<div class="col-xs-6" id="tabDetailMes">
+    <div class="widget-box widget-color-blue" id="widget-box-2">
+    	
+        <div class="widget-header">
+            <h5 class="widget-title bigger lighter">
+                <i class="ace-icon fa fa-table"></i>
+                <span>文档属性</span>
+            </h5>
+        </div>
+        <div class="tabbable">
+            <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="">
+                <li class="active">
+                    <a data-toggle="tab" href="#home1">基本属性</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#home2">流转属性</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#home3">提醒设置</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#home4">操作记录</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#home5">表单附件</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="home1" class="tab-pane in active">
+                    <button class="btn btn-primary" href="#modal-table" role="button" data-toggle="modal">修改基本属性</button>
+                    <br /><br />
+                    
+                    <div class="profile-user-info profile-user-info-striped">
+                    	
+                    	<div class="profile-info-row">
+                            <div class="profile-info-name"> 文档名 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="FleNam2" ></span>
+                            </div>
+                        </div>
+                    	                    	
+                    	<div class="profile-info-row">
+                            <div class="profile-info-name"> 主题 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="Theme2" ></span>
+                            </div>
+                        </div>
+                    	
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 主送对象 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="TargetObj2"></span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 抄送对象 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="CopyObj2"></span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 发起部门 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="SendPart2"></span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 发起人 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="SendPeo2"></span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 审核部门 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="CheckPart2"> </span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 审核人 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="CheckPeo2"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 批准部门 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="PassPart2"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 批注人 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id="PassPeo2"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 概要 </div>
+                            <div class="profile-info-value">
+                                <span class="editable" id=""> </span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+				
+                <div id="home2" class="tab-pane">
+                    <button class="btn btn-primary" id="id-btn-dialog">修改工作流</button>
+                    <br /><br />
+                    <ul class="steps">
+                        <li data-step="1" class="active">
+                            <span class="step">1</span>
+                            <span class="title">工作流</span>
+                        </li>
+                        <li data-step="2">
+                            <span class="step">2</span>
+                            <span class="title">工作流</span>
+                        </li>
+                        <li data-step="3">
+                            <span class="step">3</span>
+                            <span class="title">工作流</span>
+                        </li>
+                        <li data-step="4">
+                            <span class="step">4</span>
+                            <span class="title">工作流</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="home3" class="tab-pane">
+                    <button class="btn btn-primary" href="#modal-remain" role="button" data-toggle="modal">新增提醒</button>
+                    <br /><br />
+                    <div class="modal-footer no-margin-top">
+                        <span class="pull-left">
+                            <span>显示</span>
+                            <select>
+                                <option>10</option>
+                                <option>50</option>
+                                <option>100</option>
+                                <option>All</option>
+                            </select>
+                            <span>条数据</span>
+                        </span>
+                        <ul class="pagination pull-right no-margin">
+                            <li class="prev disabled">
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li class="next">
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thin-border-bottom">
+                            <tr>
+                                <th>事件名称</th>
+                                <th>提醒用户</th>
+                                <th>修改时间</th>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="">提醒签名</td>
+                                <td class="">丙</td>
+                                <td class="">2018-04-04 15:24</td>
+                                <td class="">签名</td>
+                            </tr>
+                            <tr>
+                                <td class="">提醒跟进</td>
+                                <td class="">甲，丁</td>
+                                <td class="">2018-04-04 15:24</td>
+                                <td class="">待验证</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="home4" class="tab-pane">                    
+                    <table id="undynamic-table" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="center">
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace"/>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </th>
+                                <th>id</th>
+                                <th>#</th>
+                                <th>历史操作</th>
+                                <th>操作时间</th>
+                                <th>操作对象</th>
+                                <th>历史其他</th>
+                                <th>签名状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="home5" class="tab-pane">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-primary" href="#modal-formUpload" role="button" data-toggle="modal">添加表单</button>
+                            <button class="btn btn-primary" href="#modal-fileUpload" role="button" data-toggle="modal">上传附件</button>
+                            <br /><br />
+                            <div>
+                                <div class="modal-footer no-margin-top">
+                                    <span class="pull-left">
+                                        <span>显示</span>
+                                        <select>
+                                            <option>10</option>
+                                            <option>50</option>
+                                            <option>100</option>
+                                            <option>All</option>
+                                        </select>
+                                        <span>条数据</span>
+                                    </span>
+                                    <ul class="pagination pull-right no-margin">
+                                        <li class="prev disabled">
+                                            <a href="#">
+                                                <i class="ace-icon fa fa-angle-double-left"></i>
+                                            </a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="#">1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">3</a>
+                                        </li>
+                                        <li class="next">
+                                            <a href="#">
+                                                <i class="ace-icon fa fa-angle-double-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="thin-border-bottom">
+                                        <tr>
+                                            <th class="hidden-480">名称</th>
+                                            <th class="hidden-480">文件类型</th>
+                                            <th class="hidden-480">上传/创建时间</th>
+                                            <th class="hidden-480">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr href="#table" role="button" data-toggle="modal">
+                                            <td class="">设计开发计划表</td>
+                                            <td class="">.xls</td>
+                                            <td class="">2018-04-04 15:24</td>
+                                            <td><button>删除</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="">设计开发计划表</td>
+                                            <td class="">.xls</td>
+                                            <td class="">2018-04-04 15:24</td>
+                                            <td><button>删除</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="">设计开发计划表</td>
+                                            <td class="">.xls</td>
+                                            <td class="">2018-04-04 15:24</td>
+                                            <td><button>删除</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!--model part begin-->
+<?php $this->load->view('page_model.html'); ?>
+<!--model part begin-->

@@ -1,0 +1,229 @@
+<div id="sidebar" class="sidebar responsive ace-save-state">
+    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+            <button class="btn btn-success">
+                <i class="ace-icon fa fa-signal"></i>
+            </button>
+            <button class="btn btn-info">
+                <i class="ace-icon fa fa-pencil"></i>
+            </button>
+            <button class="btn btn-warning">
+                <i class="ace-icon fa fa-users"></i>
+            </button>
+            <button class="btn btn-danger">
+                <i class="ace-icon fa fa-cogs"></i>
+            </button>
+        </div>
+        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+            <span class="btn btn-success"></span>
+            <span class="btn btn-info"></span>
+            <span class="btn btn-warning"></span>
+            <span class="btn btn-danger"></span>
+        </div>
+    </div>
+    <!-- /.sidebar-shortcuts -->
+    <ul class="nav nav-list">
+        <li class="TagFather TagSon">
+            <a class="TagSet" id="affairShow_Proj" href="<?php echo site_url('Affair/affairShow_Proj');?>">
+                <i class="menu-icon fa fa-desktop"></i>
+                <span class="menu-text">我的工程</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="TagFather Require">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-magic"></i>
+                <span class="menu-text" data-text="个人事务">个人事务</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="TagSon">
+                    <a class="TagSet" id="affairShow_Want" href="<?php echo site_url('Affair/affairShow_Want');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>待办事项</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="affairShow_Impt" href="<?php echo site_url('Affair/affairShow_Impt');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>重要文件</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="affairShow_Cras" href="<?php echo site_url('Affair/affairShow_Cras');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>紧急文件</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="affairShow_Pack" href="<?php echo site_url('Affair/affairShow_Pack');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>归档文件</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="TagFather Require">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-pencil-square-o"></i>
+                <span class="menu-text" data-text="表单管理"> 表单管理 </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="TagSon">
+                    <a class="TagSet" id="formShow_Draf" href="<?php echo site_url('Form/formShow_Draf');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>草稿</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="formShow_Sign" href="<?php echo site_url('Form/formShow_Sign');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>签批</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="formShow_Rejt" href="<?php echo site_url('Form/formShow_Rejt');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>驳回</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="formShow_Over" href="<?php echo site_url('Form/formShow_Over');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>逾期</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="formShow_Pack" href="<?php echo site_url('Form/formShow_Pack');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>归集</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="TagFather Require">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-file-o"></i>
+                <span class="menu-text" data-text="文档管理">文档管理</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="TagSon">
+                    <a class="TagSet" id="docShow_Draf" href="<?php echo site_url('Document/docShow_Draf');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>草稿</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="docShow_Sign" href="<?php echo site_url('Document/docShow_Sign');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>签发</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="docShow_Rejt" href="<?php echo site_url('Document/docShow_Rejt');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>废止</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="docShow_Over" href="<?php echo site_url('Document/docShow_Over');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>逾期</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="docShow_Pack" href="<?php echo site_url('Document/docShow_Pack');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>归档</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="TagFather">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text"> 统计查询 </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="TagSon">
+                    <a class="TagSet" id="queryShow_Seek" href="<?php echo site_url('Query/queryShow_Seek');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>查询</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="queryShow_Anlz" href="<?php echo site_url('Query/queryShow_Anlz');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>统计分析</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="TagFather">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-tag"></i>
+                <span class="menu-text"> 系统设置 </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="TagSon">
+                    <a class="TagSet" id="systemShow_FmTy" href="<?php echo site_url('System/systemShow_FmTy');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>表单签批类型设置</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="systemShow_DcTy" href="<?php echo site_url('System/systemShow_DcTy');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>文档签发类型定义</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="systemShow_Depm" href="<?php echo site_url('System/systemShow_Depm');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>部门及人员设置</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="TagSon">
+                    <a class="TagSet" id="systemShow_Phoe" href="<?php echo site_url('System/systemShow_Phoe');?>">
+                        <i class="menu-icon fa fa-caret-right"></i> 
+                        <span>用户注册管理</span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- /.nav-list -->
+    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+    </div>
+</div>

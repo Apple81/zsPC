@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>我的工程 - 中山建设监理建筑工程文档协同管理系统</title>
+
+		<meta name="description" content="overview &amp; stats" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/font-awesome/4.5.0/css/font-awesome.min.css"?>" />
+        
+        <!-- page specific plugin styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-duallistbox.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-multiselect.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/select2.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/jquery-ui.min.css"?>" />
+        
+        <!-- text fonts -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/fonts.googleapis.com.css"?>" />
+        
+        <!-- ace styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace.min.css"?>" class="ace-main-stylesheet" id="main-ace-style" />
+        
+        <!--self css-->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/self/self.css"?>" />
+
+        <!--[if lte IE 9]>
+            <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-part2.min.css"?>" class="ace-main-stylesheet" />
+        <![endif]-->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-skins.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-rtl.min.css"?>" />
+        
+        <!--[if lte IE 9]>
+          <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-ie.min.css"?>" />
+        <![endif]-->
+
+        <!-- inline styles related to this page -->
+
+        <!-- ace settings handler -->
+        <script src="<?php echo base_url()."assets/js/ace-extra.min.js"?>"</script>></script>
+
+        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+        <!--[if lte IE 8]>
+        <script src="<?php echo base_url()."assets/js/html5shiv.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/respond.min.js"?>"></script>
+        <![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!--Top Begin-->
+        <?php $this->load->view("pageTop.html"); ?>
+        <!--Top End-->
+
+		<div class="main-container ace-save-state" id="main-container">
+
+			<!--LeftTree Begin-->
+            <?php $this->load->view("pageLeft.html"); ?>
+            <!--LeftTree End-->
+
+			<div class="main-content">
+			    <div class="widget-body">
+                    <div class="widget-main padding-24">
+        			    <span style="font-size: 22px;">我的工程</span>
+        			    <span style="font-size: 22px;" id="proName">【未选中工程】</span>
+                        <div class="hr hr8 hr-double hr-dotted"></div>
+                        <div class="col-sm-5">
+                            <div class="widget-box">
+                                <div class="widget-header widget-header-flat">
+                                    <h4 class="widget-title smaller">工程列表</h4>
+                                </div>
+                                <div class="widget-body">
+                                    <table id="project-table" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>工程名称</th>
+                                                <th>开始日期</th>
+                                                <th>城市名称</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-7">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="widget-box">
+                                        <div class="widget-header widget-header-flat">
+                                            <h4 class="widget-title smaller">工程属性</h4>
+                                        </div>
+                                        <div class="tabbable">
+                                            <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                                                <li class="active">
+                                                    <a data-toggle="tab" href="#home1">常规</a>
+                                                </li>
+                                                <!--<li>
+                                                    <a data-toggle="tab" href="#home2">权限分配</a>
+                                                </li>-->
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="home1" class="tab-pane in active">
+                                                    <div class="profile-user-info profile-user-info-striped">
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 工程名称 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="projectName">  </span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 手机号码 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="mobile">  </span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <!--<div class="profile-info-row">
+                                                            <div class="profile-info-name"> 城市编号 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="cityCode">  </span>
+                                                            </div>
+                                                        </div>-->
+                                                        
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 所在城市 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="cityName">  </span>
+                                                            </div>
+                                                        </div>
+                                
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 工程创建日期 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="createTime">  </span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 工程开始日期 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="startDate">  </span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 工程上传日期 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="uploadTime">  </span>
+                                                            </div>
+                                                        </div>
+        
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 工程监管单位 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="supUnits">  </span>
+                                                            </div>
+                                                        </div>
+                                
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 工程施工单位 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="editable" id="builder">  </span>
+                                                            </div>
+                                                        </div>
+                                
+                                                    </div>
+                                                </div>
+                                                <!--<div id="home2" class="tab-pane">
+                                                    <table id="limits-table" class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>用户名</th>
+                                                                <th>用户账号</th>
+                                                                <th>所属部门</th>
+                                                                <th>添加时间</th>
+                                                                <th>添加人</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main-content -->
+
+			<!--Foor Begin-->
+            <?php $this->load->view("pageFoot.html"); ?>
+            <!--Foot End-->
+            
+		</div>
+		<!-- /.main-container -->
+		
+		<!-- basic scripts -->
+        
+		<script src="<?php echo base_url()."assets/js/jquery-2.1.4.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/bootstrap.min.js"?>"></script>
+        
+        <!--dataTable-->
+        <script src="<?php echo base_url()."assets/js/jquery.dataTables.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.dataTables.bootstrap.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/dataTables.buttons.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.flash.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.html5.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.print.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.colVis.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/dataTables.select.min.js"?>"></script>
+        
+        <!-- page specific plugin scripts -->
+        <script src="<?php echo base_url()."assets/js/jquery-ui.custom.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.ui.touch-punch.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.easypiechart.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.sparkline.index.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.flot.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.flot.pie.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.flot.resize.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery-ui.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.ui.touch-punch.min.js"?>"></script>
+        
+        <!-- ace scripts -->
+        <script src="<?php echo base_url()."assets/js/ace-elements.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/ace.min.js"?>"></script>
+		
+		<!-- inline scripts related to this page -->
+        <script src="<?php echo base_url()."assets/js/self/Show_LeftTreeA.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/self/api.js"?>"></script>
+        <script type="text/javascript">
+            var tabProList;
+            jQuery(function($) {
+                var getMobile = "<?php echo site_url('Affair/getMobile'); ?>";
+                $.ajax({
+                	type:"post",
+                	url:getMobile,
+                	async:true,
+                	success:function(data){
+                	    getProMesAll(data);
+                	},
+                	error:function(s,e,t){
+                	    console.log(e)
+                	}
+                });
+                
+                /*
+                 * tableAction
+                 */
+                //table1
+                $('#project-table tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                    }
+                    else {
+                        $('#project-table tbody').find('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                    try{
+                        sessionStorage.setItem('projectId',tabProList.row('.selected').data().projectId);
+                        sessionStorage.setItem('projectName',tabProList.row('.selected').data().projectName);
+                        
+                        $('.Require').removeClass('NoAction');
+                        $('#proName').text('【选中工程：'+tabProList.row('.selected').data().projectName+'】');
+                        
+                        $('#projectName').text(tabProList.row('.selected').data().projectName);
+                        $('#createTime').text(tabProList.row('.selected').data().createTime);
+                        $('#startDate').text(tabProList.row('.selected').data().startDate);
+                        $('#uploadTime').text(tabProList.row('.selected').data().uploadTime);
+                        $('#supUnits').text(tabProList.row('.selected').data().supUnits);
+                        $('#builder').text(tabProList.row('.selected').data().builder);
+                        $('#mobile').text(tabProList.row('.selected').data().mobile);
+//                      $('#cityCode').text(tabProList.row('.selected').data().cityCode);
+                        $('#cityName').text(tabProList.row('.selected').data().cityName);
+                        
+                    }catch(e){}
+                })
+            })
+            /*
+             * function
+             */
+            function tableProAll(data){
+                tabProList = $('#project-table').DataTable({
+                    data:data,
+                    columns:[
+                        {"data":'projectName'},
+                        {"data":'startDate'},
+                        {"data":'cityName'},
+                    ],
+                    oLanguage: {
+                        sLengthMenu: "显示 _MENU_ 条数据",
+                    },
+                    "processing": true,
+                    "aaSorting": [],
+                    "aoColumnDefs": [{
+                        'bSortable': false,
+                        'aTargets': []
+                    }],
+                });
+            }
+        </script>
+	</body>
+
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <title>归档 - 中山建设监理建筑工程文档协同管理系统</title>
+
+        <meta name="description" content="overview &amp; stats" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/font-awesome/4.5.0/css/font-awesome.min.css"?>" />
+
+        <!-- page specific plugin styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-duallistbox.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-multiselect.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/select2.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/jquery-ui.min.css"?>" />
+
+        <!-- text fonts -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/fonts.googleapis.com.css"?>" />
+
+        <!-- ace styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace.min.css"?>" class="ace-main-stylesheet" id="main-ace-style" />
+
+        <!--[if lte IE 9]>
+            <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-part2.min.css"?>" class="ace-main-stylesheet" />
+        <![endif]-->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-skins.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-rtl.min.css"?>" />
+
+        <!--[if lte IE 9]>
+          <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-ie.min.css"?>" />
+        <![endif]-->
+
+        <!-- inline styles related to this page -->
+
+        <!-- ace settings handler -->
+        <script src="<?php echo base_url()."assets/js/ace-extra.min.js"?>"</script>></script>
+
+        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+        <!--[if lte IE 8]>
+        <script src="<?php echo base_url()."assets/js/html5shiv.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/respond.min.js"?>"></script>
+        <![endif]-->
+    </head>
+
+    <body class="no-skin">
+        <!--Top Begin-->
+        <?php $this->load->view("pageTop.html"); ?>
+        <!--Top End-->
+
+        <div class="main-container ace-save-state" id="main-container">
+            <!--LeftTree Begin-->
+            <?php $this->load->view("pageLeft.html"); ?>
+            <!--LeftTree End-->
+
+            <div class="main-content">
+                <!--form list begin-->
+                <?php $this->load->view("doc_list.html"); ?>
+                <!--form list end-->
+                <!--form mess begin-->
+                <?php $this->load->view("doc_attr.html"); ?>
+                <!--form mess end-->
+                <!--mess add begin-->
+                <div id="modal-addNew" class="modal fade" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header no-padding">
+                                <div class="table-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <span class="white">&times;</span>
+                                    </button>
+                                    <span>新建</span>
+                                </div>
+                            </div>
+                            <form action="<?php echo site_url('Document/Doc_AddNew') ?>" method="post">
+                                <div class="modal-body no-padding">
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">文档类型 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <select class="NewDocMes" name="SelType" value="<?php echo set_value('SelType')?>">
+                                                    <?php foreach($FileType as $v): ?>
+                                                    <option data-id="<?=$v['id'] ?>"><?=$v['TypNam'] ?></option>
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">文档名称</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="FleNam" value="<?php echo set_value('FleNam')?>"/>
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">主题 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="Theme" value="<?php echo set_value('Theme')?>"/>
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">主送对象 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="TargetObj" />
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">抄送对象 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="CopyObj" />
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">发起部门 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="SendPart" />
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">发起人 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="SendPeo" />
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">审核部门 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="CheckPart" />
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">审核人 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="CheckPeo" />
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">批准部门 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="PassPart" />
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                
+                                    <div class="form-group has-info  page-header">
+                                        <label class="col-sm-3 control-label no-padding-right">批准人 ：</label>
+                                        <div class="col-sm-5">
+                                            <span class="block input-icon input-icon-right">
+                                                <input class="NewDocMes" type="text" id="" name="PassPeo" />
+                                            </span>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                    <div class="form-group has-info  page-header" >
+                                        <label class="col-sm-3 control-label no-padding-right">文档说明 ：</label>
+                                        <div class="col-sm-5">
+                                            <textarea cols="47" size="16" rows="2" type="text" value="value" id="" name="ObjElse"></textarea>
+                                        </div>
+                                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="modal-footer no-margin-top">
+                                    <button class="btn btn-sm btn-success pull-right" data-dismiss="" id="" type="submit">
+                                        <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                                        <span>保存</span>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                                        <i class="ace-icon fa fa-times"></i>
+                                        <span>关闭</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--mess add end-->
+            </div>
+            <!-- /.main-content -->
+            
+            <!--Foor Begin-->
+            <?php $this->load->view("pageFoot.html"); ?>
+            <!--Foot End-->
+            
+        </div>
+        <!-- /.main-container -->
+
+        <!-- basic scripts -->
+
+        <!--[if !IE]> -->
+        <script src="<?php echo base_url()."assets/js/jquery-2.1.4.min.js"?>"></script>
+
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+        <script src="<?php echo base_url()."assets/js/jquery-1.11.3.min.js"?>"></script>
+        <![endif]-->
+        <script src="<?php echo base_url()."assets/js/bootstrap.min.js"?>"></script>
+
+        <!-- page specific plugin scripts -->
+        <script src="<?php echo base_url()."assets/js/jquery.bootstrap-duallistbox.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.raty.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/bootstrap-multiselect.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/select2.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery-typeahead.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery-ui.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.ui.touch-punch.min.js"?>"></script>
+        
+        <!--dataTable-->
+        <script src="<?php echo base_url()."assets/js/jquery.dataTables.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/jquery.dataTables.bootstrap.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/dataTables.buttons.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.flash.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.html5.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.print.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/buttons.colVis.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/dataTables.select.min.js"?>"></script>
+        
+        <!-- ace scripts -->
+        <script src="<?php echo base_url()."assets/js/ace-elements.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/ace.min.js"?>"></script>
+
+        <!-- inline scripts related to this page -->
+        <script src="<?php echo base_url()."assets/js/self/Show_LeftTreeA.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/self/MesAction.js"?>"></script>
+        <script type="text/javascript">
+        	var dataUri = sessionStorage.getItem('ModleId');
+            jQuery(function($) {
+                /*
+                 * tableINI
+                 */
+                var showMes = "<?php echo site_url('Document/DocList'); ?>"+'/'+dataUri+'/'+'draft';
+                var table = $('#dynamic-table').DataTable({
+//                  data:dataUri,
+                    ajax:showMes,
+                    columns:[
+                        {"data":'checkBox'},
+                        {"visible": false,"data":'id'},
+                        {"data":'rowNum'},
+                        {"data":'FleNam'},
+                        {"data":'FleCDa'},
+                        {"data":'FleCPe'},
+                        {"visible": false,"data":'Theme'},
+                        {"visible": false,"data":'TargetObj'},
+                        {"visible": false,"data":'CopyObj'},
+                        {"visible": false,"data":'SendPart'},
+                        {"visible": false,"data":'SendPeo'},
+                        {"visible": false,"data":'CheckPart'},
+                        {"visible": false,"data":'CheckPeo'},
+                        {"visible": false,"data":'PassPart'},
+                        {"visible": false,"data":'PassPeo'},
+                        {"visible": false,"data":'ObjElse'},
+                        {"data":'SelType'},
+                    ],
+                    oLanguage: {
+                        sLengthMenu: "显示 _MENU_ 条数据",
+                    },
+                    "autoWidth": false,
+                    "processing": true,
+                    "aaSorting": [],
+                    "aoColumnDefs": [{
+                        'bSortable': false,
+                        'aTargets': [0,1]
+                    }],
+                });
+///SELECT id,FleNam,Theme,SelType,TargetObj,CopyObj,SendPart,
+//SendPeo,CheckPart,CheckPeo,PassPart,PassPeo,ObjElse FROM `file_mes` WHERE  id =
+			 	/*
+                  * Edit
+                  */
+                $('#dynamic-table tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                    }
+                    else {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                    try{
+                    	var FleNam =table.row('.selected').data().FleNam;
+                    	var Theme = table.row('.selected').data().Theme;
+                    	var TargetObj = table.row('.selected').data().TargetObj;
+                    	var CopyObj = table.row('.selected').data().CopyObj;
+                    	var SendPart = table.row('.selected').data().SendPart;
+                    	var SendPeo = table.row('.selected').data().SendPeo;
+                    	var CheckPart = table.row('.selected').data().CheckPart;
+                    	var CheckPeo = table.row('.selected').data().CheckPeo;
+                    	var PassPart = table.row('.selected').data().PassPart;
+                    	var PassPeo = table.row('.selected').data().PassPeo;
+                    	var ObjElse = table.row('.selected').data().ObjElse;
+                        var TypeId = table.row('.selected').data().id;
+                        $('#TypeId').attr('value',TypeId);
+                        $('#Theme').attr('value',Theme);
+                        $('#TargetObj').attr('value',TargetObj);
+                        $('#CopyObj').attr('value',CopyObj);
+                        $('#SendPart').attr('value',SendPart);
+                        $('#SendPeo').attr('value',SendPeo);
+                        $('#CheckPart').attr('value',CheckPart);
+                        $('#CheckPeo').attr('value',CheckPeo);
+                        $('#PassPart').attr('value',PassPart);
+                        $('#PassPeo').attr('value',PassPeo);
+                        $('#ObjElse').attr('value',ObjElse);
+                        $('#FleNam').attr('value',FleNam);  
+				  		$("#FleNam2").html(FleNam);
+						$("#TargetObj2").html(TargetObj);
+						$("#CopyObj2").html(CopyObj);
+						$("#SendPart2").html(SendPart);
+						$("#SendPeo2").html(SendPeo);
+						$("#CheckPart2").html(CheckPart);
+						$("#CheckPeo2").html(CheckPeo);
+						$("#PassPart2").html(PassPart);
+						$("#PassPeo2").html(PassPeo);
+						$("#Theme2").html(Theme);
+                    }catch(e){
+                    	//TODO handle the exception
+                    }                    
+                })
+               	
+				/*
+                 * datepicker
+                 */
+                $( "#datepicker" ).datepicker({
+                    showOtherMonths: true,
+                    selectOtherMonths: false,
+                    isRTL:true,
+                    beforeShow: function() {
+                        //change button colors
+                        var datepicker = $(this).datepicker( "widget" );
+                        setTimeout(function(){
+                            var buttons = datepicker.find('.ui-datepicker-buttonpane')
+                            .find('button');
+                            buttons.eq(0).addClass('btn btn-xs');
+                            buttons.eq(1).addClass('btn btn-xs btn-success');
+                            buttons.wrapInner('<span class="bigger-110" />');
+                        }, 0);
+                    }
+                });
+				
+//				               
+			});
+			jQuery(function($) {
+				var showMesa = "<?php echo site_url('Document/HisList'); ?>";
+                var table = $('#undynamic-table').DataTable({
+//                  data:dataUri,
+                    ajax:showMesa,
+                    columns:[
+                        {"data":'checkBox'},
+                        {"visible": false,"data":'id'},
+                        {"data":'rowNum'},
+                        {"data":'HisNam'},
+                        {"data":'HisTme'},
+                        {"data":'HisPeo'},
+                        {"visible": false,"data":'id'},
+                        {"visible": false,"data":'id'},
+
+                    ],
+                    oLanguage: {
+                        sLengthMenu: "显示 _MENU_ 条数据",
+                    },
+                    "autoWidth": false,
+                    "processing": true,
+                    "aaSorting": [],
+                    "aoColumnDefs": [{
+                        'bSortable': false,
+                        'aTargets': [0,1]
+                    }],
+                });
+			});
+        </script>
+    </body>
+
+</html>

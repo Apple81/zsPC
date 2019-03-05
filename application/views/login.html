@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <title>Login Page - ZS System</title>
+
+        <meta name="description" content="User login page" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/font-awesome/4.5.0/css/font-awesome.min.css"?>" />
+
+        <!-- text fonts -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/fonts.googleapis.com.css"?>" />
+
+        <!-- ace styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace.min.css"?>" />
+
+        <!--[if lte IE 9]>
+            <link rel="stylesheet" href="assets/css/ace-part2.min.css" />
+        <![endif]-->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-rtl.min.css"?>" />
+
+        <!--[if lte IE 9]>
+          <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+        <![endif]-->
+
+        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+        <!--[if lte IE 8]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body class="login-layout">
+        <div class="main-container">
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="login-container">
+                            <div class="center">
+                                <h1>
+                                    <!--<i class="ace-icon fa fa-leaf green"></i>-->
+                                    <span class="white" id="id-text2">表单流转系统</span>
+                                </h1>
+                                <h4 class="blue" id="id-company-text">&copy; 同欣软件公司</h4>
+                            </div>
+
+                            <div class="space-6"></div>
+
+                            <div class="position-relative">
+                                <div class="login-box visible widget-box no-border" id="login-box">
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <h4 class="header blue lighter bigger">
+                                                <i class="ace-icon fa fa-coffee green"></i>
+                                                <span>后台登录</span>
+                                            </h4>
+                                            <div class="space-6"></div>
+                                            <form id="form1" method="post" enctype="multipart/form-data" action="<?php echo site_url('Login/loginSys')?>">
+                                                <fieldset>
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="text" name="account" class="form-control"  placeholder="账号"  />
+                                                            <?php echo form_error("account","<p style='color:red;'>","</p>");?>
+                                                            <i class="ace-icon fa fa-user"></i>                                                            
+                                                        </span>
+                                                    </label>
+
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="password" name="password" class="form-control"  placeholder="密码"  />
+                                                            <?php echo form_error("password","<p style='color:red;'>","</p>");?>
+                                                            <i class="ace-icon fa fa-lock"></i>
+                                                        </span>
+                                                    </label>
+
+                                                    <div class="space"></div>
+
+                                                    <div class="clearfix">
+                                                        <label class="inline">
+                                                            <input type="checkbox" class="ace" />
+                                                            <span class="lbl"> 记住密码</span>
+                                                        </label>
+
+                                                        <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">进入</button>
+                                                    </div>
+
+                                                    <div class="space-4"></div>
+                                                </fieldset>
+                                            </form>
+
+                                            <div class="space-6"></div>
+
+                                        </div>
+
+                                        <div class="toolbar clearfix">
+                                            <div onclick="changeTab('forgot-box')">
+                                                <a href="#" data-target="#forgot-box" class="forgot-password-link">
+                                                    <i class="ace-icon fa fa-arrow-left"></i>
+                                                    <span>忘记密码</span>
+                                                </a>
+                                            </div>
+
+                                            <div onclick="changeTab('signup-box')">
+                                                <a href="#" data-target="#signup-box" class="user-signup-link">
+                                                    <span>注册</span>
+                                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="forgot-box widget-box no-border" id="forgot-box">
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <h4 class="header red lighter bigger">
+                                                <i class="ace-icon fa fa-key"></i>
+                                                <span>重置密码</span>
+                                            </h4>
+                                            <div class="space-6"></div>
+                                            <p>
+                                                <span>请输入你的手机号码进行验证</span>
+                                            </p>
+                                            <form id="form-reset" method="post" enctype="multipart/form-data" action="<?php echo site_url('login/reset');?>">
+                                                <fieldset>
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="text" class="form-control" name="phone" placeholder="手机号码" />
+                                                            <?php echo form_error('phone','<p style="color:red;">','</p>');?>
+                                                            <i class="ace-icon fa fa-phone"></i>
+                                                        </span>
+                                                    </label>
+                                                    
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="CkCode" class="form-control" name="yzm" placeholder="验证码" />
+                                                            <!--<?php echo form_error('yzm','<p style="color:red;">','</p>')?>-->
+                                                            <i class="ace-icon fa fa-pencil"></i>
+                                                        </span>
+                                                    </label>
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="RsKey" class="form-control" name="NewUseKey" placeholder="请输入新密码" />
+                                                            <?php echo form_error('NewUseKey','<p style="color:red;">','</p>');?>
+                                                            <i class="ace-icon fa fa-lock"></i>
+                                                        </span>
+                                                    </label>
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="CRKey" class="form-control" name="newpasswod" placeholder="请确认新密码" />
+                                                            <?php echo form_error('newpasswod','<p style="color:red;">','</p>');?>
+                                                            <i class="ace-icon fa fa-retweet"></i>
+                                                        </span>
+                                                    </label>
+                                                </fieldset>
+                                                <div class="clearfix">
+                                                    <button type="button" class="width-35 pull-left btn btn-sm btn-danger">
+                                                        <i class="ace-icon fa fa-lightbulb-o"></i>
+                                                        <span class="bigger-110">发送验证码</span>
+                                                    </button>
+                                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-danger" onclick="changeTab('forgot-box')">
+                                                        <i class="ace-icon fa fa-lightbulb-o"></i>
+                                                        <span class="bigger-110">重置密码</span>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="toolbar center" onclick="changeTab('login-box')">
+                                            <a href="#" data-target="#login-box" class="back-to-login-link">
+                                                <span>返回登录</span>
+                                                <i class="ace-icon fa fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="signup-box widget-box no-border" id="signup-box">
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <h4 class="header green lighter bigger">
+                                                <i class="ace-icon fa fa-users blue"></i>
+                                                <span>账号注册</span>
+                                            </h4>
+
+                                            <div class="space-6"></div>
+                                            <p> 注册成功后请联系部门管理员完成注册 </p>
+                                            <form id="form-signUp" method="post" enctype="multipart/form-data" action="<?php echo site_url('Login/register') ?>">
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="text" class="form-control" name="UsePho" placeholder="手机号码" value="<?php echo set_value('UsePho');?>" />
+                                                        <?php echo form_error("UsePho","<p style='color:red;'>","</p>");?>
+                                                        <i class="ace-icon fa fa-phone"></i>
+                                                    </span>
+                                                </label>
+                                                
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="text" class="form-control" name="UsePeo" placeholder="真实姓名" value="<?php echo set_value('UsePeo');?>" />
+                                                        <?php echo form_error("UsePeo","<p style='color:red;'>","</p>");?>
+                                                        <i class="ace-icon fa fa-user"></i>
+                                                    </span>
+                                                </label>
+                                                
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="text" class="form-control" name="UseAcc" placeholder="账号" value="<?php echo set_value('UseAcc');?>" />
+                                                        <?php echo form_error("UseAcc","<p style='color:red;'>","</p>")?>
+                                                        <i class="ace-icon fa fa-user"></i>
+                                                    </span>
+                                                </label>
+
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="password" class="form-control" name="UseKey" placeholder="密码" />
+                                                        <?php echo form_error("UseKey","<p style='color:red;'>","</p>")?>
+                                                        <i class="ace-icon fa fa-lock"></i>
+                                                    </span>
+                                                </label>
+
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="password" class="form-control"name="surpasswod" placeholder="确认密码" />
+                                                        <?php echo form_error("surpasswod","<p style='color:red;'>","</p>")?>
+                                                        <i class="ace-icon fa fa-retweet"></i>
+                                                    </span>
+                                                </label>
+
+                                                <div class="space-24"></div>
+
+                                                <div class="clearfix">
+                                                    <button type="reset" class="width-30 pull-left btn btn-sm reset">
+                                                        <i class="ace-icon fa fa-refresh"></i>
+                                                        <span class="bigger-110">重置</span>
+                                                    </button>
+
+                                                    <button type="submit" class="width-65 pull-right btn btn-sm btn-success" >
+                                                        <span class="bigger-110">注册</span>
+                                                        <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="toolbar center"  onclick="changeTab('login-box')">
+                                            <a href="#" data-target="#login-box" class="back-to-login-link">
+                                                <i class="ace-icon fa fa-arrow-left"></i>
+                                                <span>返回登录</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="navbar-fixed-top align-right">
+                                <br />
+                                &nbsp;
+                                <a id="btn-login-dark" href="#">Dark</a>
+                                &nbsp;
+                                <span class="blue">/</span>
+                                &nbsp;
+                                <a id="btn-login-blur" href="#">Blur</a>
+                                &nbsp;
+                                <span class="blue">/</span>
+                                &nbsp;
+                                <a id="btn-login-light" href="#">Light</a>
+                                &nbsp; &nbsp; &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- basic scripts -->
+
+        <!--[if !IE]> -->
+        <script src="<?php echo base_url()."assets/js/jquery-2.1.4.min.js"?>"></script>
+
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+        <script src="<?php echo base_url()."assets/js/jquery-1.11.3.min.js"?>"></script>
+        <![endif]-->
+        <!--<script type="text/javascript">
+            if('ontouchstart' in document.documentElement) document.write("<script src='"+"<?php echo base_url().'assets/js/jquery.mobile.custom.min.js'?>"+"'>"+"<"+"/script>");
+        </script>-->
+        
+        <!-- inline scripts related to this page -->
+        <script type="text/javascript">
+            jQuery(function($) {
+	        	//page INI
+	        	var tag = sessionStorage.getItem('loginTag');
+	        	if(tag) {
+	        		$('.widget-box.visible').removeClass('visible');
+	        		$('#'+tag).addClass('visible');
+	        	}
+        		
+        		//click Action
+	            $(document).on('click', '.toolbar a[data-target]', function(e) {
+	                e.preventDefault();
+	                var target = $(this).data('target');
+	                $('.widget-box.visible').removeClass('visible');//hide others
+	                $(target).addClass('visible');//show target
+	            });
+	            
+	            //you don't need this, just used for changing background
+	            $('#btn-login-dark').on('click', function(e) {
+                    $('body').attr('class', 'login-layout');
+                    $('#id-text2').attr('class', 'white');
+                    $('#id-company-text').attr('class', 'blue');
+                    
+                    e.preventDefault();
+                });
+                $('#btn-login-light').on('click', function(e) {
+                    $('body').attr('class', 'login-layout light-login');
+                    $('#id-text2').attr('class', 'grey');
+                    $('#id-company-text').attr('class', 'blue');
+                    
+                    e.preventDefault();
+                });
+                $('#btn-login-blur').on('click', function(e) {
+                    $('body').attr('class', 'login-layout blur-login');
+                    $('#id-text2').attr('class', 'white');
+                    $('#id-company-text').attr('class', 'light-blue');
+                    
+                    e.preventDefault();
+                });
+	        });
+        	//chenge session
+        	function changeTab(tagT) {
+        		sessionStorage.setItem('loginTag',tagT);
+        	}
+        </script>
+        
+    </body>
+</html>

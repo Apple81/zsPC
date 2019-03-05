@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <title>表单打印 - 中山建设监理建筑工程文档协同管理系统</title>
+
+        <meta name="description" content="overview &amp; stats" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/font-awesome/4.5.0/css/font-awesome.min.css"?>" />
+
+        <!-- page specific plugin styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-duallistbox.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-multiselect.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/select2.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/jquery-ui.min.css"?>" />
+
+        <!-- text fonts -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/fonts.googleapis.com.css"?>" />
+
+        <!-- ace styles -->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace.min.css"?>" class="ace-main-stylesheet" id="main-ace-style" />
+
+        <!--[if lte IE 9]>
+            <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-part2.min.css"?>" class="ace-main-stylesheet" />
+        <![endif]-->
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-skins.min.css"?>" />
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-rtl.min.css"?>" />
+
+        <!--[if lte IE 9]>
+          <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-ie.min.css"?>" />
+        <![endif]-->
+
+        <!-- inline styles related to this page -->
+
+        <!-- ace settings handler -->
+        <script src="<?php echo base_url()."assets/js/ace-extra.min.js"?>"</script>></script>
+
+        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+        <!--[if lte IE 8]>
+        <script src="<?php echo base_url()."assets/js/html5shiv.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/respond.min.js"?>"></script>
+        <![endif]-->
+        
+        <style>
+            /*.printArea{
+                
+            }*/
+            .PlaceSvg{
+                position: absolute;
+                z-index: 10 !important;
+            }
+            .pane{
+                position: relative;
+                width: 210mm;
+                height: 297mm;
+            }
+            .paneImg{
+                width: 210mm;
+                height: 297mm;
+            }
+        </style>
+    </head>
+
+    <body class="no-skin">
+        <!--Top Begin-->
+        <?php $this->load->view("pageTop.html"); ?>
+        <!--Top End-->
+        <div class="main-container ace-save-state" id="main-container">
+            <div class="main-content">
+                <div class="widget-body">
+                    <div class="widget-main padding-24">
+                        <div class="col-lg-12">
+                            <button class="btn btn-primary" onclick="PrintOut('printDiv')">打印</button>
+                        </div>
+                        <div class="col-lg-12 pull-right" id="tabDetailMes">
+                            <div class="widget-box" id="">
+                                <div class="widget-header">
+                                    <h5 class="widget-title bigger lighter">
+                                        <span>表单浏览</span>
+                                    </h5>
+                                </div>
+                                <div  id="printDiv" style="margin-left: auto;margin-right: auto;border: #101010 solid;width: 212mm;">
+                                    <!--<div class="printArea"></div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="<?php echo base_url()."assets/js/jquery-2.1.4.min.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/self/api.js"?>"></script>
+        <script type="text/javascript">
+            $(function(){
+                //show form
+//              console.log("<?php echo $ImgUrl ?>")
+                var FormUrl = "<?php echo $ImgUrl; ?>"
+                FormUrl = FormUrl.split('(')
+                var EleText = ""
+                var page = "<?php echo $page; ?>"
+                page ++
+                //form
+                var SignForm = new Image()
+                SignForm.src = URL_API+FormUrl[0]+"(1).png"
+//              $('.paneImg').attr('width',canvasWidth)
+//              $('.paneImg').attr('height',canvasHeight)
+                SignForm.onload = function()
+                {
+                    for (var i = 1;i<page;i++) {
+                    	EleText += "<div class='pane'>"
+    //              	console.log(FormUrl[0]+"("+i+").png")
+                    	EleText += "<img class='paneImg' src='"+URL_API+FormUrl[0]+"("+i+").png"+"' style='width:100%;height:100%;' />"
+                    	EleText += "</div>"
+                    }
+                    $('#printDiv').append(EleText)
+                    //show sign
+//                  var FormId = window.location.pathname
+//                  FormId = FormId.split('PrintOut/')
+    //              console.log(FormId[1])
+//                  var SignMesLoc = "<?php echo site_url('MesContro/PrintOutGetSign') ?>"
+//                  $.ajax({
+//                  	type:"post",
+//                  	url:SignMesLoc,
+//                  	async:true,
+//                  	dataType:'json',
+//                  	data:{
+//                  	    formId:FormId[1]
+//                  	},
+//                  	success:function(data){
+//  //              	    console.log(data)
+//                          if(data['Num']>0){
+//                              for (var i=0;i<data['Num'];i++) {
+//                              	var SinSignPa  = data['Sign'][i]['SignPa']
+//                                  var SinSignPX  = data['Sign'][i]['SignPX']
+//                                  var SinSignPY  = data['Sign'][i]['SignPY']
+//                                  var SinFormW  = data['Sign'][i]['FormW']
+//                                  var SinFormH  = data['Sign'][i]['FormH']
+//                                  var SinSignW  = data['Sign'][i]['SignW']
+//                                  var SinSignH  = data['Sign'][i]['SignH']
+//                                  var SinPageFinal  = data['Sign'][i]['PageFinal']
+//                                  showSignSvg(SinSignPX,SinSignPY,SinFormW,SinFormH,SinSignW,SinSignH,SinPageFinal,SinSignPa,'pane')
+//                              }
+//                          }
+//                  	},
+//                  	error:function(s,e,t){
+//                  	    console.log("出现错误，请联系管理员；错误类型："+e)
+//                  	}
+//                  });
+                }
+            })
+            /*
+             * FUNCTION
+             * */
+            function showSignSvg(SignPX,SignPY,FormW,FormH,SignW,SignH,PageFinal,SignFinal,placeImg){
+                PageFinal --;
+                var imgArr = document.getElementsByClassName('paneImg')
+                //计算表单缩放比
+                var scaleFromX = (imgArr[0].width)/FormW
+                var scaleFromY = (imgArr[0].height)/FormH
+//              console.log(imgArr[0].width)
+                //签名缩放
+                var SignSvg = new Image()
+                var SignWidth = SignW*scaleFromX*2
+                var SignHeight = SignH*scaleFromY*2
+                SignSvg.src = SignFinal
+                //签名坐标缩放
+                var PlaceX = SignPX*scaleFromX
+                var PlaceY = SignPY*scaleFromY
+                //签名显示
+                SignSvg.onload = function()
+                {
+                    //定义子节点的位置
+                    var EleSvgText = ""
+                    //创建子节点
+                    EleSvgText += "<img class='PlaceSvg' style='width:"+(SignWidth)+"px;height:"+(SignHeight)+"px;top:"+PlaceY+"px;left:"+PlaceX+"px;' src='"+SignSvg.src+"' />"
+//                  console.log(EleSvgText)
+                    $('.pane').eq(PageFinal).append(EleSvgText)
+//                  console.log(SignWidth)
+//                  console.log(SignHeight)
+//                  console.log(PlaceX)
+//                  console.log(PlaceY)
+//                  console.log(SignSvg.src)
+                }
+            }
+            //打印
+            function PrintOut(printAre){
+                var headstr="<html><head><title></title></head><body>";
+                var footstr="</body>";
+                var newstr=document.all.item(printAre).innerHTML;
+                var oldstr=document.body.innerHTML;
+                document.body.innerHTML=headstr+newstr+footstr;
+                window.print(); 
+                document.body.innerHTML=oldstr;
+                return false;
+            }
+        </script>
+    </body>
+
+</html>

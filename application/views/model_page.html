@@ -1,0 +1,528 @@
+<!--model text begin-->
+    <!--circle set begin-->
+    <!--<div class="col-sm-6">
+        <div id="dialog-message" class="hide">
+            <div class="alert alert-info bigger-110">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="thin-border-bottom">
+                        <tr>
+                            <th class="hidden-480">审批步骤数量</th>
+                            <th class="hidden-480">
+                                <select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </th>
+                            <th class="hidden-480"><button class="btn btn-info">确认</button></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="bigger-110 bolder center">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="thin-border-bottom">
+                        <tr>
+                            <th class="hidden-480">流程节点</th>
+                            <th class="hidden-480">部门</th>
+                            <th class="hidden-480">用户</th>
+                            <th class="hidden-480">截止日期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="">1</td>
+                            <td class="">甲</td>
+                            <td class=""></td>
+                            <td class="">2018-04-04</td>
+                        </tr>
+                        <tr>
+                            <td class="">2</td>
+                            <td class="">丁</td>
+                            <td class=""></td>
+                            <td class="">2018-04-04</td>
+                        </tr>
+                        <tr>
+                            <td class="">3</td>
+                            <td class="">戊</td>
+                            <td class=""></td>
+                            <td class="">2018-04-04</td>
+                        </tr>
+                        <tr>
+                            <td class="">4</td>
+                            <td class="">戊</td>
+                            <td class=""></td>
+                            <td class="">2018-04-04</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>-->
+    <!--circle set end-->
+    
+    <!--mess set begin-->
+    <div id="modal-table" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <span class="white">&times;</span>
+                        </button>
+                        <span>修改</span>
+                    </div>
+                </div>
+                <div class="modal-body no-padding">
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">主题 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">主送对象 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">抄送对象 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">发起部门 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">发起人 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">审核部门 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">审核人 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">批准部门 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">批准人 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header" >
+                        <label class="col-sm-3 control-label no-padding-right">文档说明 ：</label>
+                        <div class="col-sm-5">
+                            <textarea cols="47" size="16" rows="2" type="text" value="value" id=""></textarea>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="modal-footer no-margin-top">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="">
+                        <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                        <span>保存</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        <span>关闭</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--mess set end-->
+    
+    <!--form select begin-->
+    <div id="modal-formUpload" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="modal-wizard-container">
+                    <div class="modal-header no-padding">
+                        <div class="table-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <span class="white">&times;</span>
+                            </button>
+                            <span>选择表单</span>
+                        </div>
+                    </div>
+    
+                    <div class="modal-body step-content form-group" style="height: 400px;">
+                        <label class="col-sm-3 control-label no-padding-top" for="duallist"> 表单列表 </label>
+                        <div class="col-sm-8">
+                            <select multiple="multiple" size="20" name="duallistbox_demo1[]" id="duallist" style="height: 270px;">
+                                <option value="option1">Option 1</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3" selected="selected">Option 3</option>
+                                <option value="option4">Option 4</option>
+                                <option value="option5">Option 5</option>
+                                <option value="option6" selected="selected">Option 6</option>
+                                <option value="option7">Option 7</option>
+                                <option value="option8">Option 8</option>
+                                <option value="option9">Option 9</option>
+                                <option value="option0">Option 10</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="modal-footer wizard-actions">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="">
+                        <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                        <span>保存</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        <span>关闭</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--form select end-->
+    
+    <!--remain set begin-->
+    <div id="modal-remain" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <span class="white">&times;</span>
+                        </button>
+                        <span>新增提醒</span>
+                    </div>
+                </div>
+                <div class="modal-body no-padding">
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">事件名称 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">提醒人 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">提醒时间 ：</label>
+                        <div class="col-sm-5">
+                            <div class="input-group input-group-sm">
+                                <input class="datepicker" type="text" id="datepicker" />
+                                <span class="input-group-addon">
+                                    <i class="ace-icon fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+
+                    <div class="form-group has-info  page-header" >
+                        <label class="col-sm-3 control-label no-padding-right">提醒说明 ：</label>
+                        <div class="col-sm-5">
+                            <textarea cols="47" size="16" rows="2" type="text" value="value" id=""></textarea>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="modal-footer no-margin-top">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="">
+                        <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                        <span>保存</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        <span>关闭</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--remain set end-->
+    
+    <!--file upload begin-->
+    <div id="modal-fileUpload" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="modal-wizard-container">
+                    <div class="modal-header no-padding">
+                        <div class="table-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <span class="white">&times;</span>
+                            </button>
+                            <span>上传附件</span>
+                        </div>
+                    </div>
+    
+                    <div class="col-xs-12">
+                        <div>
+                            <form action="./dummy.html" class="dropzone well" id="dropzone">
+                                <div class="fallback">
+                                    <input name="file" type="file" multiple="" />
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="preview-template" class="hide">
+                            <div class="dz-preview dz-file-preview">
+                                <div class="dz-image">
+                                    <img data-dz-thumbnail="" />
+                                </div>
+
+                                <div class="dz-details">
+                                    <div class="dz-size">
+                                        <span data-dz-size=""></span>
+                                    </div>
+
+                                    <div class="dz-filename">
+                                        <span data-dz-name=""></span>
+                                    </div>
+                                </div>
+
+                                <div class="dz-progress">
+                                    <span class="dz-upload" data-dz-uploadprogress=""></span>
+                                </div>
+
+                                <div class="dz-error-message">
+                                    <span data-dz-errormessage=""></span>
+                                </div>
+
+                                <div class="dz-success-mark">
+                                    <span class="fa-stack fa-lg bigger-150">
+                                        <i class="fa fa-circle fa-stack-2x white"></i>
+
+                                        <i class="fa fa-check fa-stack-1x fa-inverse green"></i>
+                                    </span>
+                                </div>
+
+                                <div class="dz-error-mark">
+                                    <span class="fa-stack fa-lg bigger-150">
+                                        <i class="fa fa-circle fa-stack-2x white"></i>
+
+                                        <i class="fa fa-remove fa-stack-1x fa-inverse red"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="modal-footer wizard-actions">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="">
+                        <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                        <span>保存</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        <span>关闭</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--file upload end-->
+    
+    <!--form own-->
+    <!--mess set begin-->
+        <!--form attr-->
+    <div id="modal-EditTabMes" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <span class="white">&times;</span>
+                        </button>
+                        <span>修改</span>
+                    </div>
+                </div>
+                <div class="modal-body no-padding">
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">表单名 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="ChaFormName" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">表单类别 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <select id="SelFormType">
+                                    <option id="ChaFormType"></option>
+                                    <?php foreach($typeForm as $v){ ?>
+                                        <option data-id-Type="<?=$v['id']?>"><?=$v['TypNam']?></option>
+                                    <?php } ?>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info page-header">
+                        <label class="col-sm-3 control-label no-padding-right">截止时间 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input type="text" id="datepickerForm" class="form-control" />
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header" style="height: 100px;">
+                        <label class="col-sm-3 control-label no-padding-right">表单说明 ：</label>
+                        <div class="col-sm-5">
+                            <textarea cols="47" size="16" rows="2" type="text" value="value" id="ChaTabEls"></textarea>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                </div>
+                <br /><br />
+                <div class="modal-footer no-margin-top">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="" onclick="FormMesSave()">
+                        <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                        <span>保存</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        <span>关闭</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--mess set end-->
+    
+<!--model text end-->
+    
+<script type="text/javascript">
+//save form message change
+function FormMesSave(){
+    var formId = $('#formId').attr('value')
+    var tagName = sessionStorage.getItem("tagName");
+    var DbTab = 'table_mes'
+    if(tagName == 'formShow_Draf'){
+        var DbTab = 'table_mes_cache'
+    }
+    var ActionFormSave = "<?php echo site_url('Form/FormMesBaseSave') ?>"+'/'+formId+'/'+DbTab
+//  console.log(ActionFormSave)
+    $.ajax({
+    	type:"post",
+    	url:ActionFormSave,
+    	async:true,
+    	dataType:'json',
+    	data:{
+    	    FormName:$('#ChaFormName').val(),
+    	    FormType:$('#SelFormType option:selected').val(),
+    	    DLtime:$('#datepickerForm').val(),
+    	    TabEls:$('#ChaTabEls').val(),
+    	},
+    	success:function(data){
+    	    if(data['status'] == 'success'){
+    	        if(data['row']>0){
+    	            alert('表单信息修改成功')
+    	            if($('#SelFormType option:selected').val()){
+    	                $('#UpLoad').removeClass('NoSelTabType')
+                        $('#PackUp').removeClass('NoSelTabType')
+                        $('#Delete').removeClass('NoSelTabType')
+                        $('#printOutDraf').removeClass('NoSelTabType')
+                        //clear old mes
+                        $('#ChaFormName').attr('value','')
+                        $('#ChaFormName').val('')
+                        $('#SelFormType option').removeAttr('selected')
+                        $('#ChaFormType').attr('selected','selected')
+                        $('#datepickerForm').attr('value','')
+                        $('#datepickerForm').val('')
+                        $('#ChaTabEls').text()
+    	            }
+    	        }else{
+    	            alert('未对表单信息进行修改')
+    	        }
+    	    }else{
+    	        alert('出现错误，请联系管理员[MP001]')
+    	    }
+    	},
+    	error:function(s,e,t){
+    	    alert('出现错误，请联系管理员')
+    	}
+    });
+    $('#modal-EditTabMes').modal('hide')
+}
+</script>

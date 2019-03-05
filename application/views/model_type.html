@@ -1,0 +1,99 @@
+<!--model AddNew begin-->
+<div id="modal-TypeAdd" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <form action="<?php echo site_url('System/Type_SetNew'); ?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <span class="white">&times;</span>
+                        </button>
+                        <span>新建文档类型</span>
+                        <input type="text" id="" name="Type" value="systemShow_DcTy" hidden="hidden"/>
+                    </div>
+                </div>
+                <div class="modal-body no-padding">
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">文档类型 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" name="TypeName"/>
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header" >
+                        <label class="col-sm-3 control-label no-padding-right">文档说明 ：</label>
+                        <div class="col-sm-5">
+                            <textarea cols="47" size="16" type="text" id="" name="TypeElse"></textarea>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="modal-footer no-margin-top">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="" type="submit">
+                        <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                        <span>保存</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        <span>关闭</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--model AddNew end-->
+<!--model AddNew begin-->
+<div id="modal-TypeEdit" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <form action="<?php echo site_url('System/Type_Edit'); ?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <span class="white">&times;</span>
+                        </button>
+                        <span>修改文档类型</span>
+                        <input class="NewDocMes" type="text" id="TypeId" name="TypeId" hidden="hidden"/>
+                        <input type="text" id="" name="Type" value="systemShow_DcTy" hidden="hidden"/>
+                    </div>
+                </div>
+                <div class="modal-body no-padding">
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">文档类型 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="TypeName" name="TypeName"/>
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                    <div class="form-group has-info  page-header" >
+                        <label class="col-sm-3 control-label no-padding-right">文档说明 ：</label>
+                        <div class="col-sm-5">
+                            <textarea cols="47" size="16" type="text" id="TypeElse" name="TypeElse"></textarea>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="modal-footer no-margin-top">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="" type="submit">
+                        <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                        <span>保存</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        <span>关闭</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--model AddNew end-->
