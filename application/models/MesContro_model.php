@@ -126,16 +126,18 @@ class MesContro_model extends CI_Model{
                     //删除缓存库的数据
                     $sql_del = "delete from table_mes_cache where IntIdA = '".$v."'";
                     $this->db->query($sql_del);
+                  /* 暂时注释
                     //删除接口的数据
-                    $url = $urlDel.$v;
-                    $ch = curl_init ();
-                    curl_setopt ( $ch, CURLOPT_URL, $url );
-                    curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
-                    curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
-                    curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
-                    $file_contents = curl_exec ( $ch );
-//                  echo $file_contents;
-                    curl_close ( $ch );
+//                  $url = $urlDel.$v;
+//                  $ch = curl_init ();
+//                  curl_setopt ( $ch, CURLOPT_URL, $url );
+//                  curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+//                  curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
+//                  curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
+//                  $file_contents = curl_exec ( $ch );
+////                  echo $file_contents;
+//                  curl_close ( $ch );
+					*/
                 }
                 
 

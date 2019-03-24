@@ -11,9 +11,10 @@ function ChangeSta(uri,ActTy){
         }
         var uriCheckA = uri.split('StaChange');
         var uriCheck = uriCheckA[0] + 'FromTypeCheck'
-        
-//      console.log(Mes)
-//      console.log(TabName_Data)
+//      console.log(StaChange);
+        console.log(Mes);
+//      console.log(TabName_Data);
+        console.log(uriCheck);
         //check type
         $.ajax({
         	type:"post",
@@ -25,9 +26,10 @@ function ChangeSta(uri,ActTy){
         	    TabName:TabName_Data
         	},
         	success:function(data){
+        		console.log(data.TypSta)
         	    if(data.TypSta == 'allow'){
-//      	        console.log(uri)
-        	        //change status
+        	        console.log(uri)
+//        	        change status
                     $.ajax({
                         type:"post",
                         url:uri,
@@ -58,6 +60,7 @@ function ChangeSta(uri,ActTy){
 								            };
 								            TreeMes.set(op);
 					                        TreeMes.set('data',MesArray)
+					                        window.location.reload();//刷新页面
 					                    },
 					                    error:function(s,t,e)
 					                    {

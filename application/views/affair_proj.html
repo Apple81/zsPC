@@ -311,6 +311,30 @@
                     }],
                 });
             }
+            function update_pronam(data){
+                	var urlr="<?php echo site_url('affair/update_proname')?>";
+//              	console.log(urlr)
+//              	console.log(data['data'][0].projectId)
+                	for (var i=0;i<data['data'].length;i++) {
+        			$.ajax({
+                		type:"post",
+                		url:urlr,
+                		async:true,
+                		data:{
+                			proid:data['data'][i].projectId,
+                			proname:data['data'][i].projectName
+                		},
+                		dataType:'json',
+                		success:function(data){
+                			console.log(data)
+                		},
+                		error:function(s,e,t){
+					        console.log(s,e,t);
+					        console.log("cuowu")
+					       }
+                	});
+        		}
+                }
         </script>
 	</body>
 

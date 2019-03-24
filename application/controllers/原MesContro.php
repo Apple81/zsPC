@@ -115,23 +115,17 @@ class MesContro extends CI_Controller{
     //检测表单是不是包含表单类别
     public function FromTypeCheck()
     {
-        $fromID = $this->input->post('formId');
+        $fromId = $this->input->post('formId');
         $TabName = $this->input->post('TabName');
-//      $fromID = 'ec20151e-d586-440c-a87f-c16283b1175a,dd201023-bd20-4179-a3e8-45ccabe71a1e,47c8fe34-b634-4909-9525-bacb26ef1796';
+//      $fromId = '5da34975-5af2-4f4b-b390-1ee0477d2928';
 //      $TabName = 'table_mes_cache';
-		$Fid=array();
-        $Fid=explode(',',$fromID);
-        $num = count($Fid);
-        for($i = 0;$i < $num;$i++){
-        	$fromId= $Fid[$i];
-        	$data['TypSta'] = $this->MesCon->FromTypeCheck($fromId,$TabName);
-        }
+        
         /*
          * 根据表单id和数据表名称判断是不是
          * */
+        $data['TypSta'] = $this->MesCon->FromTypeCheck($fromId,$TabName);
         $json = json_encode($data);
         echo $json;
-        
     }
     
     //改变状态【提交，归集，驳回，重新提交，撤回归集】
@@ -147,11 +141,11 @@ class MesContro extends CI_Controller{
         $PageType = $this->uri->segment(4);
         
 //      $ActTy = "draf";
-//      $MesId = "ec20151e-d586-440c-a87f-c16283b1175a,dd201023-bd20-4179-a3e8-45ccabe71a1e,47c8fe34-b634-4909-9525-bacb26ef1796";
-//      $PageType ='draf';
+//      $MesId = "4bddfff4-a964-46b3-981a-fad82a75762e";
+//      $PageType = 'draf';
 //      $Type = 'UpLoad';
-//      $MesId = 'd540428c-6cad-4879-9892-edffad144fff';
-//      echo $Type;
+//      $MesId = '5da34975-5af2-4f4b-b390-1ee0477d2928';
+        
         /*
          * 判断用户进行的是什么操作【分成删除和非删除】
          *      如果进行的是删除操作=》则判断是提交前还是提交后的删除【提交前删除接口数据，提交后删除数据库数据】
@@ -168,10 +162,8 @@ class MesContro extends CI_Controller{
             case 'Delete':$action = '删除';break;
             default:break;
         }
-        
-        $Mes=array();
-    	$Mes=explode(',',$MesId);
-        $num = count($Mes);
+        //如果数据中包含','
+        $MesIdArr = explode(',',$MesId);
         
         //设置返回值与实际操作执行
         $data['status'] = 'fail';
@@ -179,30 +171,13 @@ class MesContro extends CI_Controller{
         $data['Name'] = $action;
             //如果是删除操作
         if($Type == 'Delete')
-        
-        {	//如果数据中包含','
-        	$MesIdArr = explode(',',$MesId);
+        {
             $this->MesCon->StaChangeDel($MesIdArr,$urlDel);
             $data['status'] = 'success';
             $data['rows'] = $rows;
         }
-         else if($Type == 'UpLoad'){
-	      for($i=0;$i<$num;$i++){
-	        	$MesID= $Mes[$i];
-	        	$MesIdArr = explode(',',$MesID);
-	            $dataRe = $this->MesCon->StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree);
-	            if($dataRe['rows'] > 0)
-	            {
-	                $data['status'] = 'success';
-	                $data['rows'] = $dataRe['rows'];
-	            }
-         }
-         
-        	echo $num;
-        }
             //不是删除操作
         else{
-        	$MesIdArr = explode(',',$MesId);
             $dataRe = $this->MesCon->StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree);
             if($dataRe['rows'] > 0)
             {
@@ -218,7 +193,7 @@ class MesContro extends CI_Controller{
         if($ActTy == 'pack'){
             
         }
-         
+        
         $json = json_encode($data);
         echo $json;
     }
@@ -308,9 +283,5 @@ class MesContro extends CI_Controller{
         $json = json_encode($data);
         echo $json;
     }
-    //文件上传
-     public function getfileurl()
-     {
-     	
-     }
+    
 }

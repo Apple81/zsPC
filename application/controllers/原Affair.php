@@ -35,12 +35,6 @@ class Affair extends CI_Controller{
     {
         $this->load->view('affair_pack.html');
     }
-    //签名记录显示
-    public function affairShow_sign()
-    {
-        $this->load->view('affair_sign.html');
-    }
-    
     /*
      * 信息查询
      */
@@ -51,13 +45,6 @@ class Affair extends CI_Controller{
         $projectId = $this->uri->segment(4);
         //查询待办、重要或者紧急
         $data = $this->affair->affairShow_table($mesType,$projectId);
-        $json = json_encode($data);
-        echo $json;
-    }
-    public function affair_Signshow(){
-        $useacc = $this->uri->segment(3);
-        //查询签名记录
-        $data = $this->affair->affair_Signshow($useacc);
         $json = json_encode($data);
         echo $json;
     }
@@ -92,11 +79,5 @@ class Affair extends CI_Controller{
      * 个人事务
      */
 //  public function
-    public function update_proname(){
-    	$proid=$_POST["proid"];
-		$proname=$_POST["proname"];
-		$data = $this->affair->update_proname($proid,$proname);
-        $json = json_encode($data);
-        echo $json;
-    }
+    
 }

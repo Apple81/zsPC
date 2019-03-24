@@ -108,28 +108,23 @@ class Form extends CI_Controller{
     //保存表单基本信息的修改
     public function FormMesBaseSave()
     {
-//      $formId = $this->uri->segment(3);
-        $TableName = $this->uri->segment(3);
+        $formId = $this->uri->segment(3);
+        $TableName = $this->uri->segment(4);
         $FormName = $this->input->post('FormName');
         $FormType = $this->input->post('FormType');
         $DLtime = $this->input->post('DLtime');
         $TabEls = $this->input->post('TabEls');
-        $formId = $this->input->post('formId');
-        $Fid=array();
-        $Fid=explode(',',$formId);
-        $num = count($Fid);
-        for($i = 0;$i < $num;$i++){
-        	$FormId= $Fid[$i];
-	//      $formId = '9839bff1-d004-4bd3-b27b-bee994fe4da3';
-	//      $TableName = 'table_mes_cache';
-	//      $FormName = 'ceshi';
-	//      $FormType = '建筑设计文档';
-	//      $DLtime = '2018-08-16';
-	//      $TabEls = 'ko';
-	        $ChangeMes = array( 'TabNam'=>$FormName,'TabEls'=>$TabEls,'TabDTm'=>$DLtime );
-	        //保存信息
-	        $data = $this->form->FormMesBaseSave($FormId,$ChangeMes,$FormType,$TableName);
-        }
+        
+//      $formId = '9839bff1-d004-4bd3-b27b-bee994fe4da3';
+//      $TableName = 'table_mes_cache';
+//      $FormName = 'ceshi';
+//      $FormType = '建筑设计文档';
+//      $DLtime = '2018-08-16';
+//      $TabEls = 'ko';
+        
+        $ChangeMes = array( 'TabNam'=>$FormName,'TabEls'=>$TabEls,'TabDTm'=>$DLtime );
+        //保存信息
+        $data = $this->form->FormMesBaseSave($formId,$ChangeMes,$FormType,$TableName);
         $json = json_encode($data);
         echo $json;
     }
@@ -162,27 +157,5 @@ class Form extends CI_Controller{
 		$json = json_encode($ret_data);
 		echo $json;
 	}
-	public function img_upload()
-	{
-		$config['upload_path']='./formUpload/';
-        $config['allowed_types']= 'gif|jpg|png';
-        $config['max_size']=10000;
-//      $config['max_width']= 1024;
-//      $config['max_height'] = 768;
-        $config['file_name']=time().mt_rand(1000,9999);
-
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        $status=$this->upload->do_upload('userfile');
-        $wrong=$this->upload->display_errors();
-        if($wrong){
-        	error($wrong);
-        }
-        $info=$this->upload->data();
-        $formId = $this->uri->segment(3);
-        $pathurl=$info['full_path'];
-        $data = $this->form->save_fileurl($formId,$pathurl);
-        $json = json_encode($data);
-		echo $json;
-	}
+    
 }

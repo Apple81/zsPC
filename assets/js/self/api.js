@@ -13,6 +13,7 @@ function getProMesAll(dataPho) {
         dataType:'json',
         success:function(data){
             if(data['success']) {
+//          	console.log(data)
                 var Mes  = '['
                 for (var i=0;i<data['data'].length;i++) {
                 	if(data['data'][i]['mobile'] == dataPho)
@@ -25,8 +26,10 @@ function getProMesAll(dataPho) {
                 Mes = Mes.substr(0,Mes.length-1)
                 Mes += ']'
                 var MesObj = eval('(' + Mes + ')');
-                tableProAll(MesObj)
+                tableProAll(MesObj);
+                update_pronam(data);
             }
+            
         },
         error:function(s,e,t){
             console.log(s,e,t);

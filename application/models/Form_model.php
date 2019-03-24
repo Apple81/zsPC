@@ -195,5 +195,16 @@ class Form_model extends CI_Model{
     {
         //
     }
-    
+    //附件保存
+    public function save_fileurl($formId,$pathurl){
+    	
+    	$sql="update table_mes set fileUrl = '".$pathurl."' WHERE IntIdA ='".$formId."'";
+    	$this->db->query($sql);
+    	$data['row'] = $this->db->affected_rows();
+    	$data['status'] = 'error';
+    	if($data['row']){
+    	$data['status'] = 'success';
+	    }
+	    return $data;
+    }
 }

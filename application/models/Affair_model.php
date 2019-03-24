@@ -32,5 +32,18 @@ class Affair_model extends CI_Model{
     {
         
     }
-    
+    //查询签名记录
+    public function affair_Signshow($useacc){
+    	$sql_1="select id from user where UseAcc='".$useacc."'";
+    	$data['get']=$this->db->query($sql_1)->result_array();
+    	$sql = "select TabNam,SigCTm,ProNam from circle_detail WHERE SigCTm is NOT NULL and useid='".$data['get'][0]['id']."'";
+        $data['aaData'] = $this->db->query($sql)->result_array();
+        return $data;
+    }
+    //更新数据
+    public function update_proname($proid,$proname){
+    	$sql="UPDATE table_mes SET ProNam = '".$proname."' WHERE ProAId = '".$proid."'";
+    	$data=$this->db->query($sql);
+    	return $data;
+    }
 }

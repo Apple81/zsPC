@@ -37,7 +37,6 @@
         <![endif]-->
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-skins.min.css"?>" />
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-rtl.min.css"?>" />
-
         <!--[if lte IE 9]>
           <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace-ie.min.css"?>" />
         <![endif]-->
@@ -81,16 +80,19 @@
         			    <!--Action Button Beg-->
         			    <div class="col-lg-5">
         			        <button class="btn btn-primary NoSelTabType" id="OpenShut">展开</button>
+        			        <button class="btn btn-primary" id="aa">获取选择</button>
         			        <!--<input class="input-elm" id="CheckTreeDom"/>
         			        <button class="btn btn-primary" id="CheckTreeDomAct">查找</button>-->
         			    </div>
         			    <div class="col-lg-7">
-                            <input id="formId" hidden="hidden"/>
+                            <!--<input id="formId" hidden="hidden"/>-->
+                            <input id="formId">
                             <button class="btn btn-primary NoSelTabType" id="UpLoad" onclick="ChangeSta(StaChange+'/UpLoad/draf','draf')">提交</button>
                             <button class="btn btn-primary NoSelTabType" id="PackUp" onclick="ChangeSta(StaChange+'/PackUp/draf','draf')">归集</button>
                             <button class="btn btn-primary NoSelTabType" id="Delete" onclick="HardWroking()">删除</button><!--ChangeSta(StaChange+'/Delete/draf','draf')-->
                             <button class="btn btn-primary NoSelTabType" id="printOutDraf" href="#" >浏览</button>
                             <button class="btn btn-primary" href="#modal-EditTabMes" role="button" data-toggle="modal">属性设置</button>
+                            <button class="btn btn-primary NoSelTabType" href="#modal-file" id="file_upload" role="button" data-toggle="modal">添加附件</button>
                             <!--<button class="btn btn-primary" onclick="selectMes()"></button>-->
                         </div>
                         <!--Action Button End-->
@@ -136,6 +138,7 @@
 		<script src="<?php echo base_url()."assets/js/select2.min.js"?>"></script>
 		<script src="<?php echo base_url()."assets/js/jquery-ui.min.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/jquery.ui.touch-punch.min.js"?>"></script>
+        <link rel="stylesheet" href="<?php echo base_url()."assets/css/dropzone.min.css"?>" />
         
 		<!--dataTable-->
 		<script src="<?php echo base_url()."assets/js/jquery.dataTables.min.js"?>"></script>
@@ -160,29 +163,39 @@
 		<script src="<?php echo base_url()."assets/js/self/ActionMes.js"?>"></script><!--change caseType-->
 		<script src="<?php echo base_url()."assets/js/self/api.js"?>"></script><!--get APIMes-->
 		<script src="<?php echo base_url()."assets/js/self/ActionForm.js"?>"></script><!--show Mes-->
+	<!--	<script src="<?php echo base_url()."assets/js/self/Actionfile.js"?>"></script><!--file Mes-->-->
+		
+		<!--file upload-->
+        <script src="<?php echo base_url()."assets/js/dropzone.min.js"?>"></script>
+        
 		<script type="text/javascript">
 		    var dataUri = sessionStorage.getItem('ModleId');
-		    projectId = sessionStorage.getItem('projectId')
-		    var StaChange = "<?php echo site_url('MesContro/StaChange') ?>"
+		    projectId = sessionStorage.getItem('projectId');
+		    var StaChange = "<?php echo site_url('MesContro/StaChange') ?>";
+		    var fileUrl = "<?php echo site_url('Upload/uploadFile')?>";
 		    var TreeMes = []
 		    var MesArray = "" //树目录的数据
 		    var TreeUrl = "<?php echo site_url('MesContro/GetTreeNode') ?>"+'/'+projectId;
+//		    alert(TreeUrl);
 			jQuery(function($) {
 			    /*
 			     * tree INI
 			     */
 			    var Tree = "<?php echo site_url('MesContro/GetTreeNode') ?>"+'/'+projectId;
+			    console.log(Tree);
                 $.ajax({
                     type:"post",
                     url:Tree,
                     async:true,
                     success:function(data)
                     {
+//                  	alert(data);
                         MesArray = eval("("+data+")")
                         TreeMes = $(".l-tree").ligerTree({
                             data:MesArray,
                             idFieldName :'nodeId',
-                            checkbox:false,
+                            checkbox:true,
+                            checked:true,
                             slide : false,
                             parentIDFieldName :'parentId',
                             textFieldName :'nodeName',
@@ -216,9 +229,10 @@
                 })
                 function onSelect(note) {
                     if(!note.data.children){
+//                  	alert(note.data.nodeId)
                         $('#formId').attr('value',note.data.nodeId)
                         var MesShow = "<?php echo site_url('MesContro/ShowFormMes') ?>"+'/'+note.data.nodeId
-//                      console.log(MesShow)
+                        console.log(MesShow)
 						//基本属性
                         $.ajax({
                         	type:"post",
@@ -226,6 +240,7 @@
                         	async:true,
                         	dataType:'json',
                         	success:function(data){
+                        		console.log(data)
                         	    //clear old mes
                                 $('#ChaFormName').attr('value','')
                                 $('#ChaFormName').val('')
@@ -235,7 +250,7 @@
                                 $('#ChaTabEls').text()
                                 //console.log(data)
                         	    showFormMes(data)
-                        	    
+                        	    $('#file_upload').removeClass('NoSelTabType')
                         	    if(data['base'][0]['TabTyp']){
                         	        $('#UpLoad').removeClass('NoSelTabType')
                             	    $('#PackUp').removeClass('NoSelTabType')
@@ -324,7 +339,83 @@
                         }, 0);
                     }
                 });
-                
+            	/*
+            	 * 附件上传
+            	 */
+//              try {
+//                Dropzone.autoDiscover = false;
+//                var myDropzone = new Dropzone('#dropzone', {
+//                  previewTemplate: $('#preview-template').html(),
+//                  
+//                  thumbnailHeight: 120,
+//                  thumbnailWidth: 120,
+//                  maxFilesize: 1,
+//                  
+//                    addRemoveLinks : true,
+//                    dictRemoveFile: '取消上传',
+//                  
+//                  dictDefaultMessage :
+//                  '<span class="bigger-150 bolder"><i class="ace-icon fa fa-caret-right red"></i> 拖拽文件</span> \
+//                  <span class="smaller-80 grey">或点选文件进行选择</span> <br /> \
+//                  <i class="upload-icon ace-icon fa fa-cloud-upload blue fa-3x"></i>',
+//                  thumbnail: function(file, dataUrl) {
+//                    if (file.previewElement) {
+//                      $(file.previewElement).removeClass("dz-file-preview");
+//                      var images = $(file.previewElement).find("[data-dz-thumbnail]").each(function() {
+//                          var thumbnailElement = this;
+//                          thumbnailElement.alt = file.name;
+//                          thumbnailElement.src = dataUrl;
+//                      });
+//                      setTimeout(function() { $(file.previewElement).addClass("dz-image-preview"); }, 1);
+//                    }
+//                  }
+//              
+//                });
+//              
+//                //simulating upload progress
+//                var minSteps = 6,
+//                    maxSteps = 60,
+//                    timeBetweenSteps = 100,
+//                    bytesPerStep = 100000;
+////                var Fid=$('#formId').val();
+//                myDropzone.uploadFiles = function(files) {
+//                  var self = this;
+//                  for (var i = 0; i < files.length; i++) {
+//                    var file = files[i];
+//                        totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
+//                    for (var step = 0; step < totalSteps; step++) {
+//                      var duration = timeBetweenSteps * (step + 1);
+//                      setTimeout(function(file, totalSteps, step) {
+//                        return function() {
+//                          file.upload = {
+//                            progress: 100 * (step + 1) / totalSteps,
+//                            total: file.size,
+//                            bytesSent: (step + 1) * file.size / totalSteps
+//                          };
+//              
+//                          self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
+//                          if (file.upload.progress == 100) {
+//                            file.status = Dropzone.SUCCESS;
+//                            self.emit("success", file, 'success', null);
+//                            self.emit("complete", file);
+//                            self.processQueue();
+//                          }
+//                        };
+//                      }(file, totalSteps, step), duration);
+//                    }
+//                  }
+//                 }
+//                 //remove dropzone instance when leaving this page in ajax mode
+//                 $(document).one('ajaxloadstart.page', function(e) {
+//                      try {
+//                          myDropzone.destroy();
+//                      } catch(e) {}
+//                 });
+//              
+//              } catch(e) {
+//                alert('Dropzone.js does not support older browsers!');
+//              }
+//              
 			});
 			/*
 			 * Path Function
@@ -350,6 +441,32 @@
 //              console.log(node.target.parentNode)
 //              console.log(node.data.parentId)
             }
+			 $('#aa').on('click',function(){
+				var notes = TreeMes.getChecked();
+	        	var myArray=new Array();
+	        	for (var i = 0; i < notes.length; i++)
+	           {
+	                if(!notes[i].data.children){
+	               		myArray[i]= notes[i].data.nodeId;
+	           		}
+	           }
+	            var newArr = myArray.filter(item => item)//去除数组中的空值
+				console.log(newArr)
+//				for (var i = 0; i < newArr.length; i++){
+//				 $('#formId').attr('value',newArr[i]);
+//				var Fid=$('#formId').val();
+//	              alert(Fid);
+//				}
+				$('#formId').attr('value',newArr);
+//				 var formid=$('#formId').val();
+//				 var strs= new Array(); //定义一数组
+//	    		 strs=formid.split(",");
+//				console.log(strs)
+				$('#UpLoad').removeClass('NoSelTabType')
+        	    $('#PackUp').removeClass('NoSelTabType')
+        	    $('#Delete').removeClass('NoSelTabType')
+        	    $('#printOutDraf').removeClass('NoSelTabType')
+			});
 			
 		</script>
 	</body>
