@@ -20,7 +20,6 @@
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap-multiselect.min.css"?>" />
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/select2.min.css"?>" />
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/jquery-ui.min.css"?>" />
-        <link rel="stylesheet" href="<?php echo base_url()."assets/css/colorbox.min.css"?>" />
 
         <!-- text fonts -->
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/fonts.googleapis.com.css"?>" />
@@ -52,11 +51,6 @@
         <script src="<?php echo base_url()."assets/js/html5shiv.min.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/respond.min.js"?>"></script>
         <![endif]-->
-        <style type="text/css">
-            .spanBackground {
-                background: #7db4d8;
-            }
-        </style>
     </head>
 
     <body class="no-skin">
@@ -72,25 +66,20 @@
             <div class="main-content">
                 <div class="widget-body">
                     <div class="widget-main padding-24">
-                        <!--Action Button Beg-->
-                        <div class="col-lg-5">
-                            <button class="btn btn-primary NoSelTabType" id="OpenShut">展开</button>
-                            <!-- <input class="input-elm" id="CheckTreeDom"/> -->
-                            <!-- <button class="btn btn-primary" id="CheckTreeDomAct">查找</button> -->
-                        </div>
-                        <div class="col-lg-7">
-                            <input id="formId" hidden="hidden"/>
-                            <button class="btn btn-primary" id="ReUpld" onclick="ChangeSta(StaChange+'/ReUpld/over','over')">撤回归集</button>
-                            <button class="btn btn-primary" id="printOut" href="#" >浏览</button>
-                        </div>
-                        <!--Action Button End-->
                         <!--form tree begin-->
                         <?php $this->load->view('model_tree.html'); ?>
                         <!--form tree end-->
                         <!--form list begin-->
                         <?php // $this->load->view("form_list.html"); ?>
                         <!--form list end-->
-
+                        <!--Action Button Beg-->
+                        <div class="col-lg-7">
+                            <input id="formId" hidden="hidden"/>
+                            <button class="btn btn-primary" id="CallBk" onclick="ChangeSta(StaChange+'/CallBk/pack','pack')">撤回归集</button>
+                            <button class="btn btn-primary" id="printOut" href="#" >浏览</button>
+                            <button class="btn btn-primary" id="" href="#" >工作组比对</button>
+                        </div>
+                        <!--Action Button End-->
                         <!--form mess begin-->
                         <?php $this->load->view("form_attr.html"); ?>
                         <!--form mess end-->
@@ -130,6 +119,10 @@
         <script src="<?php echo base_url()."assets/js/jquery-ui.min.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/jquery.ui.touch-punch.min.js"?>"></script>
         
+        <!--tree-->
+        <script src="<?php echo base_url()."assets/tree_LigerUI/js/base.js"?>"></script>
+        <script src="<?php echo base_url()."assets/tree_LigerUI/js/ligerTreeShow.js"?>"></script>
+        
         <!--dataTable-->
         <script src="<?php echo base_url()."assets/js/jquery.dataTables.min.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/jquery.dataTables.bootstrap.min.js"?>"></script>
@@ -139,10 +132,6 @@
         <script src="<?php echo base_url()."assets/js/buttons.print.min.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/buttons.colVis.min.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/dataTables.select.min.js"?>"></script>
-
-        <!--tree-->
-        <script src="<?php echo base_url()."assets/tree_LigerUI/js/base.js"?>"></script>
-        <script src="<?php echo base_url()."assets/tree_LigerUI/js/ligerTreeShow.js"?>"></script>
         
         <!-- ace scripts -->
         <script src="<?php echo base_url()."assets/js/ace-elements.min.js"?>"></script>
@@ -156,13 +145,8 @@
         <script type="text/javascript">
             var dataUri = sessionStorage.getItem('ModleId');
             projectId = sessionStorage.getItem('projectId')
-            var TreeMes = []
-            var MesArray = "" //树目录的数据
             var tabMesAll;
-            var StaChange = "<?php echo site_url('MesContro/StaChange') ?>"
             AimUrl = "<?php echo site_url('MesContro/PrintOut'); ?>"
-
-
             jQuery(function($) {
                 /*
                  * datatable INI
@@ -179,8 +163,8 @@
                     async:true,
                     success:function(data)
                     {
-                       MesArray = eval("("+data+")")
-                        TreeMes = $(".l-tree").ligerTree({
+                        var MesArray = eval("("+data+")")
+                        $(".l-tree").ligerTree({
                             data:MesArray,
                             idFieldName :'nodeId',
                             checkbox:false,
@@ -191,51 +175,12 @@
                         });
                         treeManager = $(".l-tree").ligerGetTreeManager();
                         treeManager.collapseAll();
-                        $('#OpenShut').removeClass('NoSelTabType')
                     },
                     error:function(s,t,e)
                     {
                         console.log(s,t,e);
                     }
                 })
-
-            //tree action
-             $('#OpenShut').on('click',function(){
-                    if($('#OpenShut').text() == '展开'){
-                        TreeMes.expandAll()
-                       $('#OpenShut').val('关闭')
-                       $('#OpenShut').text('关闭')
-                       return;
-                    }
-                    TreeMes.collapseAll()
-                    $('#OpenShut').val('展开')
-                    $('#OpenShut').text('展开')
-                })
-            $('#CheckTreeDomAct').on('click',function(){
-                    console.log($('#CheckTreeDom').val())
-                    TreeMes.getNodeDom ($('#CheckTreeDom').val())
-                })
-            function onSelect(note) {
-                if(!note.data.children){
-                    $('#formId').attr('value',note.data.nodeId)
-                    var MesShow = "<?php echo site_url('Form/FormgetBC') ?>"+'/'+note.data.nodeId
-//                  console.log(MesShow)
-                    $.ajax({
-                        type:"post",
-                        url:MesShow,
-                        async:true,
-                        dataType:'json',
-                        success:function(data){
-//                          console.log(data)
-                                //console.log(data)
-                            showFormMes(data)
-                        },
-                        error:function(s,e,t){
-                            alert('出现错误，请及时联系管理员[FD001]')
-                        }
-                    });
-                }
-            }
                 /*
                  * table Action
                  */
@@ -255,24 +200,6 @@
                         
                     }
                 })
-
-                //树查询
-                $("#searchTreeText").on("keyup",function(){
-                    searchTree(this.value)
-                })
-                function searchTree(searchString){
-                    $("span[class='spanBackground']").removeClass("spanBackground")
-                    if(searchString){
-                        for(var ky in MesArray){//ky:1,2,3,4,5,6,7,8,9...
-                            var data2 = MesArray[ky]
-                            if(data2 && data2["nodeName"].indexOf(searchString)>=0){
-                                TreeMes.expandAll()
-                                var  treedataindex = data2["treedataindex"]
-                                $("li[treedataindex='"+treedataindex+"']").children("div").children("span").addClass("spanBackground")
-                            }
-                        }
-                    }
-                }
                 /*
                  * datepicker
                  */
@@ -297,6 +224,28 @@
             /*
              * Path Function
              */
+            //tree action
+            function onSelect(note) {
+                if(!note.data.children){
+                    $('#formId').attr('value',note.data.nodeId)
+                    var MesShow = "<?php echo site_url('Form/FormgetBC') ?>"+'/'+note.data.nodeId
+//                  console.log(MesShow)
+                    $.ajax({
+                        type:"post",
+                        url:MesShow,
+                        async:true,
+                        dataType:'json',
+                        success:function(data){
+//                          console.log(data)
+                            showFormMes(data)
+                        },
+                        error:function(s,e,t){
+                            alert('出现错误，请及时联系管理员[FD001]')
+                        }
+                    });
+                }
+            }
+            
             
         </script>
     </body>
