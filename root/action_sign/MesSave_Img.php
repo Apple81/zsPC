@@ -1,5 +1,6 @@
 <?php
     require('../conn.php');
+	date_default_timezone_set("PRC");
     //获取用户信息
     session_start();
     $RolIdS = $_SESSION['RolIdS'];//角色名

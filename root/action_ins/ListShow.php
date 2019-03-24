@@ -1,7 +1,8 @@
 <?php
     require("../conn.php");
+	date_default_timezone_set("PRC"); 
     $falg = $_POST['falg'];
-//  $falg = 'listMesType_detail';
+//  $falg = 'listMesType_deta';
     $showtime = date("Y-m-d");
 //  echo $showtime;
     
@@ -125,7 +126,7 @@
              * 根据工程id和类型id查询表单中的待签表单
              * 根据表单的流转时间戳CirSmp查询表单的当前签批状态
              * */
-            $sql_sel = "select id,CirSmp,TabNam,TabCTm,TabDTm,TabMNa from table_mes where ProAId = '".$projectId."' and TabSta = 1 and TabTyp='".$TypeId."'";
+            $sql_sel = "select id,CirSmp,IntIdA,TabNam,TabCTm,TabDTm,TabMNa from table_mes where ProAId = '".$projectId."' and TabSta = 1 and TabTyp='".$TypeId."'";
             $result_sel = $conn->query($sql_sel);
             $data['row'] = 0;
             $data['status'] = 'error';
@@ -136,16 +137,17 @@
                 {
                     //查询流转信息
                     $CirSmp = $row_sel['CirSmp'];
-                    $sql_SelCir = "select id,DepIdS,SigSta,SigCTm,MesCTm,MesSmp from circle_td where CirSmp = '".$CirSmp."' and SigSta = 0 order by id";
+                    $sql_SelCir = "select id,DepIdS,SigSta,SigCTm,MesCTm,MesSmp,CirSmp from circle_td where CirSmp = '".$CirSmp."' and SigSta = 0 order by id";
                     $result_SelCir = $conn->query($sql_SelCir)->fetch_assoc();
                     if($result_SelCir['DepIdS'] == $DepIdS)
                     {
-                        $data['CirSmp'][$i] = $row_sel['CirSmp'];
+                        $data['data'][$i]['CirSmp'] = $row_sel['CirSmp'];
                         $data['data'][$i]['id'] = $row_sel['id'];
                         $data['data'][$i]['TabNam'] = $row_sel['TabNam'];
                         $data['data'][$i]['TabCTm'] = $row_sel['TabCTm'];
                         $data['data'][$i]['TabDTm'] = $row_sel['TabDTm'];
                         $data['data'][$i]['TabMNa'] = $row_sel['TabMNa'];
+						$data['data'][$i]['IntIdA'] = $row_sel['IntIdA'];
                         $data['data'][$i]['DepIdS'] = $result_SelCir['DepIdS'];
 						
                         $i++;
