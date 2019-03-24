@@ -23,7 +23,7 @@ class Form_model extends CI_Model{
                 break;
             default:break;
         }
-        $sql = "SELECT IntIdA as formId,TabMId as nodeId,ProAId as projectId,TabNam as formName,TabUDa as uploadTime,TabCTm as createTime,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta,TabMNa FROM table_mes WHERE TabSta = '".$formSta."' and ProAId = '".$ProId."'";
+        $sql = "SELECT IntIdA as formId,TabMId as nodeId,ProAId as projectId,TabNam as formName,TabUDa as uploadTime,TabMNa as ModelName,TabCTm as createTime,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta,TabMNa FROM table_mes WHERE TabSta = '".$formSta."' and ProAId = '".$ProId."'";
         $data = $this->db->query($sql)->result_array();
         return $data;
     }
@@ -36,7 +36,7 @@ class Form_model extends CI_Model{
     //按模板列表查询
     public function TreeShowSelect($id,$typeSta)
     {
-        $sql = "SELECT IntIdA as formId,TabMId as nodeId,ProAId as projectId,TabNam as formName,TabUDa as uploadTime,TabCTm as createTime,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta,TabMNa FROM table_mes WHERE TabMId = '".$id."'  AND TabSta = '".$typeSta."' ";
+        $sql = "SELECT IntIdA as formId,TabMId as nodeId,ProAId as projectId,TabNam as formName,TabUDa as uploadTime,TabMNa as ModelName,TabCTm as createTime,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta,TabMNa FROM table_mes WHERE TabMId = '".$id."'  AND TabSta = '".$typeSta."' ";
         $data = $this->db->query($sql)->result_array();
         return $data;
     }
@@ -53,7 +53,7 @@ class Form_model extends CI_Model{
 	     */
 	    
 	    //获取基本属性
-	    $sql_base = "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from ".$tab." where IntIdA = '".$FormId."'";
+	    $sql_base = "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabMNa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from ".$tab." where IntIdA = '".$FormId."'";
         $data['base'] = $this->db->query($sql_base)->result_array();
         
         //获取表单类型信息
@@ -131,7 +131,7 @@ class Form_model extends CI_Model{
 	    $CirMesOld = $formTypeId[0]['CirSmp'];
 	    
         //查找旧流转信息
-        $sql_base = "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from ".$TableName." where IntIdA = '".$formId."'";
+        $sql_base = "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabMNa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from ".$TableName." where IntIdA = '".$formId."'";
         $TabMes = $this->db->query($sql_base)->result_array();
         //如果是提交之前可以修改表单属性
         if($TableName == 'table_mes_cache')
@@ -195,16 +195,5 @@ class Form_model extends CI_Model{
     {
         //
     }
-    //附件保存
-    public function save_fileurl($formId,$pathurl){
-    	
-    	$sql="update table_mes set fileUrl = '".$pathurl."' WHERE IntIdA ='".$formId."'";
-    	$this->db->query($sql);
-    	$data['row'] = $this->db->affected_rows();
-    	$data['status'] = 'error';
-    	if($data['row']){
-    	$data['status'] = 'success';
-	    }
-	    return $data;
-    }
+    
 }
