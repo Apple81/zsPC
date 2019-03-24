@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'http://127.0.0.1:8082/zsPC';
-$config['base_url'] = 'http://127.0.0.1:8081/zsPC';
+$config['base_url'] = 'http://127.0.0.1:8081/ZS-PC';
 /*
 |--------------------------------------------------------------------------
 | Index File
