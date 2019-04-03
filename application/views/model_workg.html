@@ -1,0 +1,41 @@
+<!--工作组比对-->
+<div id="modal-wgcompare" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <span class="white">&times;</span>
+                        </button>
+                        <span>工作组比对</span>
+                    </div>
+                </div>
+                <div class="modal-body no-padding">
+                    
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">工作组 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <select id="SelFormType">
+                                    <?php foreach($typeForm as $v){ ?>
+                                        <option data-id-Type="<?=$v['id']?>" value="<?=$v['TypNam']?>"><?=$v['TypNam']?></option>
+                                    <?php } ?>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer no-margin-top">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="" onclick="wgcompare()">
+                        <span>比对</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        <span>关闭</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

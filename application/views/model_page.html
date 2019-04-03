@@ -411,18 +411,9 @@
                     <div class="form-group has-info page-header" style="height: 50px;">
                     <label class="col-sm-3 control-label no-padding-right"> 附件：</label>
                     <div class="col-sm-5">
-                    	<input type="text"  value=""  id="Fid">
+                    	<input type="text"  value="" class="hidden" id="Fid" name="Fid">
                         <span class="block input-icon input-icon-right">
                             <input type="file" id="getfile" name="userfile"/>
-                        </span>
-                    </div>
-                    <div class="help-block col-xs-12 col-sm-reset inline"> </div>
-                </div>
-                <div class="form-group has-info page-header" style="height: 250px;">
-                    <label class="col-sm-3 control-label no-padding-right"> 成功预览：</label>
-                    <div class="col-sm-5">
-                        <span class="block input-icon input-icon-right">
-                            <img width="416px" height="200px" id="ImgShow" />
                         </span>
                     </div>
                     <div class="help-block col-xs-12 col-sm-reset inline"> </div>
@@ -472,9 +463,10 @@
                         <div class="col-sm-5">
                             <span class="block input-icon input-icon-right">
                                 <select id="SelFormType">
-                                    <option id="ChaFormType">默认</option>
+                                	<!--<option id="ChaFormType"></option>-->
+                                    <!--<option data-id-Type="1" value="默认">默认</option>-->
                                     <?php foreach($typeForm as $v){ ?>
-                                        <option data-id-Type="<?=$v['id']?>"><?=$v['TypNam']?></option>
+                                        <option data-id-Type="<?=$v['id']?>" value="<?=$v['TypNam']?>"><?=$v['TypNam']?></option>
                                     <?php } ?>
                                 </select>
                             </span>
@@ -521,7 +513,7 @@
     
 <script type="text/javascript">
 //	var formId = $('#formId').attr('value');
-	$("#Fid").attr('value',formId);
+	
 //save form message change
 function FormMesSave(){
 	
@@ -564,6 +556,8 @@ function FormMesSave(){
                         $('#datepickerForm').val('')
                         $('#ChaTabEls').text()
     	            }
+    	            //刷新页面
+    	            history.go(0);
     	        }else{
     	            alert('未对表单信息进行修改')
     	        }
@@ -577,6 +571,7 @@ function FormMesSave(){
     });
     $('#modal-EditTabMes').modal('hide')
 }
+
 
 
 </script>

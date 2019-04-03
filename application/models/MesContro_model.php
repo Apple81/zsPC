@@ -17,7 +17,8 @@ class MesContro_model extends CI_Model{
     //检测是不是有表单类型
     public function FromTypeCheck($fromId,$TabName)
     {
-        $sql = "select id,TabTyp,TabDTm from ".$TabName." where IntIdA = '".$fromId."'";
+    	$sql = "select id,TabTyp,TabDTm from table_mes_cache where IntIdA ='".$fromId."'";
+//      $sql = "select id,TabTyp,TabDTm from ".$TabName." where IntIdA ='".$fromId."'";
         $FromMes = $this->db->query($sql)->result_array();
         if($FromMes[0]['TabTyp'] && $FromMes[0]['TabDTm'])
         {
@@ -71,6 +72,7 @@ class MesContro_model extends CI_Model{
                 $tabMesNewId = $this->db->insert_id();
                 //转存节点信息
                     //获取表单信息
+                    
                     $url = $urlTree.$v;
                     $ch = curl_init ();
                     curl_setopt ( $ch, CURLOPT_URL, $url );
@@ -124,8 +126,8 @@ class MesContro_model extends CI_Model{
                 if($rowCopy > 0)
                 {
                     //删除缓存库的数据
-                    $sql_del = "delete from table_mes_cache where IntIdA = '".$v."'";
-                    $this->db->query($sql_del);
+//                  $sql_del = "delete from table_mes_cache where IntIdA = '".$v."'";
+//                  $this->db->query($sql_del);
                   /* 暂时注释
                     //删除接口的数据
 //                  $url = $urlDel.$v;
@@ -157,6 +159,7 @@ class MesContro_model extends CI_Model{
                 $sql .= sprintf("WHEN %d THEN %d ", $v, $CT); // 拼接SQL语句
                 $sql .= "END WHERE IntIdA IN ('".$v."')";
                 $this->db->query($sql);
+//              $data['rows']="1";
                 $data['rows'] = $this->db->affected_rows();
 
                 //保存操作记录

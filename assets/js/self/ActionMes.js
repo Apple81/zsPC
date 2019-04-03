@@ -4,7 +4,7 @@
 //提交/归集/驳回/逾期/撤回归集/重新提交
 function ChangeSta(uri,ActTy){
 	var Mes = $('#formId').val()
-    var TabName_Data = 'table_mes'
+    var TabName_Data = 'table_mes_cache'
     if(Mes) {
         if(ActTy == 'draf'){
             TabName_Data = 'table_mes_cache'
@@ -40,34 +40,35 @@ function ChangeSta(uri,ActTy){
                         },
                         dataType:'json',
                         success:function(data){
+                        	console.log(data)
                             if(data['status'] == 'success'){
                                 alert(data['Name']+'成功')
-                                if(!(ActTy == 'draf' || ActTy == 'pack')){
-                                    tabMesAll.ajax.reload();
-                                }else{
-//                                  var node = TreeMes.getSelected();
-//                                  if (!node) return;
-//                                  TreeMes.reloadNode(node, '');
-									$.ajax({
-					                    type:"post",
-					                    url:TreeUrl,
-					                    async:true,
-					                    success:function(data)
-					                    {
-					                        MesArray = eval("("+data+")")
-					                        var op = {
-								                delay: []
-								            };
-								            TreeMes.set(op);
-					                        TreeMes.set('data',MesArray)
-					                        window.location.reload();//刷新页面
-					                    },
-					                    error:function(s,t,e)
-					                    {
-					                        alert('出现错误，错误类型：'+e)
-					                    }
-					                })
-                                }
+//                              if(!(ActTy == 'draf' || ActTy == 'pack')){
+//                                  tabMesAll.ajax.reload();
+//                              }else{
+////                                  var node = TreeMes.getSelected();
+////                                  if (!node) return;
+////                                  TreeMes.reloadNode(node, '');
+//									$.ajax({
+//					                    type:"post",
+//					                    url:TreeUrl,
+//					                    async:true,
+//					                    success:function(data)
+//					                    {
+//					                        MesArray = eval("("+data+")")
+//					                        var op = {
+//								                delay: []
+//								            };
+//								            TreeMes.set(op);
+//					                        TreeMes.set('data',MesArray)
+//					                        window.location.reload();//刷新页面
+//					                    },
+//					                    error:function(s,t,e)
+//					                    {
+//					                        alert('出现错误，错误类型：'+e)
+//					                    }
+//					                })
+//                              }
                             }
                             else{
                                 alert('出现错误，请及时联系管理员[FSC004]')

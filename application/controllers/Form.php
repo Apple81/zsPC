@@ -165,10 +165,11 @@ class Form extends CI_Controller{
 	public function img_upload()
 	{
 		$config['upload_path']='./formUpload/';
-        $config['allowed_types']= 'gif|jpg|png';
+        $config['allowed_types']= 'gif|jpg|png|jpeg';
         $config['max_size']=10000;
 //      $config['max_width']= 1024;
 //      $config['max_height'] = 768;
+//防止名字重复
         $config['file_name']=time().mt_rand(1000,9999);
 
         $this->load->library('upload', $config);
@@ -176,13 +177,24 @@ class Form extends CI_Controller{
         $status=$this->upload->do_upload('userfile');
         $wrong=$this->upload->display_errors();
         if($wrong){
-        	error($wrong);
+//      	error($wrong);
+        	echo  "<script>alert('上传失败');history.go(-1);</script>";  
         }
         $info=$this->upload->data();
-        $formId = $this->uri->segment(3);
-        $pathurl=$info['full_path'];
+        $formId = $this->input->post('Fid');
+        $path=$info['full_path'];
+        $pathurl=substr($path,45);//切割字符串只显示图片的名字
         $data = $this->form->save_fileurl($formId,$pathurl);
+//      echo $formId;
+//      echo $pathurl;
         $json = json_encode($data);
 		echo $json;
+        if($data["status"]=="success"){
+        	 echo  "<script>alert('保存成功');history.go(-1);</script>";  
+        }
+        else{
+        	echo $data["status"];
+//      	echo  "<script>alert('上传失败');history.go(-1);</script>";  
+        }
 	}
 }

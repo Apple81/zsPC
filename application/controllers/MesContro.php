@@ -169,9 +169,8 @@ class MesContro extends CI_Controller{
             default:break;
         }
         
-        $Mes=array();
-    	$Mes=explode(',',$MesId);
-        $num = count($Mes);
+        //如果数据中包含','
+        	$MesIdArr = explode(',',$MesId);
         
         //设置返回值与实际操作执行
         $data['status'] = 'fail';
@@ -180,25 +179,19 @@ class MesContro extends CI_Controller{
             //如果是删除操作
         if($Type == 'Delete')
         
-        {	//如果数据中包含','
-        	$MesIdArr = explode(',',$MesId);
+        {	
             $this->MesCon->StaChangeDel($MesIdArr,$urlDel);
             $data['status'] = 'success';
             $data['rows'] = $rows;
         }
-         else if($Type == 'UpLoad'){
-	      for($i=0;$i<$num;$i++){
-	        	$MesID= $Mes[$i];
-	        	$MesIdArr = explode(',',$MesID);
+        else if($Type == 'UpLoad'){
 	            $dataRe = $this->MesCon->StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree);
 	            if($dataRe['rows'] > 0)
 	            {
 	                $data['status'] = 'success';
 	                $data['rows'] = $dataRe['rows'];
 	            }
-         }
          
-        	echo $num;
         }
             //不是删除操作
         else{

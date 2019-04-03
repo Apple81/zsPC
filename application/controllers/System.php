@@ -25,6 +25,10 @@ class System extends CI_Controller{
         {
             $this->load->view('system_phoe.html');
         }
+        public function systemShow_WorkG()
+        {
+            $this->load->view('system_workgroup.html');
+        }
         //表单类型定义
         public function systemShow_FmTy()
         {
@@ -306,5 +310,59 @@ class System extends CI_Controller{
             $json = json_encode($data);
             echo $json;
         }
+    }
+    //获取接口的工作组
+     public function WorkGroup_show(){
+     	//工作组接口数据
+        $url = 'http://112.74.34.150:8080/TongXinweb/project/AllPro';
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
+        curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
+        $file_contents = curl_exec ( $ch );
+        //json解码
+        $data = json_decode($file_contents,true);
+        $array = array();
+        for ($i=0;$i<count($data['data']);$i++)
+        {
+            $array['aaData'][]= $data['data'][$i];
+        }
+        $json = json_encode($array);
+        echo $json;
+        
+        curl_close ( $ch );
+     }
+     public function WorkGroup_Mes()
+    {
+        $projectId = $this->uri->segment(3);
+        
+        /*
+         * 根据工程id查接口树节点
+         * */
+        $url = 'http://112.74.34.150:8080/TongXinweb/Tree/getTreeByProjectId?projectId='.$projectId;
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
+        curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
+        $file_contents = curl_exec ( $ch );
+        //json解码
+        $data = json_decode($file_contents,true);
+        $array = array();
+        $arrayNodeId = array();
+        for ($i=0;$i<count($data['data']);$i++)
+        {
+            //如果这个表单模板已经存在
+            if (! in_array($data['data'][$i]['nodeId'],$arrayNodeId))
+            {
+                $array['aaData'][] = $data['data'][$i];
+                $arrayNodeId[] = $data['data'][$i]['nodeId'];
+            }
+        }
+        $json = json_encode($array);
+        echo $json;
+        
+        curl_close ( $ch );
     }
 }
