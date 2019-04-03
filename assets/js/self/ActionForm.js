@@ -29,8 +29,10 @@ function showFormMes(MesPack){
     
     //show baseMes
 //  $('#ModelName').text(MesPack['base'][0]['TabNam'])
+    $('#ModelName').text(MesPack['base'][0]['TabMNa'])
     $('#FormName').text(MesPack['base'][0]['TabNam'])
     $('#FormPage').text(MesPack['base'][0]['page'])
+    $('#FormType').text(MesPack['type'])
     $('#ReTime').text(MesPack['base'][0]['TabCTm'])
     $('#DLtime').text(MesPack['base'][0]['TabDTm'])
     $('#TabEls').text(MesPack['base'][0]['TabEls'])
