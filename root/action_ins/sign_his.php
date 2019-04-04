@@ -7,7 +7,7 @@
 	$result = $conn->query($sql);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
-			$sqldate = $sqldate.'{"id":"'. $row["id"].'","SigCTm":"'. $row["SigCTm"].'","projectName":"'. $row["projectName"].'","ProAId":"'. $row["ProAId"].'","TabNam":"'. $row["TabNam"].'"},';
+			$sqldate = $sqldate.'{"id":"'. $row["id"].'","SigCTm":"'. $row["SigCTm"].'","projectName":"'. $row["ProNam"].'","ProAId":"'. $row["ProAId"].'","TabNam":"'. $row["TabNam"].'"},';
 		}
 	}
 	$jsonresult = 'success';
