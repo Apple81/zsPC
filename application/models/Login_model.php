@@ -31,7 +31,7 @@ class Login_model extends CI_Model
 		}
 		//查找账号信息
 		public function GetAccountMes($acc) {
-		    $data = $this->db->query("SELECT id,UsePho,UsePeo FROM `user` WHERE UseAcc = '".$acc."' and UseSta=1 ")->result_array();
+		    $data = $this->db->query("SELECT id,UsePho,UsePeo,UseLim FROM `user` WHERE UseAcc = '".$acc."' and UseSta=1 ")->result_array();
 		    return $data;
 		}
     }

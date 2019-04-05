@@ -45,6 +45,17 @@ $(function(){
         
     }
     
+    /*
+     * 判断管理员权限
+     */
+    var getUseLim = parseInt($('#getUseLim').text());
+    // console.log(parseInt($('#getUseLim').text()))
+
+    if (getUseLim !== 0){
+        $('#systemShow_Phoe').addClass('hide');
+    } else {
+        // console.log('admin')
+    }
 
 });
 function HardWroking(){

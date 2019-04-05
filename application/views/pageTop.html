@@ -270,6 +270,13 @@
                                 <i class="ace-icon fa fa-user"></i> 头像设置
                             </a>
                         </li>
+                        <li class="hide"><!--用于从后台获取UseLim-->
+                            <a href="#">
+                                <i class="ace-icon fa fa-user"></i> 
+                                <p id="getUseLim"><?php if(isset($_SESSION['UserAcc'])) {echo $_SESSION['UseLim'];}else{echo '【请先登录】';} ?>
+                                </p>
+                            </a>
+                        </li>
                         <li class="divider"></li>
                         <li>
                             <a id="SignOut" class="TagSet" href="<?=site_url('Login/index')?>">

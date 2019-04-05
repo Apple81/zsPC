@@ -50,6 +50,7 @@ class Login extends CI_Controller
                 $this->session->set_userdata('UserAId', $data[0]['id']);//账号id
                 $this->session->set_userdata('UsePho', $data[0]['UsePho']);//用户手机
                 $this->session->set_userdata('UsePeo', $data[0]['UsePeo']);//用户
+                $this->session->set_userdata('UseLim', $data[0]['UseLim']);//用户权限
                 $this->session->set_userdata('UserAcc', $account);//账号
                 //记录登录记录
                 $data_LoginHis = array(
