@@ -179,6 +179,23 @@
                         $('#formId').val(formId)
                         FormGetMes("<?php echo site_url('Form/FormgetBC') ?>"+'/'+formId+'/sign')
                         var FormgetHis = "<?php echo site_url('Form/FormgetHis') ?>"+'/'+formId;
+                     tableHis = $('#dynamic-table_His').DataTable({
+                         ajax:FormgetHis,
+                         columns:[
+                             {"data":'HisPeo'},
+                             {"data":'HisNam'},
+                             {"data":'HisTim'},
+                         ],
+                         oLanguage: {
+                             sLengthMenu: "显示 _MENU_ 条数据",
+                         },
+                         "processing": true,
+                         "aaSorting": [],
+                         "aoColumnDefs": [{
+                             'bSortable': false,
+                             'aTargets': [0]
+                         }],
+                     });
                     }catch(e){
                         
                     }
