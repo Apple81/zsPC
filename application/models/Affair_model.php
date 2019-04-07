@@ -36,7 +36,7 @@ class Affair_model extends CI_Model{
     public function affair_Signshow($useacc){
     	$sql_1="select id from user where UseAcc='".$useacc."'";
     	$data['get']=$this->db->query($sql_1)->result_array();
-    	$sql = "select TabNam,SigCTm,ProNam from circle_detail WHERE SigCTm is NOT NULL and useid='".$data['get'][0]['id']."'";
+    	$sql = "select TabNam,SignDate,ProNam from sign_detail WHERE SignDate is NOT NULL and userid='".$data['get'][0]['id']."'";
         $data['aaData'] = $this->db->query($sql)->result_array();
         return $data;
     }

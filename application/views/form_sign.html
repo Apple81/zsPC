@@ -179,7 +179,7 @@
                         $('#formId').val(formId)
                         FormGetMes("<?php echo site_url('Form/FormgetBC') ?>"+'/'+formId+'/sign')
                         var FormgetHis = "<?php echo site_url('Form/FormgetHis') ?>"+'/'+formId;
-                     tableHis = $('#dynamic-table_His').DataTable({
+                     	tableHis = $('#dynamic-table_His').DataTable({
                          ajax:FormgetHis,
                          columns:[
                              {"data":'HisPeo'},
@@ -196,6 +196,7 @@
                              'aTargets': [0]
                          }],
                      });
+                      $("#dynamic-table_His").dataTable().fnDestroy();//清除原先的数据
                     }catch(e){
                         
                     }

@@ -130,14 +130,14 @@
                  * tableINI
                  */
                 //table_table
-                
+                //签名记录显示
                 var useacc=$("#useacc").val();
                 var showMes = "<?php echo site_url('Affair/affair_Signshow');?>"+'/'+useacc;
 //              console.log(showMes);
                 var tableTab = $('#dynamic-table_table').DataTable({
                     ajax:showMes,
                     columns:[
-                        {"data":'SigCTm'},
+                        {"data":'SignDate'},
                         {"data":'ProNam'},
                         {"data":'TabNam'},
                     ],

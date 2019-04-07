@@ -154,6 +154,7 @@
         <script src="<?php echo base_url()."assets/js/self/ActionMes.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/self/api.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/self/ActionForm.js"?>"></script>
+        <script src="<?php echo base_url()."assets/js/self/ActionWgcompare.js"?>"></script>
         <script type="text/javascript">
             var dataUri = sessionStorage.getItem('ModleId');
             projectId = sessionStorage.getItem('projectId')
@@ -161,6 +162,7 @@
             var MesArray = "" //树目录的数据
             var tabMesAll;
             var StaChange = "<?php echo site_url('MesContro/StaChange') ?>"
+            var PackMes = "<?php echo site_url('MesContro/GetPackMes') ?>"+'/'+projectId;//获取当前工程归集表单
             AimUrl = "<?php echo site_url('MesContro/PrintOut'); ?>"
             jQuery(function($) {
                 /*

@@ -43,32 +43,32 @@ function ChangeSta(uri,ActTy){
                         	console.log(data)
                             if(data['status'] == 'success'){
                                 alert(data['Name']+'成功')
-//                              if(!(ActTy == 'draf' || ActTy == 'pack')){
-//                                  tabMesAll.ajax.reload();
-//                              }else{
-////                                  var node = TreeMes.getSelected();
-////                                  if (!node) return;
-////                                  TreeMes.reloadNode(node, '');
-//									$.ajax({
-//					                    type:"post",
-//					                    url:TreeUrl,
-//					                    async:true,
-//					                    success:function(data)
-//					                    {
-//					                        MesArray = eval("("+data+")")
-//					                        var op = {
-//								                delay: []
-//								            };
-//								            TreeMes.set(op);
-//					                        TreeMes.set('data',MesArray)
-//					                        window.location.reload();//刷新页面
-//					                    },
-//					                    error:function(s,t,e)
-//					                    {
-//					                        alert('出现错误，错误类型：'+e)
-//					                    }
-//					                })
-//                              }
+                                if(!(ActTy == 'draf' || ActTy == 'pack')){
+                                    tabMesAll.ajax.reload();
+                                }else{
+//                                  var node = TreeMes.getSelected();
+//                                  if (!node) return;
+//                                  TreeMes.reloadNode(node, '');
+									$.ajax({
+					                    type:"post",
+					                    url:TreeUrl,
+					                    async:true,
+					                    success:function(data)
+					                    {
+					                        MesArray = eval("("+data+")")
+					                        var op = {
+								                delay: []
+								            };
+								            TreeMes.set(op);
+					                        TreeMes.set('data',MesArray)
+					                        window.location.reload();//刷新页面
+					                    },
+					                    error:function(s,t,e)
+					                    {
+					                        alert('出现错误，错误类型：'+e)
+					                    }
+					                })
+                                }
                             }
                             else{
                                 alert('出现错误，请及时联系管理员[FSC004]')
