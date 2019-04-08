@@ -3,6 +3,7 @@
  */
 //提交/归集/驳回/逾期/撤回归集/重新提交
 function ChangeSta(uri,ActTy){
+	var proName=sessionStorage.getItem('projectName')
 	var Mes = $('#formId').val()
     var TabName_Data = 'table_mes_cache'
     if(Mes) {
@@ -12,9 +13,9 @@ function ChangeSta(uri,ActTy){
         var uriCheckA = uri.split('StaChange');
         var uriCheck = uriCheckA[0] + 'FromTypeCheck'
 //      console.log(StaChange);
-        console.log(Mes);
+//      console.log(Mes);
 //      console.log(TabName_Data);
-        console.log(uriCheck);
+//      console.log(uriCheck);
         //check type
         $.ajax({
         	type:"post",
@@ -28,7 +29,7 @@ function ChangeSta(uri,ActTy){
         	success:function(data){
         		console.log(data.TypSta)
         	    if(data.TypSta == 'allow'){
-        	        console.log(uri)
+//      	        console.log(uri)
 //        	        change status
                     $.ajax({
                         type:"post",
@@ -36,11 +37,12 @@ function ChangeSta(uri,ActTy){
                         async:true,
                         data:{
                             formId:Mes,
-                            ActTy:ActTy
+                            ActTy:ActTy,
+                            proName:proName
                         },
                         dataType:'json',
                         success:function(data){
-                        	console.log(data)
+//                      	console.log(data)
                             if(data['status'] == 'success'){
                                 alert(data['Name']+'成功')
                                 if(!(ActTy == 'draf' || ActTy == 'pack')){

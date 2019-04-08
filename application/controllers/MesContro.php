@@ -143,6 +143,7 @@ class MesContro extends CI_Controller{
         
         $MesId = $this->input->post('formId');
         $ActTy = $this->input->post('ActTy');
+        $proName=$this->input->post('proName');
         $Type = $this->uri->segment(3);
         $PageType = $this->uri->segment(4);
         
@@ -185,7 +186,7 @@ class MesContro extends CI_Controller{
             $data['rows'] = $rows;
         }
         else if($Type == 'UpLoad'){
-	            $dataRe = $this->MesCon->StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree);
+	            $dataRe = $this->MesCon->StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree,$proName);
 	            if($dataRe['rows'] > 0)
 	            {
 	                $data['status'] = 'success';
@@ -196,7 +197,7 @@ class MesContro extends CI_Controller{
             //不是删除操作
         else{
         	$MesIdArr = explode(',',$MesId);
-            $dataRe = $this->MesCon->StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree);
+            $dataRe = $this->MesCon->StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree,$proName);
             if($dataRe['rows'] > 0)
             {
                 $data['status'] = 'success';
@@ -301,9 +302,27 @@ class MesContro extends CI_Controller{
         $json = json_encode($data);
         echo $json;
     }
-    //文件上传
-     public function getfileurl()
-     {
-     	
-     }
+    //获得当前工程的归集表单
+    public function GetPackMes()
+    {
+        $projectId = $this->uri->segment(3);
+//      $projectId = '0b5c5b47-0927-48ec-a336-9b925881ec54';
+        /*
+         * 根据工程id查数据库树节点
+         * */
+        $data = $this->MesCon->GetPackMes($projectId);
+        $array = array();
+        $arrayNodeId = array();
+        for ($i=0;$i<count($data['data']);$i++)
+        {
+            //如果这个表单模板已经存在
+//          if (! in_array($data['data'][$i]['nodeId'],$arrayNodeId))
+//          {
+                $array[] = $data['data'][$i];
+//              $arrayNodeId[] = $data['data'][$i]['nodeId'];
+//          }
+        }
+        $json = json_encode($array);
+        echo $json;
+    }
 }

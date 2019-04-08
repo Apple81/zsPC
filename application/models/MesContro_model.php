@@ -28,7 +28,7 @@ class MesContro_model extends CI_Model{
         }
     }
     //更改状态【0草稿,1签批,2驳回,3逾期,4归集】
-    public function StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree)//$url用于删除接口中的数据
+    public function StaChange($MesIdArr,$Type,$PageType,$urlDel,$urlTree,$proName)//$url用于删除接口中的数据
     {
         /*
          * 判断是什么类型操作【提交，驳回，归集，重新提交，撤回归集】
@@ -119,7 +119,7 @@ class MesContro_model extends CI_Model{
 //                  echo $sql_CheMName;
 //                  print_r($result_CheMName) ;
                     //更新表单数据信息
-                    $sql_SaveMName = "update table_mes set TabMId = '".$ModleId."',TabMNa = '".$result_CheMName[0]['nodeName']."' where IntIdA = '".$v."' ";
+                    $sql_SaveMName = "update table_mes set TabMId = '".$ModleId."',TabMNa = '".$result_CheMName[0]['nodeName']."',proNam = '".$proName."' where IntIdA = '".$v."' ";
                     $this->db->query($sql_SaveMName);
                 //TODO:记得去掉注释
                 //如果成功转存数据，则删除数据
@@ -350,6 +350,13 @@ class MesContro_model extends CI_Model{
             }
         }
         $data['Num'] = $i;
+        return $data;
+    }
+    //获得当前工程的归集表单
+   	public function GetPackMes($projectId)
+    {
+        $sql = " select TabNam,count(*)AS num from table_mes where ProAId = '".$projectId."' AND TabSta='4' group by TabNam";
+        $data['data'] = $this->db->query($sql)->result_array();
         return $data;
     }
 }
