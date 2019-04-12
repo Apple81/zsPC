@@ -17,7 +17,7 @@ function FormGetMes(uri){
 
 //show form mes
 function showFormMes(MesPack){
-    console.log(MesPack);
+//  console.log(MesPack);
     //fill change model
     $('#ChaFormName').attr('value',MesPack['base'][0]['TabNam'])
     $('#ChaFormName').val(MesPack['base'][0]['TabNam'])

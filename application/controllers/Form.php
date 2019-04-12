@@ -178,7 +178,7 @@ class Form extends CI_Controller{
         $wrong=$this->upload->display_errors();
         if($wrong){
 //      	error($wrong);
-        	echo  "<script>alert('上传失败');history.go(-1);</script>";  
+//      	echo  "<script>alert('上传失败');history.go(-1);</script>";  
         }
         $info=$this->upload->data();
         $formId = $this->input->post('Fid');
@@ -187,13 +187,13 @@ class Form extends CI_Controller{
         $data = $this->form->save_fileurl($formId,$pathurl);
 //      echo $formId;
 //      echo $pathurl;
-        $json = json_encode($data);
-		echo $json;
+//      $json = json_encode($data);
+//		echo $json;
         if($data["status"]=="success"){
         	 echo  "<script>alert('保存成功');history.go(-1);</script>";  
         }
         else{
-        	echo $data["status"];
+//      	echo $data["status"];
 //      	echo  "<script>alert('上传失败');history.go(-1);</script>";  
         }
 	}

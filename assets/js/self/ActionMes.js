@@ -15,7 +15,7 @@ function ChangeSta(uri,ActTy){
 //      console.log(StaChange);
 //      console.log(Mes);
 //      console.log(TabName_Data);
-//      console.log(uriCheck);
+        console.log(uriCheck);
         //check type
         $.ajax({
         	type:"post",

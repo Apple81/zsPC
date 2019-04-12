@@ -5,7 +5,7 @@
     session_start();
     $RolIdS = $_SESSION['RolIdS'];//角色名
     $UseId = $_SESSION['useId'];//用户id
-//  //获取表单信息
+    //获取表单信息
     $formId = $_POST['formId'];//表单id
 //  //获取签名信息
     $SignPX= $_POST['SignPX'];//签名X坐标
@@ -16,12 +16,12 @@
     $SignH = $_POST['SignH'];//签名高
     $PageFinal = $_POST['PageFinal'];//签名保存位置
     $SignFinal = $_POST['SignFinal'];//签名保存地址
-    $msg = $_POST['msg'];//签名备注
+//  $msg = $_POST['msg'];//签名备注
     $SignDate = date('Y-m-d H:i:s');//签名时间msg
 
 //  $UseId = '1';
 //  $RolIdS = '4';
-//  $formId = '55';
+//  $formId = '153';
 //  $SignPX= '187';
 //  $SignPY = '320';
 //  $FormW = '351';
@@ -35,9 +35,9 @@
     
     //根据当前的表单id和部门信息更新表单的流转信息
         //更新表【sign_mes】
-    $sql_Save = "insert into sign_mes (SignPa,HisIdS,HisFrm,SignPX,SignPY,FormW,FormH,SignW,SignH,PageFinal,SignPeoId,SignDate,SignEls) values('".$SignFinal."','','0','".$SignPX."','".$SignPY."','".$FormW."','".$FormH."','".$SignW."','".$SignH."','".$PageFinal."','".$UseId."','".$SignDate."','".$msg."')";
+    $sql_Save = "insert into sign_mes (SignPa,HisIdS,HisFrm,SignPX,SignPY,FormW,FormH,SignW,SignH,PageFinal,SignPeoId,SignDate) values('".$SignFinal."','','0','".$SignPX."','".$SignPY."','".$FormW."','".$FormH."','".$SignW."','".$SignH."','".$PageFinal."','".$UseId."','".$SignDate."')";
     $result_Save = $conn->query($sql_Save);
-    
+//  echo $SignDate;
     if($result_Save)
     {
             //查询刚创建的数据的签名id
