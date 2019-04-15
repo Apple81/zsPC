@@ -66,8 +66,8 @@ class MesContro_model extends CI_Model{
                     $sql_delOld = "delete from table_mes where IntIdA = '".$v."'";
                     $this->db->query($sql_delOld);
                 }
-                $sql_copy = "insert into table_mes (IntIdA,TabMId,ProAId,TabNam,TabUDa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta) ";
-                $sql_copy .= "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from table_mes_cache where IntIdA = '".$v."' ";
+                $sql_copy = "insert into table_mes (IntIdA,TabMId,ProAId,TabNam,TabUDa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta,fileUrl) ";
+                $sql_copy .= "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta,fileUrl from table_mes_cache where IntIdA = '".$v."' ";
                 $this->db->query($sql_copy);
                 $rowCopy = $this->db->affected_rows();
                 $tabMesNewId = $this->db->insert_id();

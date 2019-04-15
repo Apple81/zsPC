@@ -183,7 +183,7 @@ class Form extends CI_Controller{
         $info=$this->upload->data();
         $formId = $this->input->post('Fid');
         $path=$info['full_path'];
-        $pathurl=substr($path,45);//切割字符串只显示图片的名字
+        $pathurl=substr($path,44);//切割字符串只显示图片的名字
         $data = $this->form->save_fileurl($formId,$pathurl);
 //      echo $formId;
 //      echo $pathurl;

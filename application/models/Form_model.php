@@ -219,7 +219,7 @@ class Form_model extends CI_Model{
 	    	$sql_add.= "values('".$Mes[0]['IntIdA']."','".$Mes[0]['TabMId']."','".$Mes[0]['ProAId']."','".$Mes[0]['TabNam']."','".$Mes[0]['TabSta']."','".$Mes[0]['ImgUrl']."','".$Mes[0]['page']."','".$Mes[0]['CirSmp']."','".$Mes[0]['ImpSta']."','".$Mes[0]['CasSta']."','".$Mes[0]['TabEls']."','".$Mes[0]['TabTyp']."','".$Mes[0]['TabUDa']."','".$Mes[0]['TabDTm']."','".$Mes[0]['TabMNa']."','".$Mes[0]['TabCTm']."')";
 	    	$this->db->query($sql_add);
     	}
-    	$sql="update table_mes set fileUrl = '".$pathurl."' WHERE IntIdA ='".$formId."'";
+    	$sql="update table_mes_cache set fileUrl = '".$pathurl."' WHERE IntIdA ='".$formId."'";
     	$this->db->query($sql);
     	$data['row'] = $this->db->affected_rows();
     	$data['status'] = 'error';
