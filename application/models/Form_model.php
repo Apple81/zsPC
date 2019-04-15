@@ -44,7 +44,7 @@ class Form_model extends CI_Model{
 	//表单信息获取
 	public function FormMesLoad($FormId,$tab)
 	{
-//	    $FormId = '9a10749a-8dbe-4669-ba3d-663b828adbf7';
+//	    $FormId = '61b78c07-7eb1-4d0b-9f89-9088b26212c5';
 //	    $tab = 'table_mes_cache';
 
         /*
@@ -53,17 +53,17 @@ class Form_model extends CI_Model{
 	     */
 	    
 	    //获取基本属性
-	    $sql_base = "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabMNa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from table_mes_cache where IntIdA = '".$FormId."'";
+	    $sql_base = "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabMNa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from ".$tab." where IntIdA = '".$FormId."'";
         $data['base'] = $this->db->query($sql_base)->result_array();
         
         //获取表单类型信息
         $data['type'] = '';
-//      if(isset($data['base'][0]['TabTyp']))
-//      {
+        if(isset($data['base'][0]['TabTyp']))
+        {
         	//设置默认表单
         	if(empty($data['base'][0]['TabTyp'])){
         		$data['base'][0]['TabTyp']="1";
-        		$sql_settype="update table_mes_cache set TabTyp='".$data['base'][0]['TabTyp']."' where IntIdA = '".$FormId."'";
+        		$sql_settype="update table_mes_cache set TabTyp='".$data['base'][0]['TabTyp']."'";
         		$this->db->query($sql_settype);
         		$sql_type = "select TypNam,CirSmp from type_mes where id = '".$data['base'][0]['TabTyp']."'";
 	            $type = $this->db->query($sql_type)->result_array();
@@ -74,8 +74,7 @@ class Form_model extends CI_Model{
             $type = $this->db->query($sql_type)->result_array();
             $data['type'] = $type[0]['TypNam'];
         	}
-        	
-//      }
+        }
 
         //获取流转属性
             //流程详情

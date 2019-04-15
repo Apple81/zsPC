@@ -1,13 +1,13 @@
 <?php
     require("../conn.php");
-	$userid = $_POST["userid"];
+
 	$sqldate = ""; 
 
-	$sql = "select * from sign_detail where userid = '".$userid."'";
+	$sql = "select * from circle_detail";
 	$result = $conn->query($sql);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
-			$sqldate = $sqldate.'{"id":"'. $row["id"].'","SignDate":"'. $row["SignDate"].'","projectName":"'. $row["ProNam"].'","TabNam":"'. $row["TabNam"].'"},';
+			$sqldate = $sqldate.'{"id":"'. $row["id"].'","SigCTm":"'. $row["SigCTm"].'","projectName":"'. $row["ProNam"].'","ProAId":"'. $row["ProAId"].'","TabNam":"'. $row["TabNam"].'"},';
 		}
 	}
 	$jsonresult = 'success';

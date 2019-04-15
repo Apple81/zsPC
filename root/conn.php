@@ -10,3 +10,5 @@
 	}else{
 //        echo "Connected successfully";
 	}
+
+?> 
