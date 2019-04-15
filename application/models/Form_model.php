@@ -53,7 +53,7 @@ class Form_model extends CI_Model{
 	     */
 	    
 	    //获取基本属性
-	    $sql_base = "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabMNa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from table_mes_cache where IntIdA = '".$FormId."'";
+	    $sql_base = "select IntIdA,TabMId,ProAId,TabNam,TabUDa,TabMNa,TabCTm,imgurl,page,CirSmp,ImpSta,CasSta,TabEls,TabTyp,TabDTm,TabSta from ".$tab." where IntIdA = '".$FormId."'";
         $data['base'] = $this->db->query($sql_base)->result_array();
         
         //获取表单类型信息
