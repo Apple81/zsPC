@@ -17,7 +17,8 @@ class MesContro_model extends CI_Model{
     //检测是不是有表单类型
     public function FromTypeCheck($fromId,$TabName)
     {
-    	$sql = "select id,TabTyp,TabDTm from table_mes_cache where IntIdA ='".$fromId."'";
+    	
+    	$sql = "select id,TabTyp,TabDTm from ".$TabName." where IntIdA ='".$fromId."'";
 //      $sql = "select id,TabTyp,TabDTm from ".$TabName." where IntIdA ='".$fromId."'";
         $FromMes = $this->db->query($sql)->result_array();
         if($FromMes[0]['TabTyp'] && $FromMes[0]['TabDTm'])
@@ -125,21 +126,19 @@ class MesContro_model extends CI_Model{
                 //如果成功转存数据，则删除数据
                 if($rowCopy > 0)
                 {
-                    //删除缓存库的数据
-//                  $sql_del = "delete from table_mes_cache where IntIdA = '".$v."'";
-//                  $this->db->query($sql_del);
-                  /* 暂时注释
-                    //删除接口的数据
-//                  $url = $urlDel.$v;
-//                  $ch = curl_init ();
-//                  curl_setopt ( $ch, CURLOPT_URL, $url );
-//                  curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
-//                  curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
-//                  curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
-//                  $file_contents = curl_exec ( $ch );
-////                  echo $file_contents;
-//                  curl_close ( $ch );
-					*/
+//                    删除缓存库的数据
+                    $sql_del = "delete from table_mes_cache where IntIdA = '".$v."'";
+                    $this->db->query($sql_del);
+//                    删除接口的数据
+                    $url = $urlDel.$v;
+                    $ch = curl_init ();
+                    curl_setopt ( $ch, CURLOPT_URL, $url );
+                    curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+                    curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
+                    curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
+                    $file_contents = curl_exec ( $ch );
+//                  echo $file_contents;
+                    curl_close ( $ch );
                 }
                 
 

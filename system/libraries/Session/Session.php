@@ -128,7 +128,7 @@ class CI_Session {
 			log_message('error', "Session: Driver '".$this->_driver."' doesn't implement SessionHandlerInterface. Aborting.");
 			return;
 		}
-
+//beizhu
 		// Sanitize the cookie, because apparently PHP doesn't do that for userspace handlers
 		if (isset($_COOKIE[$this->_config['cookie_name']])
 			&& (
@@ -141,6 +141,19 @@ class CI_Session {
 		}
 
 		session_start();
+
+		// Sanitize the cookie, because apparently PHP doesn't do that for userspace handlers
+//		if (isset($_COOKIE[$this->_config['cookie_name']])
+//			&& (
+//				! is_string($_COOKIE[$this->_config['cookie_name']])
+//				OR ! preg_match('#\A'.$this->_sid_regexp.'\z#', $_COOKIE[$this->_config['cookie_name']])
+//			)
+//		)
+//		{
+//			unset($_COOKIE[$this->_config['cookie_name']]);
+//		}
+//
+//		session_start();
 
 		// Is session ID auto-regeneration configured? (ignoring ajax requests)
 		if ((empty($_SERVER['HTTP_X_REQUESTED_WITH']) OR strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest')
