@@ -62,7 +62,10 @@ class Form_model extends CI_Model{
 //      {
         	//设置默认表单
         	if(empty($data['base'][0]['TabTyp'])){
-        		$data['base'][0]['TabTyp']="1";
+        		//初次为空则设置为默认表单类型
+        		$sql_deType="select id from type_mes where TypeSet='1'";
+        		$deType=$this->db->query($sql_deType)->result_array();
+        		$data['base'][0]['TabTyp']=$deType[0]['id'];
         		$sql_settype="update table_mes_cache set TabTyp='".$data['base'][0]['TabTyp']."' where IntIdA = '".$FormId."'";
         		$this->db->query($sql_settype);
         		$sql_type = "select TypNam,CirSmp from type_mes where id = '".$data['base'][0]['TabTyp']."'";
@@ -208,7 +211,9 @@ class Form_model extends CI_Model{
         //
     }
     //附件保存
-    public function save_fileurl($formId,$pathurl){
+    public function save_fileurl($formId,$pathurl,$type){
+    	
+    	$showtime=date("Y-m-d H:i");
     	//判断table_mes表是否有表id，没有就从缓存表存入
     	$sql_1="select * from table_mes where IntIdA ='".$formId."'";
     	$effect = $this->db->query($sql_1)->result_array();
@@ -219,7 +224,8 @@ class Form_model extends CI_Model{
 	    	$sql_add.= "values('".$Mes[0]['IntIdA']."','".$Mes[0]['TabMId']."','".$Mes[0]['ProAId']."','".$Mes[0]['TabNam']."','".$Mes[0]['TabSta']."','".$Mes[0]['ImgUrl']."','".$Mes[0]['page']."','".$Mes[0]['CirSmp']."','".$Mes[0]['ImpSta']."','".$Mes[0]['CasSta']."','".$Mes[0]['TabEls']."','".$Mes[0]['TabTyp']."','".$Mes[0]['TabUDa']."','".$Mes[0]['TabDTm']."','".$Mes[0]['TabMNa']."','".$Mes[0]['TabCTm']."')";
 	    	$this->db->query($sql_add);
     	}
-    	$sql="update table_mes_cache set fileUrl = '".$pathurl."' WHERE IntIdA ='".$formId."'";
+//  	$sql="update table_mes_cache set fileUrl = '".$pathurl."' WHERE IntIdA ='".$formId."'";
+    	$sql="insert into table_img(path,formid,type,time) values('".$pathurl."','".$formId."','".$type."','".$showtime."')";
     	$this->db->query($sql);
     	$data['row'] = $this->db->affected_rows();
     	$data['status'] = 'error';
@@ -228,4 +234,11 @@ class Form_model extends CI_Model{
 	    }
 	    return $data;
     }
+    public function Formgetupload($FormId)
+	{
+	    //获取操作记录
+        $sql_upload = "select path,type,time from table_img where formid = '".$FormId."'";
+	    $data = $this->db->query($sql_upload)->result_array();
+	    return $data;
+	}
 }

@@ -56,8 +56,21 @@ class Affair extends CI_Controller{
     }
     public function affair_Signshow(){
         $useacc = $this->uri->segment(3);
-        //查询签名记录
-        $data = $this->affair->affair_Signshow($useacc);
+        $ProNam=$this->uri->segment(4);
+        $TabMna=$this->uri->segment(5);
+        $ProNam=urldecode($ProNam);
+        $TabMna=urldecode($TabMna);
+        //查询签名记录 
+        $data = $this->affair->affair_Signshow($useacc,$ProNam,$TabMna);
+        $json = json_encode($data);
+        echo $json;
+    }
+     public function affair_Signshow1(){
+        $useacc = $this->uri->segment(3);
+        $ProNam=$this->uri->segment(4);
+        $ProNam=urldecode($ProNam);
+        //查询签名记录 
+        $data = $this->affair->affair_Signshow1($useacc,$ProNam);
         $json = json_encode($data);
         echo $json;
     }
@@ -99,4 +112,43 @@ class Affair extends CI_Controller{
         $json = json_encode($data);
         echo $json;
     }
+    //签名记录的显示
+    public function getTree(){
+    	$name = $this->uri->segment(3);
+//  	$name='admin';
+    	$sql_id="select id from user where UseAcc='".$name."'";
+    	$result=$this->db->query($sql_id)->result_array();
+    	$sql="select DISTINCT ProNam from sign_detail where userid='".$result[0]['id']."' and SignPa is not null";
+    	$data1=$this->db->query($sql)->result_array();
+    	$n=count($data1);
+    	for($i=0;$i<$n;$i++){
+    		$sql_1="select DISTINCT TabMNa from sign_detail where ProNam='".$data1[$i]['ProNam']."'and userid='".$result[0]['id']."'and SignPa is not null";
+    	    $data2=$this->db->query($sql_1)->result_array();
+    	    $key = $data1[$i]['ProNam'];
+    	    	$tree_data[$i]=array(
+    	    		"type"=>'folder',
+		    		"text"=>$data1[$i]['ProNam'],
+		    		"flag"=>'1'
+    	    	);
+    	    for($j=0;$j<count($data2);$j++){
+    	    	$sql_2="select TabNam,IntIdA from sign_detail where ProNam='".$data1[$i]['ProNam']."'and TabMNa='".$data2[$j]['TabMNa']."' and userid='".$result[0]['id']."'and SignPa is not null";
+    	    	$data3=$this->db->query($sql_2)->result_array();
+    	    		$tree_data[$i]["additionalParameters"]["children"][$j]= $tree_data1=array(
+    	    			"text"=>$data2[$j]['TabMNa'],
+						"type"=>'item',
+						"flag"=>'2',
+						"proname"=>$data1[$i]['ProNam']
+    	    		);
+//  	    	for($k=0;$k<count($data3);$k++){
+//  	    		$tree_data[$i]["additionalParameters"]["children"][$j]["additionalParameters"]["children"][$k]=$tree_data2=array(
+//  	    			"text"=>$data3[$k]['TabNam'],
+//						"type"=>'item',
+//						"id"=>$data3[$k]['IntIdA']
+//  	    	);
+//	    	}
+	    }
+	}
+    $json = json_encode($tree_data);
+    echo $json;
+	}
 }

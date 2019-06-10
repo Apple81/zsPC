@@ -306,23 +306,16 @@ class MesContro extends CI_Controller{
     public function GetPackMes()
     {
         $projectId = $this->uri->segment(3);
-//      $projectId = '0b5c5b47-0927-48ec-a336-9b925881ec54';
-        /*
-         * 根据工程id查数据库树节点
-         * */
-        $data = $this->MesCon->GetPackMes($projectId);
-        $array = array();
-        $arrayNodeId = array();
-        for ($i=0;$i<count($data['data']);$i++)
-        {
-            //如果这个表单模板已经存在
-//          if (! in_array($data['data'][$i]['nodeId'],$arrayNodeId))
-//          {
-                $array[] = $data['data'][$i];
-//              $arrayNodeId[] = $data['data'][$i]['nodeId'];
-//          }
-        }
+        $array = $this->MesCon->GetPackMes($projectId);
         $json = json_encode($array);
+        echo $json;
+    }
+    //工作组比对成功归集表单改变状态
+    public function WgFinish(){
+    	$TabMId=$_POST['TabMId'];
+    	$proid = $this->uri->segment(3);
+        $data = $this->MesCon->WgFinish($TabMId,$proid);
+        $json = json_encode($data);
         echo $json;
     }
 }

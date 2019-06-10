@@ -11,24 +11,24 @@
                     </div>
                 </div>
                 <div class="modal-body no-padding">
-                    
+                   
                     <div class="form-group has-info  page-header">
                         <label class="col-sm-3 control-label no-padding-right">工作组 ：</label>
                         <div class="col-sm-5">
                             <span class="block input-icon input-icon-right">
                                 <select id="SelFormType">
-                                    <?php foreach($typeForm as $v){ ?>
-                                        <option data-id-Type="<?=$v['id']?>" value="<?=$v['TypNam']?>"><?=$v['TypNam']?></option>
+                                    <?php foreach($workg as $v){ ?>
+                                        <option data-id="<?=$v['id']?>" value="<?=$v['workgname']?>"><?=$v['workgname']?></option>
                                     <?php } ?>
                                 </select>
                             </span>
                         </div>
                         <div class="help-block col-xs-12 col-sm-reset inline"> </div>
                     </div>
-                    
+                    <div id="box"></div>
                 </div>
                 <div class="modal-footer no-margin-top">
-                    <button class="btn btn-sm btn-success pull-right" data-dismiss="" onclick="wgcompare()">
+                    <button class="btn btn-sm btn-success pull-right" data-dismiss="" id="wgcompare">
                         <span>比对</span>
                     </button>
                     <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
@@ -39,3 +39,111 @@
             </div>
         </div>
     </div>
+<!--工作组新建-->
+<!--model AddNew begin-->
+<div id="modal-WorkAdd" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">&times;</span>
+                    </button>
+                    <span>新建工作组</span>
+                    <!--<input type="text" id="" name="Type" value="systemShow_FmTy" hidden="hidden"/>-->
+                </div>
+            </div>
+            <div class="modal-body no-padding">
+            	<div id="workg">
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">工作组1 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" name="TypeName"/>
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                </div>
+                <div class="form-group has-info  page-header" >
+                    <div class="col-sm-2">
+                    	<button class="btn btn-white btn-block" id="addrows">
+                    		<i class="ace-icon glyphicon glyphicon-plus"></i>
+                    	</button>
+                    </div>
+                    <div class="col-sm-2">
+                    	<button class="btn btn-white btn-block" id="deleterows">
+                    		<i class="ace-icon glyphicon glyphicon-remove"></i>
+                    	</button>
+                    </div>
+                    <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                </div>
+            </div>
+            <br /><br />
+            <div class="modal-footer no-margin-top">
+                <button class="btn btn-sm btn-success pull-right" data-dismiss="" id="wgsave">
+                    <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                    <span>保存</span>
+                </button>
+                <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    <span>关闭</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--model AddNew end-->
+<!--工作组表格新建-->
+<div id="modal-WorktableAdd" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">&times;</span>
+                    </button>
+                    <span>新建模板表</span>
+                    <input type="text" id="wgid" name="wgid" hidden="hidden" >
+                </div>
+            </div>
+            <div class="modal-body no-padding">
+            	<div id="worktable">
+                    <div class="form-group has-info  page-header">
+                        <label class="col-sm-3 control-label no-padding-right">表格名1 ：</label>
+                        <div class="col-sm-5">
+                            <span class="block input-icon input-icon-right">
+                                <input class="NewDocMes" type="text" id="" name="TableName"/>
+                            </span>
+                        </div>
+                        <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                    </div>
+                </div>
+                <div class="form-group has-info  page-header" >
+                    <div class="col-sm-2">
+                    	<button class="btn btn-white btn-block" id="addtable">
+                    		<i class="ace-icon glyphicon glyphicon-plus"></i>
+                    	</button>
+                    </div>
+                    <div class="col-sm-2">
+                    	<button class="btn btn-white btn-block" id="deletetable">
+                    		<i class="ace-icon glyphicon glyphicon-remove"></i>
+                    	</button>
+                    </div>
+                    <div class="help-block col-xs-12 col-sm-reset inline"> </div>
+                </div>
+            </div>
+            <br /><br />
+            <div class="modal-footer no-margin-top">
+                <button class="btn btn-sm btn-success pull-right" data-dismiss="" id="tablesave">
+                    <i class="ace-icon fa fa-floppy-o bigger-125"></i>
+                    <span>保存</span>
+                </button>
+                <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    <span>关闭</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

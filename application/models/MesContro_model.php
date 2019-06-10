@@ -127,18 +127,18 @@ class MesContro_model extends CI_Model{
                 if($rowCopy > 0)
                 {
 //                    删除缓存库的数据
-                    $sql_del = "delete from table_mes_cache where IntIdA = '".$v."'";
-                    $this->db->query($sql_del);
-//                    删除接口的数据
-                    $url = $urlDel.$v;
-                    $ch = curl_init ();
-                    curl_setopt ( $ch, CURLOPT_URL, $url );
-                    curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
-                    curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
-                    curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
-                    $file_contents = curl_exec ( $ch );
-//                  echo $file_contents;
-                    curl_close ( $ch );
+//                  $sql_del = "delete from table_mes_cache where IntIdA = '".$v."'";
+//                  $this->db->query($sql_del);
+////                    删除接口的数据
+//                  $url = $urlDel.$v;
+//                  $ch = curl_init ();
+//                  curl_setopt ( $ch, CURLOPT_URL, $url );
+//                  curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+//                  curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
+//                  curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
+//                  $file_contents = curl_exec ( $ch );
+////                  echo $file_contents;
+//                  curl_close ( $ch );
                 }
                 
 
@@ -166,6 +166,26 @@ class MesContro_model extends CI_Model{
                 // $data['sqlTest'] = $sql_his;
                 $this->db->query($sql_his);
                
+            }
+        }
+        //手动归集
+        if($PageType == 'sign'){
+        	//执行状态修改操作
+        	foreach($MesIdArr as $v)
+            {
+            	$sql_mes="select id from table_mes where IntIdA='".$v."'";
+            	$Mes=$this->db->query($sql_mes)->result_array();
+                $sql = "UPDATE ".$FormN." SET TabSta = CASE IntIdA ";
+                $sql .= sprintf("WHEN %d THEN %d ", $v, $CT); // 拼接SQL语句
+                $sql .= "END WHERE IntIdA IN ('".$v."')";
+                $this->db->query($sql);
+//              $data['rows']="1";
+                $data['rows'] = $this->db->affected_rows();
+
+                //保存操作记录
+                $sql_his = "INSERT INTO table_his(HisNam,HisTim,HisPeo,HisSig,TabIdS,IntIdA) VALUE('".$actionType."','".date('Y-m-d H:i:s')."','".$_SESSION['UsePeo']."',0,'".$Mes[0]['id']."','".$v."') ";
+                // $data['sqlTest'] = $sql_his;
+                $this->db->query($sql_his);
             }
         }
         return $data;
@@ -354,8 +374,20 @@ class MesContro_model extends CI_Model{
     //获得当前工程的归集表单
    	public function GetPackMes($projectId)
     {
-        $sql = " select TabNam,count(*)AS num from table_mes where ProAId = '".$projectId."' AND TabSta='4' group by TabNam";
-        $data['data'] = $this->db->query($sql)->result_array();
+        $sql = "select TabMNa,TabMId,COUNT(TabMNa) AS num from table_mes where ProAId = '".$projectId."' AND TabSta='4' group by TabMNa";
+        $data= $this->db->query($sql)->result_array();
+        return $data;
+    }
+    public function WgFinish($TabMId,$proid){
+    	$sql = "update table_mes set TabSta='5' where TabMId='".$TabMId."' and ProAId='".$proid."' and TabSta='4'";
+//      $data= $this->db->query($sql)->num_rows;
+        $this->db->query($sql);
+        $result = $this->db->affected_rows();
+        if($result>0){
+    		$data['status']="success";
+    		}
+    		else{
+    		$data['status']="error";}
         return $data;
     }
 }

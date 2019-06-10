@@ -563,15 +563,23 @@ class CI_Upload {
 		 * we'll use move_uploaded_file(). One of the two should
 		 * reliably work in most environments
 		 */
-		if ( ! @copy($this->file_temp, $this->upload_path.$this->file_name))
+//		if ( ! @copy($this->file_temp, $this->upload_path.$this->file_name))
+//		{
+//			if ( ! @move_uploaded_file($this->file_temp, $this->upload_path.$this->file_name))
+//			{
+//				$this->set_error('upload_destination_error', 'error');
+//				return FALSE;
+//			}
+//		}
+		//文件中文名的处理
+		if ( ! @copy($this->file_temp, iconv("UTF-8", "gb2312", $this->upload_path.$this->file_name)))
 		{
-			if ( ! @move_uploaded_file($this->file_temp, $this->upload_path.$this->file_name))
+			if ( ! @move_uploaded_file($this->file_temp,  iconv("UTF-8", "gb2312", $this->upload_path.$this->file_name)))
 			{
-				$this->set_error('upload_destination_error', 'error');
+				$this->set_error('upload_destination_error');
 				return FALSE;
 			}
 		}
-
 		/*
 		 * Set the finalized image dimensions
 		 * This sets the image width/height (assuming the
@@ -651,35 +659,66 @@ class CI_Upload {
 	 */
 	public function set_filename($path, $filename)
 	{
-		if ($this->encrypt_name === TRUE)
+//		if ($this->encrypt_name === TRUE)
+//		{
+//			$filename = md5(uniqid(mt_rand())).$this->file_ext;
+//		}
+//
+//		if ($this->overwrite === TRUE OR ! file_exists($path.$filename))
+//		{
+//			return $filename;
+//		}
+//
+//		$filename = str_replace($this->file_ext, '', $filename);
+//
+//		$new_filename = '';
+//		for ($i = 1; $i < $this->max_filename_increment; $i++)
+//		{
+//			if ( ! file_exists($path.$filename.$i.$this->file_ext))
+//			{
+//				$new_filename = $filename.$i.$this->file_ext;
+//				break;
+//			}
+//		}
+//
+//		if ($new_filename === '')
+//		{
+//			$this->set_error('upload_bad_filename', 'debug');
+//			return FALSE;
+//		}
+//		else
+//		{
+//			return $new_filename;
+//		}
+		if ($this->encrypt_name == TRUE)
 		{
+			mt_srand();
 			$filename = md5(uniqid(mt_rand())).$this->file_ext;
 		}
-
-		if ($this->overwrite === TRUE OR ! file_exists($path.$filename))
+		$filename = iconv('UTF-8','GB2312',$filename);//将$filename中的文件名转换为GB2312编码
+		if ( ! file_exists($path.$filename))
 		{
+			$filename = iconv('GB2312', 'UTF-8', $filename);//将编码转回UTF-8
 			return $filename;
 		}
-
 		$filename = str_replace($this->file_ext, '', $filename);
-
-		$new_filename = '';
-		for ($i = 1; $i < $this->max_filename_increment; $i++)
+		$new_filename='';
+		for ($i = 1; $i < 100; $i++)
 		{
-			if ( ! file_exists($path.$filename.$i.$this->file_ext))
+			if (!file_exists($path.$filename.$i.$this->file_ext))
 			{
 				$new_filename = $filename.$i.$this->file_ext;
 				break;
 			}
 		}
-
-		if ($new_filename === '')
+		if ($new_filename == '')
 		{
-			$this->set_error('upload_bad_filename', 'debug');
+			$this->set_error('upload_bad_filename');
 			return FALSE;
 		}
 		else
 		{
+			$new_filename = iconv('GB2312', 'UTF-8', $new_filename);//将编码转回UTF-8
 			return $new_filename;
 		}
 	}

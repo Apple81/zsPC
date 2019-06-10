@@ -60,24 +60,26 @@
             <div class="main-content">
                 <div class="widget-body">
                     <div class="widget-main padding-24">
-                        <span style="font-size: 22px;">导入工作组</span>
+                        <span style="font-size: 22px;">工作组</span>
                         <div class="hr hr8 hr-double hr-dotted"></div>
                         <div class="col-xs-5">
+                        	<button class="btn btn-info" href="#modal-TypeAdd" role="button" data-toggle="modal">导入工作组</button>
+                        	<button class="btn btn-info" href="#modal-WorkAdd" role="button" data-toggle="modal">新建工作组</button>
+                        	<button class="btn btn-danger" role="button" onclick="delwg()">删除工作组</button>
                             <div class="widget-box">
                                 <div class="widget-header widget-header-flat">
                                     <h4 class="widget-title smaller">
                                         <span>工作组列表</span>
                                     </h4>
+                                    <input type="text" id="worgid" hidden="hidden">
                                 </div>
                                 <div class="widget-body">
                                     <div class="widget-main">
-                                        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                        <table id="dynamic-table" class="table table-striped table-bordered table-hover" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th>序号</th>
                                                     <th>工作组名称</th>
-                                                    <!--<th>账号手机</th>
-                                                    <th>账号状态</th>-->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -88,15 +90,18 @@
                             </div>
                         </div>
                         <div class="col-xs-7">
+                        	<button class="btn btn-info"  href="#modal-WorktableAdd" role="button" data-toggle="modal">新建表</button>
+                        	<button class="btn btn-danger" role="button" onclick="delwgmes()">删除表</button>
                             <div class="widget-box">
                                 <div class="widget-header widget-header-flat">
                                     <h4 class="widget-title smaller">
                                         <span>工作组详情</span>
                                     </h4>
+                                    <input type="text" id="mesid" hidden="hidden">
                                 </div>
                                 <div class="widget-body">
                                     <div class="widget-main">
-                                        <table id="dynamic-table-list" class="table table-striped table-bordered table-hover">
+                                        <table id="dynamic-table-list" class="table table-striped table-bordered table-hover" style="width:100%;">
                                             <thead>
                                                 <tr>
                                                     <th>序号</th>
@@ -116,13 +121,16 @@
                          </div>
                     </div>
                 </div>
+                
             </div>
             <!-- main-content -->
-
+			
             <!--Foor Begin-->
             <?php $this->load->view("pageFoot.html"); ?>
             <!--Foot End-->
-            
+            <!--model begin-->
+            <?php $this->load->view("model_workg.html"); ?>
+            <!--model end-->
         </div>
         <!-- /.main-container -->
 
@@ -177,12 +185,11 @@
                  * TableINI
                  */
                 var showMes = "<?php echo site_url('System/WorkGroup_Show'); ?>";
-//              var showMes = "<?php echo site_url('System/Account_ShowMes'); ?>";
                 table = $('#dynamic-table').DataTable({
                     ajax:showMes,
                     columns:[
-                        {"data":'projectName'},
-                        {"data":'createTime'},
+                        {"data":'rowNum'},
+                        {"data":'workgname'},
                     ],
                     oLanguage: {
                         sLengthMenu: "显示 _MENU_ 条数据",
@@ -200,8 +207,8 @@
                 tabMesList = $('#dynamic-table-list').DataTable({
                     ajax:showform,
                     columns:[
-                        {"data":'ListName'},
-                        {"data":'ListUnit'},
+                        {"data":'rowNum'},
+                        {"data":'tablename'},
                     ],
                       oLanguage: {
                         sLengthMenu: "显示 _MENU_ 条数据",
@@ -210,7 +217,7 @@
                     "aaSorting": [],
                     "aoColumnDefs": [{
                         'bSortable': false,
-                        'aTargets': [0]
+                        'aTargets': []
                     }],
                 });
                 //ACTION
@@ -225,7 +232,8 @@
                     try{
                         //显示产品类型信息
                         var WorkGId = table.row('.selected').data().id;
-//                      $('#ProTypeId').val(TypeId)
+                        $('#wgid').val(WorkGId)
+                        $('#worgid').val(WorkGId)
                         var showform = "<?php echo site_url('System/WorkGroup_Mes');?>"+'/'+WorkGId;
                         //刷新产品列表
                         tabMesList.ajax.url(showform).load();
@@ -233,23 +241,193 @@
                         
                     }
                 })
-//              $('#dynamic-table tbody').on('click', 'tr', function () {
-//                  if ($(this).hasClass('selected')) {
-//                      $(this).removeClass('selected');
-//                  }
-//                  else {
-//                      table.$('tr.selected').removeClass('selected');
-//                      $(this).addClass('selected');
-//                  }
-//                  try{
-//                      var MesId = table.row('.selected').data().id;
-//                      //selectINI
-//                  }catch(e){ }
-//              })
-                
+                $('#dynamic-table-list tbody').on('click', 'tr', function () {
+                    if($(this).hasClass('selected')){
+                        $(this).removeClass('selected');
+                    }
+                    else {
+                        tabMesList.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                    try{
+                        var MesId = tabMesList.row('.selected').data().id;
+                        $('#mesid').val(MesId)
+                        //selectINI
+                    }catch(e){ }
+                })
+           })
+            //工作组自定义功能
+            var i=1;
+            //动态添加行
+            $('#addrows').on('click',function(){
+//          	alert('添加')
+            	i=i+1;
+            	var EleText = "<div class='form-group has-info  page-header'>";
+            	EleText+="<label class='col-sm-3 control-label no-padding-right'>工作组<span>"+i+"</span>：</label>";
+            	EleText+="<div class='col-sm-5'>";
+            	EleText+="<span class='block input-icon input-icon-right'>";
+            	EleText+="<input class='NewDocMes' type='text' name='TypeName'>";
+            	EleText+="</span>";
+            	EleText+="</div>";
+            	EleText+="<div class='help-block col-xs-12 col-sm-reset inline'></div>";
+            	EleText+="</div>";
+			    $('#workg').append(EleText);
+            }); 
+            $('#deleterows').on('click',function(){
+            	i=i-1;
+            	$("#workg").children().last().remove();
             })
-
+            //保存工作组
+            $('#wgsave').on('click',function(){
+            	var wgname=new Array();
+				var returna_date = $("input[name$='TypeName']");//匹配所有name结尾为returna_date的数组
+			    for(var x=0; x<returna_date.length;x++){
+			        wgname[x]=$(returna_date[x]).val();
+			    }
+			    var wgname = wgname.toString();
+			    var wgurl="<?php echo site_url('System/Newworkg');?>";
+			    $.ajax({
+			    	type:"post",
+			    	url:wgurl,
+			    	async:true,
+			    	dataType:'json',
+					data:{wgname:wgname}, 
+			    	success:function(data){
+			    		if(data['status']=="success"){
+			    			alert('新建成功')
+			    		}
+			    		else if(data['mess']=='1'){
+			    			alert('工作组名重复')
+			    		}
+			    		else{
+			    			alert('新建失败')
+			    		}
+			    		$('#modal-WorkAdd').modal('hide');
+            			table.ajax.reload();
+			    	},
+			    	error:function(s,e,t){
+			    		alert('失败，请联系管理员')
+			    		$('#modal-WorkAdd').modal('hide');
+			    	}
+			    });
+			    
+   			})
+            //表格自定义操作
+            $('#addtable').on('click',function(){
+            	i=i+1;
+            	var EleText = "<div class='form-group has-info  page-header'>";
+            	EleText+="<label class='col-sm-3 control-label no-padding-right'>表格名<span>"+i+"</span>：</label>";
+            	EleText+="<div class='col-sm-5'>";
+            	EleText+="<span class='block input-icon input-icon-right'>";
+            	EleText+="<input class='NewDocMes' type='text' name='TableName'>";
+            	EleText+="</span>";
+            	EleText+="</div>";
+            	EleText+="<div class='help-block col-xs-12 col-sm-reset inline'></div>";
+            	EleText+="</div>";
+			    $('#worktable').append(EleText);
+            }); 
+            $('#deletetable').on('click',function(){
+            	i=i-1;
+            	$("#worktable").children().last().remove();
+            })
+            //保存表单名
+            $('#tablesave').on('click',function(){
+                if($('#wgid').val()==""){
+                    alert('请选择工作组');
+                }
+                else{
+            	var tablename=new Array();
+				var returna_date = $("input[name$='TableName']");//匹配所有name结尾为returna_date的数组
+			    for(var x=0; x<returna_date.length;x++){
+			        tablename[x]=$(returna_date[x]).val();
+			    }
+			    var tablename = tablename.toString();
+			    var tableurl="<?php echo site_url('System/NewTablewg');?>";
+			    $.ajax({
+			    	type:"post",
+			    	url:tableurl,
+			    	async:true,
+			    	dataType:'json',
+					data:{
+						tablename:tablename,
+						wgid:$('#wgid').val()
+					},
+			    	success:function(data){
+			    		if(data['status']=="success"){
+			    			alert('新建成功')
+			    		}
+			    		else if(data['mess']=='1'){
+			    			alert('错误提示：'+data['exist']+'已存在，其他表单新建成功')
+			    		}
+			    		else{
+			    			alert('新建失败')
+			    		}
+			    		$('#modal-WorktableAdd').modal('hide');
+			   			window.location.reload();
+			    	},
+			    	error:function(s,e,t){
+			    		alert('失败，请联系管理员')
+			    	}
+			    });
+			   } 
+   			})
+            function delwg(){
+            	var workgid=$('#worgid').val();
+            	if(workgid==""){
+            		alert("请选择工作组进行操作")
+            	}
+            	else{
+            		console.log(workgid);
+            		var delwg="<?php echo site_url('System/delwg');?>"+'/'+workgid;
+	            	$.ajax({
+	            		type:"post",
+	            		url:delwg,
+	            		async:true,
+	            		dataType:'json',
+	            		success:function(data){
+	            			if(data['status']=='success'){
+	            				alert("删除成功")
+	            			}
+	            		    else{
+	            		    	alert("删除失败")
+	            		    }
+	            		    window.location.reload();
+	            		},
+	            		error:function(s,e,t){
+	            			alert("出现错误，删除失败")
+	            		}
+	            	});
+            	}
+            }
+            function delwgmes(){
+            	var mesid=$('#mesid').val();
+            	if(mesid==""){
+            		alert("请选择模板表操作")
+            	}
+            	else{
+            		var delwgmes="<?php echo site_url('System/delwgmes');?>"+'/'+mesid;
+	            	$.ajax({
+	            		type:"post",
+	            		url:delwgmes,
+	            		async:true,
+	            		dataType:'json',
+	            		success:function(data){
+	            			if(data['status']=='success'){
+	            				alert("删除成功")
+	            			}
+	            		    else{
+	            		    	alert("删除失败")
+	            		    }
+	            		    window.location.reload();
+	            		},
+	            		error:function(s,e,t){
+	            			alert("出现错误，删除失败")
+	            		}
+	            	});
+            	}
+            	
+            }
+            
         </script>
-    </body>
-
+   </body>
 </html>

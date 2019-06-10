@@ -189,8 +189,9 @@
                     async:true,
                     success:function(data)
                     {
-//                  	alert(data);
+                    	console.log(data)
                         MesArray = eval("("+data+")")
+                        console.log(MesArray)
                         TreeMes = $(".l-tree").ligerTree({
                             data:MesArray,
                             idFieldName :'nodeId',
@@ -233,8 +234,11 @@
                         $('#formId').attr('value',note.data.nodeId)
                         var formId = $('#formId').attr('value');
 						$("#Fid").attr('value',formId);
+						$("#tabid").attr('value',formId);
+						$('#Mesflag').val('0');
+						$("#ChaFormName").removeAttr("disabled");
                         var MesShow = "<?php echo site_url('MesContro/ShowFormMes') ?>"+'/'+note.data.nodeId
-//                      console.log(MesShow)
+                        console.log(MesShow)
 						//基本属性
                         $.ajax({
                         	type:"post",
@@ -242,7 +246,7 @@
                         	async:true,
                         	dataType:'json',
                         	success:function(data){
-//                      		console.log(data)
+                        		console.log(data)
                         	    //clear old mes
                                 $('#ChaFormName').attr('value','')
                                 $('#ChaFormName').val('')
@@ -252,7 +256,7 @@
                                 $('#ChaTabEls').text()
                                 //console.log(data)
                         	    showFormMes(data)
-//                      	    $('#file_upload').removeClass('NoSelTabType')
+                        	    $('#file_upload').removeClass('NoSelTabType')
                         	    if(data['base'][0]['TabTyp']){
                         	        $('#UpLoad').removeClass('NoSelTabType')
                             	    $('#PackUp').removeClass('NoSelTabType')
@@ -271,6 +275,7 @@
                         	}
                         });
                         showOperatingData(note.data.nodeId)//操作记录
+                        showuploadData(note.data.nodeId)//附件上传记录
                     }
                 }
                 //操作记录的显示
@@ -284,7 +289,6 @@
                     	success:function(data){
                     	    //clear old mes
                     	    $("#dynamic-table_His tbody").html("");
-                    	    
                     	    if(data.state == "success"){
                     	    	var opearData = data.data
                     	    	for(var ky in opearData){
@@ -301,10 +305,11 @@
                     	},
                     	error:function(s,e,t){
                     		console.log(e+": "+t)
-                    	    alert('出现错误，请及时联系管理员[FD001]')
+                    	    alert('操作记录出现错误，请及时联系管理员')
                     	}
                     });
                 }
+                
                 //树查询
                 $("#searchTreeText").on("keyup",function(){
                 	searchTree(this.value)
@@ -341,7 +346,6 @@
                         }, 0);
                     }
                 });
-           
 			});
 			/*
 			 * Path Function
@@ -386,11 +390,14 @@
 					}
 					else{
 						alert('已选择');
+						$('#Mesflag').val('1');
+						$("#ChaFormName").attr("disabled","disabled");
 						$('#UpLoad').removeClass('NoSelTabType')
 		        	    $('#PackUp').removeClass('NoSelTabType')
 		        	    $('#Delete').removeClass('NoSelTabType')
 		        	    $('#printOutDraf').removeClass('NoSelTabType')
 		        	    //清楚旧信息
+		        	    $('#ModelName').text('')
 		                $('#ChaFormName').val('')
 		                $('#ChaFormType').text('')
 		                $('#datepickerForm').val('')
@@ -404,7 +411,115 @@
 					    $('#FormType').text('')
 					}
         	    }  
-		});
+			});
+			//附件上传事件
+			var input=document.getElementById("getfile");
+			var img='';
+			var arr = new Array(); 
+			var fd=new FormData();
+			// 当用户上传时触发事件
+			input.onchange=function(){
+				readFile(this);
+			}
+			//处理图片并添加都dom中的函数
+			var readFile=function(obj){
+				// 获取input里面的文件组
+				var fileList=obj.files;
+				//对文件组进行遍历，可以到控制台打印出fileList去看看
+				for(var i=0;i<fileList.length;i++){
+					var reader= new FileReader();
+					reader.readAsDataURL(fileList[i]);
+					fd.append('file[]',fileList[i]);
+					reader.onload=function(e){
+						img='<img src="'+this.result+'" style="width:100px;height:100px; margin:5px;"/>';
+						$("#img-box").append(img);
+					}
+				}
+			}
+			$('#imgUpload').on('click',function(){
+				var imgload="<?php echo site_url('Form/img_upload')?>"
+				fd.append('Fid',$('#Fid').val());
+				$.ajax({
+					type:"post",
+					url:imgload,
+					async:true,
+					data:fd,
+					dataType:'json',
+	                processData:false,
+	                contentType:false,
+	                success:function(data){
+	                	if(data['status'] = 'success'){
+	                		alert('上传成功')
+	                		$('#modal-file').modal('hide')
+	                	}
+	                	else{
+	                		alert('上传失败')
+	                	}
+	              	window.location.reload();
+	                },
+	                error:function(s,e,t){
+	                	alert('错误，请联系管理员')
+	                }
+				});
+			})
+			//删除附件
+			function delupload(obj){
+				 var mes = $(obj).parent().parent("tr").children('td').eq(0).html();
+				 var delupload="<?php echo site_url('Form/Delupload')?>";
+				 $.ajax({
+				 	type:"post",
+				 	url:delupload,
+				 	async:true,
+				 	data:{mes:mes},
+				 	dataType:'json',
+				 	success:function(data){
+				 		if(data['status'] = 'success'){
+	                		alert('删除成功') 
+//	                		$("#dynamic-table_upload").load(location.href+" #dynamic-table_upload");
+	                		showuploadData($('#tabid').val())
+	                	}
+	                	else{
+	                		alert('删除失败')
+	                	}
+				 	},
+				 	error:function(s,e,t){
+				 		alert('删除出现错误，联系管理员')
+				 	}
+				 });
+			}
+			//附件的显示
+            function showuploadData(nodeid){
+            	var fileShow = "<?php echo site_url('Form/ShowuploadData') ?>"+'/'+nodeid;
+//          	console.log(fileShow)
+            	$.ajax({
+                	type:"GET",
+                	url:fileShow,
+                	async:true,
+                	dataType:'json',
+                	success:function(data){
+                	    //clear old mes
+                	    $("#dynamic-table_upload tbody").html("");
+                	    if(data.state == "success"){
+                	    	var opearData = data.data
+                	    	for(var ky in opearData){
+                	    		var tmpHtml = "";
+                	    		tmpHtml += '<tr>';
+                	    		tmpHtml += '<td class="path">'+ opearData[ky]["path"] +'</td>';
+                	    		tmpHtml += '<td>'+ opearData[ky]["type"] +'</td>';
+                	    		tmpHtml += '<td>'+ opearData[ky]["time"] +'</td>';
+                	    		tmpHtml += '<td><button onclick="delupload(this)">删除</button></td>';
+                	    		tmpHtml += '</tr>';
+                	    		$("#dynamic-table_upload tbody").append(tmpHtml);
+                	    	}
+                	    }
+                	    
+                	},
+                	error:function(s,e,t){
+                		console.log(e+": "+t)
+                	    alert('附件显示出现错误，请及时联系管理员')
+                	}
+                });
+            }
 			
 		</script>
 	</body>

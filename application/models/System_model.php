@@ -8,7 +8,7 @@ class System_model extends CI_Model
     //信息显示
     public function TypeM_selectMes($type)
     {
-        $data = $this->db->query("SELECT id,TypNam,TypCTm,TypCPe,TypEls FROM type_mes WHERE TypSta = 0 and TypeFT=".$type."")->result_array();
+        $data = $this->db->query("SELECT id,TypNam,TypCTm,TypCPe,TypEls,TypeSet FROM type_mes WHERE TypSta = 0 and TypeFT=".$type." ORDER BY TypeSet DESC")->result_array();
         return $data;
     }
     //新增类型
@@ -245,5 +245,96 @@ class System_model extends CI_Model
         $this->db->delete('user',array('UseSta'=>3));
         return $data;
     }
-    
+    //设置默认表单类型
+    public function FormType_default($defType)
+    {
+//  	$defType='1111';
+    	$sql_old="select id from type_mes where TypeSet='1'";
+    	$result_old = $this->db->query($sql_old)->result_array();
+    	if($result_old){
+    		$sql_upda="update type_mes set TypeSet ='0' where id='".$result_old[0]['id']."'";
+    		$result_upda = $this->db->query($sql_upda);
+    	}
+    	$sql="update type_mes set TypeSet ='1' where typNam='".$defType."'";
+    	$result = $this->db->query($sql);
+    	$data['status']="error";
+    	if($result){
+    		$data['status']="success";
+    	}
+    	return $data;
+    }
+    //新建工作组
+    public function Newworkg($wgname)
+    {  foreach($wgname as $v)
+        {
+        	//避免重复的工作组新建
+        	$sql_select="select workgname from workgroup where workgname='".$v."'";
+        	$result_select = $this->db->query($sql_select)->num_rows();
+        	if($result_select>0){
+        		$data['mess']='1';
+        		$data['status']="error";
+        		return $data;
+        	}
+        	else{
+        	$sql="insert into workgroup(workgname) value('".$v."')";
+        	$this->db->query($sql);
+        	$result = $this->db->affected_rows();
+	            if(isset($result)){
+	    		$data['status']="success";
+	    		}
+	    		else{
+	    			$data['status']="error";}
+        	}
+        }
+     return $data;
+    }
+    //新建模板表名
+    public function NewTablewg($tablename,$wgid)
+    {  foreach($tablename as $v)
+        {
+        	//避免重复的工作组新建
+        	$sql_select="select tablename from workgroup_mes where tablename='".$v."' and workgid='".$wgid."'";
+        	$result_select = $this->db->query($sql_select)->num_rows();
+        	if($result_select>0){
+        		$data['mess']='1';
+        		$data['status']="error";
+        		$data['exist']=$tablename;
+        		return $data;
+        	}
+        	else{
+        	$sql="insert into workgroup_mes(tablename,workgid) values('".$v."','".$wgid."')";
+        	$this->db->query($sql);
+        	$result = $this->db->affected_rows();
+	            if(isset($result)){
+	    		$data['status']="success";
+	    		}
+	    		else{
+	    		$data['status']="error";}
+        	}
+        }
+     return $data;
+    }
+    //工作组的显示
+    public function WorkGroup_show(){
+    	$data = $this->db->query("SELECT id,workgname FROM workgroup")->result_array();
+        return $data;
+    }
+    //模板表单的显示
+    public function WorkGroup_Mes($wgid)
+    {
+    	$data = $this->db->query("SELECT id,tablename FROM workgroup_mes where workgid='".$wgid."'")->result_array();
+        return $data;
+    } 
+    //工作组显示
+    public function WG_selectMes()
+    {
+        $data = $this->db->query("SELECT id,workgname FROM workgroup")->result_array();
+        return $data;
+    }
+    //工作组详细信息获取
+    public function Getwgmes($wgid){
+    	$data = $this->db->query("SELECT a.id,a.workgname,b.tablename FROM workgroup AS a
+		LEFT JOIN workgroup_mes AS b ON a.id=b.workgid  where a.id='".$wgid."'")->result_array();
+        return $data;
+    }
 }

@@ -33,10 +33,17 @@ class Affair_model extends CI_Model{
         
     }
     //查询签名记录
-    public function affair_Signshow($useacc){
+    public function affair_Signshow($useacc,$ProNam,$TabMna){
     	$sql_1="select id from user where UseAcc='".$useacc."'";
     	$data['get']=$this->db->query($sql_1)->result_array();
-    	$sql = "select TabNam,SignDate,ProNam from sign_detail WHERE SignDate is NOT NULL and userid='".$data['get'][0]['id']."'";
+    	$sql = "select TabNam,SignDate,ProNam from sign_detail WHERE SignDate is NOT NULL and userid='".$data['get'][0]['id']."' and ProNam='".$ProNam."' and TabMNa='".$TabMna."'";
+        $data['aaData'] = $this->db->query($sql)->result_array();
+        return $data;
+    }
+    public function affair_Signshow1($useacc,$ProNam){
+    	$sql_1="select id from user where UseAcc='".$useacc."'";
+    	$data['get']=$this->db->query($sql_1)->result_array();
+    	$sql = "select TabNam,SignDate,ProNam from sign_detail WHERE SignDate is NOT NULL and userid='".$data['get'][0]['id']."' and ProNam='".$ProNam."'";
         $data['aaData'] = $this->db->query($sql)->result_array();
         return $data;
     }

@@ -33,6 +33,7 @@ class System extends CI_Controller{
         public function systemShow_FmTy()
         {
             //部门信息
+            $data['typeForm'] = $this->system->TypeM_selectMes(0);
             $data['departMes'] = $this->system->RoleM_selectMes();
             $this->load->view('system_fmty.html',$data);
         }
@@ -121,6 +122,12 @@ class System extends CI_Controller{
         $i=1;
         foreach($data['aaData'] as &$v)
         {
+        	if($v['TypeSet']=="1"){
+        		$v['Typede']='默认';
+        	}
+        	else{
+        		$v['Typede']=' ';
+        	}
             $v['rowNum'] = $i;
             $ConMES = "MesDel(".$v['id'].")";
             $v['control'] = "<button onclick='".$ConMES."'>删除</button>";
@@ -313,56 +320,107 @@ class System extends CI_Controller{
     }
     //获取接口的工作组
      public function WorkGroup_show(){
-     	//工作组接口数据
-        $url = 'http://112.74.34.150:8080/TongXinweb/project/AllPro';
-        $ch = curl_init ();
-        curl_setopt ( $ch, CURLOPT_URL, $url );
-        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
-        curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
-        curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
-        $file_contents = curl_exec ( $ch );
-        //json解码
-        $data = json_decode($file_contents,true);
-        $array = array();
-        for ($i=0;$i<count($data['data']);$i++)
+     	$data['aaData'] = $this->system->WorkGroup_show();
+        $i=1;
+        foreach($data['aaData'] as &$v)
         {
-            $array['aaData'][]= $data['data'][$i];
+            $v['rowNum'] = $i;
+            $ConMES = "MesDel(".$v['id'].")";
+            $i++;
         }
-        $json = json_encode($array);
+        $json = json_encode($data);
         echo $json;
-        
-        curl_close ( $ch );
+     	//工作组接口数据
+//      $url = 'http://112.74.34.150:8080/TongXinweb/project/AllPro';
+//      $ch = curl_init ();
+//      curl_setopt ( $ch, CURLOPT_URL, $url );
+//      curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+//      curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
+//      curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
+//      $file_contents = curl_exec ( $ch );
+//      //json解码
+//      $data = json_decode($file_contents,true);
+//      $array = array();
+//      for ($i=0;$i<count($data['data']);$i++)
+//      {
+//          $array['aaData'][]= $data['data'][$i];
+//      }
+//      $json = json_encode($array);
+//      echo $json;
+//      curl_close ( $ch );
      }
      public function WorkGroup_Mes()
     {
-        $projectId = $this->uri->segment(3);
-        
-        /*
-         * 根据工程id查接口树节点
-         * */
-        $url = 'http://112.74.34.150:8080/TongXinweb/Tree/getTreeByProjectId?projectId='.$projectId;
-        $ch = curl_init ();
-        curl_setopt ( $ch, CURLOPT_URL, $url );
-        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
-        curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
-        curl_setopt ( $ch, CURLOPT_POST, 1 ); //启用POST提交
-        $file_contents = curl_exec ( $ch );
-        //json解码
-        $data = json_decode($file_contents,true);
-        $array = array();
-        $arrayNodeId = array();
-        for ($i=0;$i<count($data['data']);$i++)
+        $wgid = $this->uri->segment(3);
+        $data['aaData'] = $this->system->WorkGroup_Mes($wgid);
+        $i=1;
+        foreach($data['aaData'] as &$v)
         {
-            //如果这个表单模板已经存在
-            if (! in_array($data['data'][$i]['nodeId'],$arrayNodeId))
-            {
-                $array['aaData'][] = $data['data'][$i];
-                $arrayNodeId[] = $data['data'][$i]['nodeId'];
-            }
+            $v['rowNum'] = $i;
+            $ConMES = "MesDel(".$v['id'].")";
+            $i++;
         }
-        $json = json_encode($array);
+        $json = json_encode($data);
         echo $json;
-        
-        curl_close ( $ch );
+    }
+    //设置默认表单类型
+    public function FormType_default()
+    {
+    	$defType=$this->input->post('defaultType');
+    	$data=$this->system->FormType_default($defType);
+    	$json=json_encode($data);
+    	echo $json;
+    }
+    //新建工作组
+    public function Newworkg(){
+    	$wgname = $_POST['wgname'];
+    	$wgname = explode(',',$wgname);
+    	$data=$this->system->Newworkg($wgname);
+    	$json=json_encode($data);
+    	echo $json;
+    }
+    //新建模板表单名
+    public function NewTablewg(){
+    	$tablename = $_POST['tablename'];//表单名
+    	$wgid = $_POST['wgid'];
+    	$tablename = explode(',',$tablename);
+    	$data=$this->system->NewTablewg($tablename,$wgid);
+    	$json=json_encode($data);
+    	echo $json;
+    }
+    //取出工作组里面的所有模板表格
+    public function Getwgmes(){
+    	$wgid=$_POST['wgid'];
+    	$data=$this->system->Getwgmes($wgid);
+    	$json=json_encode($data);
+    	echo $json;
+    }
+    //删除工作组
+    public function delwg(){
+    	$wgid = $this->uri->segment(3);
+    	$sql="DELETE FROM workgroup WHERE id='".$wgid."'";
+		$this->db->query($sql);
+    	$data['row'] = $this->db->affected_rows();
+    	$data['status'] = 'error';
+    	if($data['row']){
+    		$data['status'] = 'success';
+	    }
+	    $json = json_encode($data);
+		echo $json;
+    	
+    }
+    //删除工作组下的模板表
+    public function delwgmes(){
+    	$mesid = $this->uri->segment(3);
+    	$sql="DELETE FROM workgroup_mes WHERE id='".$mesid."'";
+		$this->db->query($sql);
+    	$data['row'] = $this->db->affected_rows();
+    	$data['status'] = 'error';
+    	if($data['row']){
+    		$data['status'] = 'success';
+	    }
+	    $json = json_encode($data);
+		echo $json;
+    	
     }
 }

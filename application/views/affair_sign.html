@@ -25,6 +25,7 @@
         <!-- ace styles -->
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/ace.min.css"?>" class="ace-main-stylesheet" id="main-ace-style" />
         
+        
         <!--self css-->
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/self/self.css"?>" />
 
@@ -112,47 +113,110 @@
         <script src="<?php echo base_url()."assets/js/jquery-ui.min.js"?>"></script>
         
         <!--dataTable-->
- <!--dataTable-->
+ 		<!--dataTable-->
         <script src="<?php echo base_url()."assets/js/jquery.dataTables.min.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/jquery.dataTables.bootstrap.min.js"?>"></script>
         
         <!-- ace scripts -->
         <script src="<?php echo base_url()."assets/js/ace-elements.min.js"?>"></script>
         <script src="<?php echo base_url()."assets/js/ace.min.js"?>"></script>
-
+		<script src="<?php echo base_url()."assets/js/tree.min.js"?>"></script>
         <!-- inline scripts related to this page -->
         <script src="<?php echo base_url()."assets/js/self/Show_LeftTreeA.js"?>"></script>
         <script type="text/javascript">
-            
-                
-            jQuery(function($) {
+            jQuery(function($){
+            	    var useacc=$("#useacc").val();
+            	    var MesArray='';
+					var treeurl="<?php echo site_url('Affair/getTree')?>"+'/'+useacc;
+					$.ajax({
+						type:"post",
+						url:treeurl,
+						async:false,
+						success:function(data){
+						   MesArray = eval("("+data+")")
+//                         console.log(MesArray)
+							function initiateDemoData(){
+								var dataSource1 = function(options, callback){
+								var $data = null
+								if(!("text" in options) && !("type" in options)){
+									$data = MesArray;//the root tree
+									callback({ data: $data });
+									return;
+								}
+								else if("type" in options && options.type == "folder") {
+									if("additionalParameters" in options && "children" in options.additionalParameters)
+										$data = options.additionalParameters.children || {};
+									else $data = {}//no data
+								}
+								if($data != null)//this setTimeout is only for mimicking some random delay
+									setTimeout(function(){callback({ data: $data });} , parseInt(Math.random() * 500) + 200);
+					
+								}
+								return {'dataSource1': dataSource1}
+							}
+							var sampleData = initiateDemoData();
+							$('#tree1').ace_tree({
+								dataSource: sampleData['dataSource1'] ,
+								loadingHTML:'<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>',
+								'open-icon' : 'ace-icon fa fa-folder-open',
+								'close-icon' : 'ace-icon fa fa-folder',
+								'itemSelect' : true,
+								'folderSelect': true,
+								'multiSelect': false,
+								'selected-icon' : null,
+								'unselected-icon' : null,
+								'folder-open-icon':'ace-icon tree-plus',
+								'folder-close-icon':'ace-icon tree-minus'
+							});
+						},
+						error:function(s,e,t){
+							
+						}
+					});
+					
+			
                 /*
                  * tableINI
                  */
                 //table_table
                 //签名记录显示
-                var useacc=$("#useacc").val();
-                var showMes = "<?php echo site_url('Affair/affair_Signshow');?>"+'/'+useacc;
-//              console.log(showMes);
-                var tableTab = $('#dynamic-table_table').DataTable({
-                    ajax:showMes,
-                    columns:[
-                        {"data":'SignDate'},
-                        {"data":'ProNam'},
-                        {"data":'TabNam'},
-                    ],
-                    oLanguage: {
-                        sLengthMenu: "显示 _MENU_ 条数据",
-                    },
-                    "order": [[ 0, "desc" ]],
-                    "processing": true,
-                    "aaSorting": [],
-                    "aoColumnDefs": [{
-                        'bSortable': false,
-                        'aTargets': [0,1,2]
-                    }],
-                });
+                
             })
+            var table = $('#dynamic-table_table').DataTable();
+            $('#tree1').on('selected.fu.tree', function(e,data1) {
+            			var useacc=$("#useacc").val();
+						var mes=data1.selected[0].text;
+						var status=data1.selected[0].flag;
+						mes=encodeURI(mes);
+						if(status=="1"){
+							//情况为1是只搜索该工程下的所有表单
+							var showMes = "<?php echo site_url('Affair/affair_Signshow1');?>"+'/'+useacc+'/'+mes;
+						}
+						if(status=="2"){
+							//情况为2是只搜索该工程下模板的所有表单
+							var proname=data1.selected[0].proname;
+							var showMes = "<?php echo site_url('Affair/affair_Signshow');?>"+'/'+useacc+'/'+proname+'/'+mes;
+						}
+		                var tableTab = $('#dynamic-table_table').DataTable({
+		                    ajax:showMes,
+		                    columns:[
+		                        {"data":'TabNam'},
+		                        {"data":'SignDate'},
+		                        {"data":'ProNam'}
+		                    ],
+		                    oLanguage: {
+		                        sLengthMenu: "显示 _MENU_ 条数据",
+		                    },
+		                    "destroy": true,
+		                    "processing": true,
+		                    "aaSorting": [],
+		                    "aoColumnDefs": [{
+		                        'bSortable': false,
+		                        'aTargets': [0,1,2]
+		                    }],
+		                });
+						
+				})
         </script>
         
 	</body>

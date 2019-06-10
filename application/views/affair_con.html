@@ -1,34 +1,41 @@
 <!--title begin-->
-<!--<span style="font-size: 22px;" id="proName">【未选中工程】</span>-->
-<!--<div class="hr hr8 hr-double hr-dotted"></div>-->
+<span style="font-size: 22px;" >签名记录</span>
+<div class="hr hr8 hr-double hr-dotted"></div>
 <!--title end-->
-<div class="col-xs-10">
-    <div class="widget-box widget-color-blue">
-        <div class="widget-header widget-header-flat">
-            <h4 class="widget-title smaller">签名列表</h4>
-        </div>
-        <div class="tabbable">
-            <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="">
-                <li class="active">
-                    <a data-toggle="tab" href="#home1">表单信息</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div id="home1" class="tab-pane in active">
-                    <table id="dynamic-table_table" class="table table-striped table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>时间</th>
-                                <th>工程名</th>
-                                <th>表单名</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="space-6"></div>
+<div class="col-xs-6">
+	<div class="widget-box widget-color-blue">
+		<div class="widget-header">
+			<h4 class="widget-title lighter smaller">工程</h4>
+		</div>
+
+		<div class="widget-body">
+			<div class="widget-main padding-8">
+				<ul id="tree1"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-xs-6">
+	<div class="widget-box widget-color-blue">
+		<div class="widget-header">
+			<h4 class="widget-title lighter smaller">签名详情</h4>
+		</div>
+		<div class="widget-body">
+			<div class="tab-content">
+        		<div id="home1" class="tab-pane in active">
+           			<table id="dynamic-table_table" class="table table-striped table-bordered table-hover" style="width: 100%;">
+                		<thead>
+                    		<tr>
+                        		<th>表单名</th>
+                     		    <th>签名时间</th>
+                     		    <th>工程名</th>
+                   			 </tr>
+               			</thead>
+               		 	<tbody>
+               		 	</tbody>
+            		</table>
+        		</div>
+    		</div>
+		</div>
+	</div>
 </div>

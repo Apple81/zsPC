@@ -5,7 +5,8 @@
 function ChangeSta(uri,ActTy){
 	var proName=sessionStorage.getItem('projectName')
 	var Mes = $('#formId').val()
-    var TabName_Data = 'table_mes_cache'
+//  var TabName_Data = 'table_mes_cache'
+    var TabName_Data = 'table_mes'
     if(Mes) {
         if(ActTy == 'draf'){
             TabName_Data = 'table_mes_cache'
@@ -15,7 +16,7 @@ function ChangeSta(uri,ActTy){
 //      console.log(StaChange);
 //      console.log(Mes);
 //      console.log(TabName_Data);
-        console.log(uriCheck);
+//      alert(uriCheck);
         //check type
         $.ajax({
         	type:"post",
@@ -29,7 +30,7 @@ function ChangeSta(uri,ActTy){
         	success:function(data){
         		console.log(data.TypSta)
         	    if(data.TypSta == 'allow'){
-//      	        console.log(uri)
+        	        console.log(uri)
 //        	        change status
                     $.ajax({
                         type:"post",
@@ -63,7 +64,7 @@ function ChangeSta(uri,ActTy){
 								            };
 								            TreeMes.set(op);
 					                        TreeMes.set('data',MesArray)
-					                        window.location.reload();//刷新页面
+//					                        window.location.reload();//刷新页面
 					                    },
 					                    error:function(s,t,e)
 					                    {

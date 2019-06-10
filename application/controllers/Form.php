@@ -49,7 +49,7 @@ class Form extends CI_Controller{
     //归集文件显示
     public function formShow_Pack()
     {
-        $data['typeForm'] = $this->system->TypeM_selectMes(0);
+        $data['workg'] = $this->system->WG_selectMes();
         $this->load->view('form_pack.html',$data);
     }
     /*
@@ -110,6 +110,7 @@ class Form extends CI_Controller{
     {
 //      $formId = $this->uri->segment(3);
         $TableName = $this->uri->segment(3);
+        $flag = $this->input->post('flag');
         $FormName = $this->input->post('FormName');
         $FormType = $this->input->post('FormType');
         $DLtime = $this->input->post('DLtime');
@@ -126,7 +127,13 @@ class Form extends CI_Controller{
 	//      $FormType = '建筑设计文档';
 	//      $DLtime = '2018-08-16';
 	//      $TabEls = 'ko';
-	        $ChangeMes = array( 'TabNam'=>$FormName,'TabEls'=>$TabEls,'TabDTm'=>$DLtime );
+	        if($flag=='1'){
+	        	//批量提交不修改名字
+	        	$ChangeMes = array('TabEls'=>$TabEls,'TabDTm'=>$DLtime);
+	        }
+	        else{
+	        	$ChangeMes = array( 'TabNam'=>$FormName,'TabEls'=>$TabEls,'TabDTm'=>$DLtime );
+	        }
 	        //保存信息
 	        $data = $this->form->FormMesBaseSave($FormId,$ChangeMes,$FormType,$TableName);
         }
@@ -163,38 +170,77 @@ class Form extends CI_Controller{
 		echo $json;
 	}
 	public function img_upload()
+	{		
+		$formId=$_POST['Fid'];
+		foreach ($_FILES['file']['name'] as $key => $image) {
+			$config['upload_path']='./formUpload/';
+	        $config['allowed_types']= 'gif|jpg|png|jpeg|bmp';
+//	        $config['max_size']=1000000000;//设置为无限制大小
+	//      $config['max_width']= 1024;
+	//      $config['max_height'] = 768;
+	//防止名字重复
+//	        $config['file_name']=time().mt_rand(1000,9999);
+	        $this->load->library('upload', $config);
+	        $this->upload->initialize($config);
+			//set $_FILES value
+			$fileKey = "file";
+			$fileKeyNew = "file_{$key}";
+			$_FILES[$fileKeyNew] = [
+			    'name' => $_FILES[$fileKey]['name'][$key],
+				'type' => $_FILES[$fileKey]['type'][$key],
+				'tmp_name' => $_FILES[$fileKey]['tmp_name'][$key],
+				'error' => $_FILES[$fileKey]['error'][$key],
+				'size' => $_FILES[$fileKey]['size'][$key],
+			];
+			if ($this->upload->do_upload($fileKeyNew)) {
+			    $uploadData = $this->upload->data();
+			    $pathurl=$uploadData['file_name'];
+			    $type=$uploadData['file_ext'];
+			    $data = $this->form->save_fileurl($formId,$pathurl,$type);
+//			    $imageWidth = intval($uploadData['image_width']);
+//			    $imageHeight = intval($uploadData['image_height']);
+			//do something here
+			} 
+			else{
+			    error($this->upload->display_errors());
+			    $data['status']='error';
+			}
+		}
+		$json = json_encode($data);
+		echo $json;
+	}
+	//附件记录的显示
+	public function ShowuploadData()
 	{
-		$config['upload_path']='./formUpload/';
-        $config['allowed_types']= 'gif|jpg|png|jpeg';
-        $config['max_size']=10000;
-//      $config['max_width']= 1024;
-//      $config['max_height'] = 768;
-//防止名字重复
-        $config['file_name']=time().mt_rand(1000,9999);
-
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        $status=$this->upload->do_upload('userfile');
-        $wrong=$this->upload->display_errors();
-        if($wrong){
-//      	error($wrong);
-//      	echo  "<script>alert('上传失败');history.go(-1);</script>";  
-        }
-        $info=$this->upload->data();
-        $formId = $this->input->post('Fid');
-        $path=$info['full_path'];
-        $pathurl=substr($path,44);//切割字符串只显示图片的名字
-        $data = $this->form->save_fileurl($formId,$pathurl);
-//      echo $formId;
-//      echo $pathurl;
-//      $json = json_encode($data);
-//		echo $json;
-        if($data["status"]=="success"){
-        	 echo  "<script>alert('保存成功');history.go(-1);</script>";  
-        }
-        else{
-//      	echo $data["status"];
-//      	echo  "<script>alert('上传失败');history.go(-1);</script>";  
-        }
+		$formId = $this->uri->segment(3);
+		$data = $this->form->Formgetupload($formId);
+		$ret_data = array(
+			"state"=>"success",
+			"msg"=>"",
+			"data" => array()
+		);
+		if(count($data) > 0){
+			$ret_data["data"] = $data;
+		}else{
+			$ret_data["state"] = "failure";
+			$ret_data["msg"] = "没有数据";
+		}
+		$json = json_encode($ret_data);
+		echo $json;
+	}
+	public function Delupload(){
+		$mes=$_POST['mes'];
+		$sql="DELETE FROM table_img WHERE path='".$mes."'";
+		$this->db->query($sql);
+    	$data['row'] = $this->db->affected_rows();
+    	$data['status'] = 'error';
+    	if($data['row']){
+    		$path=iconv('utf-8','gbk',$mes);
+	    	if(unlink("./formUpload/".$path)){
+	    		$data['status'] = 'success';
+	    	}
+	    }
+	    $json = json_encode($data);
+		echo $json;
 	}
 }
